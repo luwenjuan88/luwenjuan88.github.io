@@ -155,16 +155,16 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">91</span>
+          <span class="site-state-item-count">92</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
-        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-count">17</span>
         <span class="site-state-item-name">分类</span>
       </div>
       <div class="site-state-item site-state-tags">
-        <span class="site-state-item-count">27</span>
+        <span class="site-state-item-count">28</span>
         <span class="site-state-item-name">标签</span>
       </div>
   </nav>
@@ -202,7 +202,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/08/20/%E5%89%8D%E7%AB%AF/useState/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/08/20/%E5%90%8E%E7%AB%AF/Linux%E5%A4%9F%E7%94%A8%E5%91%BD%E4%BB%A4%E8%A1%8C/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/luwenjuan.jpeg">
@@ -220,7 +220,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/08/20/%E5%89%8D%E7%AB%AF/useState/" class="post-title-link" itemprop="url">React：useState</a>
+          <a href="/2022/08/20/%E5%90%8E%E7%AB%AF/Linux%E5%A4%9F%E7%94%A8%E5%91%BD%E4%BB%A4%E8%A1%8C/" class="post-title-link" itemprop="url">Linux：Linux命令行够用就好</a>
         </h2>
 
         <div class="post-meta-container">
@@ -238,7 +238,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-08-28 10:47:10" itemprop="dateModified" datetime="2022-08-28T10:47:10+08:00">2022-08-28</time>
+      <time title="修改时间：2022-08-29 15:03:19" itemprop="dateModified" datetime="2022-08-29T15:03:19+08:00">2022-08-29</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -246,7 +246,7 @@
       </span>
       <span class="post-meta-item-text">分类于</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Next-js-%E5%BE%85%E5%AE%8C%E6%88%90%E2%80%A6%E2%80%A6/" itemprop="url" rel="index"><span itemprop="name">Next.js, 待完成……</span></a>
+          <a href="/categories/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a>
         </span>
     </span>
 
@@ -259,8 +259,8 @@
       </span>
       <span class="post-meta-item-text">Changyan：</span>
     
-    <a title="React：useState" href="/2022/08/20/%E5%89%8D%E7%AB%AF/useState/#SOHUCS" itemprop="discussionUrl">
-      <span id="sourceId::af100a6a24a5a60e087d35b0511f1300" class="cy_cmt_count" itemprop="commentCount"></span>
+    <a title="Linux：Linux命令行够用就好" href="/2022/08/20/%E5%90%8E%E7%AB%AF/Linux%E5%A4%9F%E7%94%A8%E5%91%BD%E4%BB%A4%E8%A1%8C/#SOHUCS" itemprop="discussionUrl">
+      <span id="sourceId::54b6e89314f0daa706f2a9cb8b90a74a" class="cy_cmt_count" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -274,12 +274,150 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <figure class="highlight pf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> [<span class="keyword">state</span>, <span class="built_in">set</span>State] = useState(initialState);</span><br></pre></td></tr></table></figure>
+          <p>linux命令行要学很多吗？不需要</p>
+<p>不管是Windows还是Mac，大部分时候我们用的还是图文交互，特别是Windows，很少会用到命令行，Mac可能还多一些。</p>
+<p>所以了解一些够用的知识和命令，应付大部分场景就可以了。</p>
+<h2 id="打开命令行"><a href="#打开命令行" class="headerlink" title="打开命令行"></a>打开命令行</h2><p>Windows在开始菜单中搜索“cmd”，就可以看到命令行工具；</p>
+<p>Mac在lanchpad里搜索terminal，就可以看到：</p>
+<p><img src="/media/16609025048221.png"></p>
+<h2 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h2><p>命令其实就是在终端里面操作文件夹和文件，常用的有这些：</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="regexp">//</span> 新建一个文件夹</span><br><span class="line">mkdir 文件夹名</span><br><span class="line"></span><br><span class="line"><span class="regexp">//</span> 进入文件夹内</span><br><span class="line">cd 文件夹名</span><br><span class="line"></span><br><span class="line"><span class="regexp">//</span> 复制文件</span><br><span class="line">cp  [选项] 源文件或目录 目标文件或目录</span><br><span class="line"></span><br><span class="line"><span class="regexp">//</span> 删除文件</span><br><span class="line">rm  [选项] 文件或目录</span><br><span class="line"></span><br><span class="line"><span class="regexp">//</span> 查找进程</span><br><span class="line">ps -ef|grep 关键字</span><br><span class="line"></span><br><span class="line"><span class="regexp">//</span> 结束进程</span><br><span class="line">kill -<span class="number">9</span> 进程编号</span><br></pre></td></tr></table></figure>
 
-<p>在初始渲染期间，返回的状态 (state) 与传入的第一个参数(initialState) 值相同。</p>
-<p>setState 函数用于更新 state。它接收一个新的 state 值并将组件的一次重新渲染加入队列。</p>
-<figure class="highlight haxe"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">setState(<span class="keyword">new</span><span class="type">State</span>);</span><br></pre></td></tr></table></figure>
+<p>这些知道就行了，用的时候不懂再百度，特定项目需要了解特定命令，比如java，git，node都有它们各自的命令。</p>
+<h2 id="更多说明"><a href="#更多说明" class="headerlink" title="更多说明"></a>更多说明</h2><p>更多命令其实没必要记。</p>
+<p>比如安装配置一个工具，需要用到命令，这个时候往往这个工具的说明书里面就把命令告诉你了，跟着说明操作就行，无需你提前去记。</p>
 
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/08/20/%E7%BC%96%E7%A8%8B/G1-github%E6%93%8D%E4%BD%9C/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/luwenjuan.jpeg">
+      <meta itemprop="name" content="卢文娟">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="卢文娟">
+      <meta itemprop="description" content="微信: 13246411679">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 卢文娟">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2022/08/20/%E7%BC%96%E7%A8%8B/G1-github%E6%93%8D%E4%BD%9C/" class="post-title-link" itemprop="url">开发者Github够用指南</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-08-20 15:21:41" itemprop="dateCreated datePublished" datetime="2022-08-20T15:21:41+08:00">2022-08-20</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-08-29 18:09:22" itemprop="dateModified" datetime="2022-08-29T18:09:22+08:00">2022-08-29</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Github-%E5%BE%85%E5%AE%8C%E6%88%90%E2%80%A6%E2%80%A6/" itemprop="url" rel="index"><span itemprop="name">Github, 待完成……</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Changyan：</span>
+    
+    <a title="开发者Github够用指南" href="/2022/08/20/%E7%BC%96%E7%A8%8B/G1-github%E6%93%8D%E4%BD%9C/#SOHUCS" itemprop="discussionUrl">
+      <span id="sourceId::4045fe3e1a34b1d6600a259ff9b24323" class="cy_cmt_count" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>Github是每个开发者的第一堂课，但是几年没写代码后，发现忘得一点都没有了，SVN也是，所以再次拾起，我决定写一个指南。</p>
+<p>如果你直接去看github的官方文档，会陷入里面的细节，看完还是一头雾水；但是如果你跟着一个项目操作一遍，学会也就是几分钟的事情，当你会了以后，你再去看官方文档，才能够和实际工作对应上。</p>
+<p>所以本文就是跟着一个项目操作一遍Github。</p>
+<p>本文假设你已经安装了VSCode和Git，如果你没有安装，直接谷歌搜索，从官网安装即可。</p>
+<h2 id="git是什么？"><a href="#git是什么？" class="headerlink" title="git是什么？"></a>git是什么？</h2><p>git仓库（repository）：运行git init之后就是git仓库了，git仓库才能管理</p>
+<p>git分支（branch）：各自开辟不同的分支，互不干扰，最后进行合并</p>
+<h2 id="git够用操作"><a href="#git够用操作" class="headerlink" title="git够用操作"></a>git够用操作</h2><p>第一次提交：</p>
+<p>全部提交到暂存区</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">add</span> -A </span><br></pre></td></tr></table></figure>
+
+<p>全部提交到仓库：</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">git</span> commit -m <span class="string">&quot;first commit&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>创建分支：</p>
+<figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">git</span> checkout -<span class="keyword">b</span> 分支名</span><br></pre></td></tr></table></figure>
+
+<p>切换到某一个分支：</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">git</span> checkout 分支名</span><br></pre></td></tr></table></figure>
+
+<p>将b分支合并到当前分支：</p>
+<figure class="highlight cos"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="keyword">merge</span> b</span><br></pre></td></tr></table></figure>
+
+<p>查看当前有哪些分支：</p>
+<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">git branch</span></span><br></pre></td></tr></table></figure>
+
+<p>在vscode里面有直接图形化操作，无需这些命令；</p>
+<p>为了避免冲突，在提交时，先更新代码；</p>
+<h2 id="github够用操作"><a href="#github够用操作" class="headerlink" title="github够用操作"></a>github够用操作</h2><p>在git上创建完仓库后，会有两个说明出现，一个是创建新仓库的方法，一个是把已有仓库上传进来的方法，按照它提示的命令操作即可。</p>
+<p>当我们把项目上传到github，接着就只有两个命令要记住：</p>
+<blockquote>
+<p>git push：提交修改</p>
+<p>git pull：拉取将远程最新的修改到本地</p>
+</blockquote>
+<p>如果是git clone别人的项目，那么git clone下来的是git仓库，接着就是按照以上两个命令操作更新即可。</p>
 
       
     </div>
@@ -1074,113 +1212,6 @@
 <p>（2）不可变变量的值可以在构造函数中设置，但之后不能修改</p>
 <p>（3）不可变变量一般使用大写字母命名</p>
 <figure class="highlight abnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">contract Immutable &#123;</span><br><span class="line">    address public immutable MY_ADDRESS<span class="comment">;</span></span><br><span class="line">    uint public immutable MY_UINT<span class="comment">;</span></span><br><span class="line"></span><br><span class="line">    constructor(uint _myUint) &#123;</span><br><span class="line">        MY_ADDRESS <span class="operator">=</span> msg.sender<span class="comment">;</span></span><br><span class="line">        MY_UINT <span class="operator">=</span> _myUint<span class="comment">;</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/07/27/Solidity/S15-view%20pure%E4%BF%AE%E9%A5%B0%E7%AC%A6/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/luwenjuan.jpeg">
-      <meta itemprop="name" content="卢文娟">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="卢文娟">
-      <meta itemprop="description" content="微信: 13246411679">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 卢文娟">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/07/27/Solidity/S15-view%20pure%E4%BF%AE%E9%A5%B0%E7%AC%A6/" class="post-title-link" itemprop="url">Solidity编程（15）：view pure修饰符</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2022-07-27 15:21:41" itemprop="dateCreated datePublished" datetime="2022-07-27T15:21:41+08:00">2022-07-27</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-07-28 23:09:48" itemprop="dateModified" datetime="2022-07-28T23:09:48+08:00">2022-07-28</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Solidity/" itemprop="url" rel="index"><span itemprop="name">Solidity</span></a>
-        </span>
-    </span>
-
-  
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Changyan：</span>
-    
-    <a title="Solidity编程（15）：view pure修饰符" href="/2022/07/27/Solidity/S15-view%20pure%E4%BF%AE%E9%A5%B0%E7%AC%A6/#SOHUCS" itemprop="discussionUrl">
-      <span id="sourceId::cfa0a1a75bdc2c44015890da3d25cddb" class="cy_cmt_count" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>用于对方法的修饰，用好了可以节省很多gas费用。</p>
-<blockquote>
-<p>view：代表这个方法可以访问链上的数据，但是不能修改。</p>
-<p>pure：比view更加严格，不能访问链上数据，方法里面的变量只能在方法内部使用，用于写工具类的方法。</p>
-</blockquote>
-<p>当使用这两个关键字的时候，代表你这个方法不需要矿工来验证，也就不需要验证的gas费。</p>
-<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">contract ViewPureDemo&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">uint</span> <span class="keyword">public</span> age;</span><br><span class="line"></span><br><span class="line">    <span class="function">function <span class="title">increaseAge</span>() <span class="keyword">public</span></span> &#123;</span><br><span class="line">        age ++;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function">function <span class="title">getAgeWithView</span>() <span class="keyword">public</span> view <span class="title">returns</span>(<span class="params"><span class="built_in">uint</span></span>)</span>&#123;</span><br><span class="line">        <span class="comment">//age ++; //不能修改，否则编译会报错</span></span><br><span class="line">        <span class="keyword">return</span> age;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function">function <span class="title">getAgeWithPure</span>() <span class="keyword">public</span> pure <span class="title">returns</span>(<span class="params"><span class="built_in">uint</span></span>)</span>&#123;</span><br><span class="line">        <span class="comment">//return age; //不能访问链上数据，否则编译会报错</span></span><br><span class="line">        <span class="keyword">return</span> <span class="number">100</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
 
       
     </div>

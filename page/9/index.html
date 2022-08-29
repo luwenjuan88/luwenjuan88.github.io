@@ -155,16 +155,16 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">91</span>
+          <span class="site-state-item-count">92</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
-        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-count">17</span>
         <span class="site-state-item-name">分类</span>
       </div>
       <div class="site-state-item site-state-tags">
-        <span class="site-state-item-count">27</span>
+        <span class="site-state-item-count">28</span>
         <span class="site-state-item-name">标签</span>
       </div>
   </nav>
@@ -193,141 +193,6 @@
 
 
     <div class="main-inner index posts-expand">
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/07/02/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6%EF%BC%885%EF%BC%89/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/luwenjuan.jpeg">
-      <meta itemprop="name" content="卢文娟">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="卢文娟">
-      <meta itemprop="description" content="微信: 13246411679">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 卢文娟">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/07/02/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6%EF%BC%885%EF%BC%89/" class="post-title-link" itemprop="url">智能合约项目从0到1：客户端网站连接小狐狸钱包（五）</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2022-07-02 15:21:41" itemprop="dateCreated datePublished" datetime="2022-07-02T15:21:41+08:00">2022-07-02</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-08-25 18:11:57" itemprop="dateModified" datetime="2022-08-25T18:11:57+08:00">2022-08-25</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6/" itemprop="url" rel="index"><span itemprop="name">智能合约</span></a>
-        </span>
-    </span>
-
-  
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Changyan：</span>
-    
-    <a title="智能合约项目从0到1：客户端网站连接小狐狸钱包（五）" href="/2022/07/02/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6%EF%BC%885%EF%BC%89/#SOHUCS" itemprop="discussionUrl">
-      <span id="sourceId::7d78fe0add17d96446aa96b54e77365e" class="cy_cmt_count" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>我们的智能合约已经成功部署到了区块链上，那么接下来就是我们如何通过客户端来访问区块链服务了。</p>
-<h2 id="使用Replit开发客户端"><a href="#使用Replit开发客户端" class="headerlink" title="使用Replit开发客户端"></a>使用Replit开发客户端</h2><p>我们使用Replit来开发客户端，Replit是一个基于浏览器的IDE，我们可以方便的使用它来构建我们的web app，并部署到浏览器。</p>
-<p>我们需要先注册Replit账号，链接：<a target="_blank" rel="noopener" href="https://replit.com/login?goto=/">https://replit.com/login?goto=%2F</a>~</p>
-<p>然后我们可以使用一个现成的框架：<a target="_blank" rel="noopener" href="https://replit.com/@adilanchian/waveportal-starter-project?v=1">https://replit.com/@adilanchian/waveportal-starter-project?v=1</a></p>
-<p>点击左上角的Fork repl，可以把这个项目放入自己的空间，并进行进一步的开发。</p>
-<p>就是这样子了，加载完毕之后，点击右上角的绿色按钮run，就可以运行了，这时我们对代码的改动，会实时反应到网页上，这里我已经点击了run，所以按钮变成了stop。</p>
-<p><img src="http://luwenjuan.luyuedan.com/mweb/16531277423829.png"></p>
-<p>接下来，为了让我们的网站连接到区块链，我们需要连接钱包，因为只有当网站连接钱包之后，才能够允许调用智能合约。</p>
-<h2 id="检查钱包是否登陆"><a href="#检查钱包是否登陆" class="headerlink" title="检查钱包是否登陆"></a>检查钱包是否登陆</h2><p>如果我们登陆了小狐狸钱包，它将会自动在窗口产生一个对象ethereum，通过检查这个对象，我们可以检查钱包状态。</p>
-<p>在前端代码中，找到src的App.jsx文件，添加这些代码：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="title class_">React</span>, &#123; useEffect &#125; <span class="keyword">from</span> <span class="string">&quot;react&quot;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">&quot;./App.css&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="title function_">App</span> = (<span class="params"></span>) =&gt; &#123;</span><br><span class="line">  <span class="keyword">const</span> <span class="title function_">checkIfWalletIsConnected</span> = (<span class="params"></span>) =&gt; &#123;</span><br><span class="line">    <span class="comment">/*</span></span><br><span class="line"><span class="comment">    * First make sure we have access to window.ethereum</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">    <span class="keyword">const</span> &#123; ethereum &#125; = <span class="variable language_">window</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (!ethereum) &#123;</span><br><span class="line">      <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;Make sure you have metamask!&quot;</span>);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;We have the ethereum object&quot;</span>, ethereum);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/*</span></span><br><span class="line"><span class="comment">  * This runs our function when the page loads.</span></span><br><span class="line"><span class="comment">  */</span></span><br><span class="line">  <span class="title function_">useEffect</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="title function_">checkIfWalletIsConnected</span>();</span><br><span class="line">  &#125;, [])</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;<span class="name">div</span> <span class="attr">className</span>=<span class="string">&quot;mainContainer&quot;</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;<span class="name">div</span> <span class="attr">className</span>=<span class="string">&quot;dataContainer&quot;</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">className</span>=<span class="string">&quot;header&quot;</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">        👋 Hey there!</span></span><br><span class="line"><span class="language-xml">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="language-xml"></span></span><br><span class="line"><span class="language-xml">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">className</span>=<span class="string">&quot;bio&quot;</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">          I am farza and I worked on self-driving cars so that&#x27;s pretty cool right? Connect your Ethereum wallet and wave at me!</span></span><br><span class="line"><span class="language-xml">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="language-xml"></span></span><br><span class="line"><span class="language-xml">        <span class="tag">&lt;<span class="name">button</span> <span class="attr">className</span>=<span class="string">&quot;waveButton&quot;</span> <span class="attr">onClick</span>=<span class="string">&#123;null&#125;</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">          Wave at Me</span></span><br><span class="line"><span class="language-xml">        <span class="tag">&lt;/<span class="name">button</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">  );</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="title class_">App</span></span><br></pre></td></tr></table></figure>
-
-<p>checkIfWalletIsConnected是一个检查勤包的函数，当网页加载的时候，这个函数会被运行。</p>
-<p><img src="http://luwenjuan.luyuedan.com/mweb/16532880093047.png"></p>
-<p>我的钱包一直是登陆状态，所以显示我有这个ethereum对象。</p>
-<h2 id="检查钱包是否被我们的网站授权"><a href="#检查钱包是否被我们的网站授权" class="headerlink" title="检查钱包是否被我们的网站授权"></a>检查钱包是否被我们的网站授权</h2><p>接下来，我们就要检查能否连接到钱包，因为网站要连接钱包，是要经过我们的授权的。</p>
-<p>我们修改App.jsx文件：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="title class_">React</span>, &#123; useEffect, useState &#125; <span class="keyword">from</span> <span class="string">&quot;react&quot;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">&quot;./App.css&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="title function_">App</span> = (<span class="params"></span>) =&gt; &#123;</span><br><span class="line">  <span class="comment">/*</span></span><br><span class="line"><span class="comment">  * Just a state variable we use to store our user&#x27;s public wallet.</span></span><br><span class="line"><span class="comment">  */</span></span><br><span class="line">  <span class="keyword">const</span> [currentAccount, setCurrentAccount] = <span class="title function_">useState</span>(<span class="string">&quot;&quot;</span>);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> <span class="title function_">checkIfWalletIsConnected</span> = <span class="keyword">async</span> (<span class="params"></span>) =&gt; &#123;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">      <span class="keyword">const</span> &#123; ethereum &#125; = <span class="variable language_">window</span>;</span><br><span class="line"></span><br><span class="line">      <span class="keyword">if</span> (!ethereum) &#123;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;Make sure you have metamask!&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;We have the ethereum object&quot;</span>, ethereum);</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      <span class="comment">/*</span></span><br><span class="line"><span class="comment">      * Check if we&#x27;re authorized to access the user&#x27;s wallet</span></span><br><span class="line"><span class="comment">      */</span></span><br><span class="line">      <span class="keyword">const</span> accounts = <span class="keyword">await</span> ethereum.<span class="title function_">request</span>(&#123; <span class="attr">method</span>: <span class="string">&quot;eth_accounts&quot;</span> &#125;);</span><br><span class="line"></span><br><span class="line">      <span class="keyword">if</span> (accounts.<span class="property">length</span> !== <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">const</span> account = accounts[<span class="number">0</span>];</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;Found an authorized account:&quot;</span>, account);</span><br><span class="line">        <span class="title function_">setCurrentAccount</span>(account)</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;No authorized account found&quot;</span>)</span><br><span class="line">      &#125;</span><br><span class="line">    &#125; <span class="keyword">catch</span> (error) &#123;</span><br><span class="line">      <span class="variable language_">console</span>.<span class="title function_">log</span>(error);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="title function_">useEffect</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="title function_">checkIfWalletIsConnected</span>();</span><br><span class="line">  &#125;, [])</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;<span class="name">div</span> <span class="attr">className</span>=<span class="string">&quot;mainContainer&quot;</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;<span class="name">div</span> <span class="attr">className</span>=<span class="string">&quot;dataContainer&quot;</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">className</span>=<span class="string">&quot;header&quot;</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">          👋 Hey there!</span></span><br><span class="line"><span class="language-xml">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="language-xml"></span></span><br><span class="line"><span class="language-xml">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">className</span>=<span class="string">&quot;bio&quot;</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">          I am farza and I worked on self-driving cars so that&#x27;s pretty cool right? Connect your Ethereum wallet and wave at me!</span></span><br><span class="line"><span class="language-xml">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="language-xml"></span></span><br><span class="line"><span class="language-xml">        <span class="tag">&lt;<span class="name">button</span> <span class="attr">className</span>=<span class="string">&quot;waveButton&quot;</span> <span class="attr">onClick</span>=<span class="string">&#123;null&#125;</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">          Wave at Me</span></span><br><span class="line"><span class="language-xml">        <span class="tag">&lt;/<span class="name">button</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="title class_">App</span></span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>const accounts &#x3D; await ethereum.request({ method: “eth_accounts” });</p>
-</blockquote>
-<p>这一句获取已有的钱包账号列表。</p>
-<p>如果是第一次连接，那么我们的网站肯定是没有被钱包授权的，所以结果显示：</p>
-<p><img src="http://luwenjuan.luyuedan.com/mweb/16532885038365.png"></p>
-<h2 id="授权网站连接钱包"><a href="#授权网站连接钱包" class="headerlink" title="授权网站连接钱包"></a>授权网站连接钱包</h2><p>我们在网站放一个连接钱包的按钮，当我们按下按钮时，网站请求连接钱包。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="title class_">React</span>, &#123; useEffect, useState &#125; <span class="keyword">from</span> <span class="string">&quot;react&quot;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">&quot;./App.css&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="title function_">App</span> = (<span class="params"></span>) =&gt; &#123;</span><br><span class="line">  <span class="keyword">const</span> [currentAccount, setCurrentAccount] = <span class="title function_">useState</span>(<span class="string">&quot;&quot;</span>);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> <span class="title function_">checkIfWalletIsConnected</span> = <span class="keyword">async</span> (<span class="params"></span>) =&gt; &#123;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">      <span class="keyword">const</span> &#123; ethereum &#125; = <span class="variable language_">window</span>;</span><br><span class="line"></span><br><span class="line">      <span class="keyword">if</span> (!ethereum) &#123;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;Make sure you have metamask!&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;We have the ethereum object&quot;</span>, ethereum);</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      <span class="keyword">const</span> accounts = <span class="keyword">await</span> ethereum.<span class="title function_">request</span>(&#123; <span class="attr">method</span>: <span class="string">&quot;eth_accounts&quot;</span> &#125;);</span><br><span class="line"></span><br><span class="line">      <span class="keyword">if</span> (accounts.<span class="property">length</span> !== <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">const</span> account = accounts[<span class="number">0</span>];</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;Found an authorized account:&quot;</span>, account);</span><br><span class="line">        <span class="title function_">setCurrentAccount</span>(account);</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;No authorized account found&quot;</span>)</span><br><span class="line">      &#125;</span><br><span class="line">    &#125; <span class="keyword">catch</span> (error) &#123;</span><br><span class="line">      <span class="variable language_">console</span>.<span class="title function_">log</span>(error);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">  * Implement your connectWallet method here</span></span><br><span class="line"><span class="comment">  */</span></span><br><span class="line">  <span class="keyword">const</span> <span class="title function_">connectWallet</span> = <span class="keyword">async</span> (<span class="params"></span>) =&gt; &#123;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">      <span class="keyword">const</span> &#123; ethereum &#125; = <span class="variable language_">window</span>;</span><br><span class="line"></span><br><span class="line">      <span class="keyword">if</span> (!ethereum) &#123;</span><br><span class="line">        <span class="title function_">alert</span>(<span class="string">&quot;Get MetaMask!&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      <span class="keyword">const</span> accounts = <span class="keyword">await</span> ethereum.<span class="title function_">request</span>(&#123; <span class="attr">method</span>: <span class="string">&quot;eth_requestAccounts&quot;</span> &#125;);</span><br><span class="line"></span><br><span class="line">      <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;Connected&quot;</span>, accounts[<span class="number">0</span>]);</span><br><span class="line">      <span class="title function_">setCurrentAccount</span>(accounts[<span class="number">0</span>]);</span><br><span class="line">    &#125; <span class="keyword">catch</span> (error) &#123;</span><br><span class="line">      <span class="variable language_">console</span>.<span class="title function_">log</span>(error)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="title function_">useEffect</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="title function_">checkIfWalletIsConnected</span>();</span><br><span class="line">  &#125;, [])</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;<span class="name">div</span> <span class="attr">className</span>=<span class="string">&quot;mainContainer&quot;</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;<span class="name">div</span> <span class="attr">className</span>=<span class="string">&quot;dataContainer&quot;</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">className</span>=<span class="string">&quot;header&quot;</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">        👋 Hey there!</span></span><br><span class="line"><span class="language-xml">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="language-xml"></span></span><br><span class="line"><span class="language-xml">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">className</span>=<span class="string">&quot;bio&quot;</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">          I am farza and I worked on self-driving cars so that&#x27;s pretty cool right? Connect your Ethereum wallet and wave at me!</span></span><br><span class="line"><span class="language-xml">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="language-xml"></span></span><br><span class="line"><span class="language-xml">        <span class="tag">&lt;<span class="name">button</span> <span class="attr">className</span>=<span class="string">&quot;waveButton&quot;</span> <span class="attr">onClick</span>=<span class="string">&#123;null&#125;</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">          Wave at Me</span></span><br><span class="line"><span class="language-xml">        <span class="tag">&lt;/<span class="name">button</span>&gt;</span></span></span><br><span class="line"><span class="language-xml"></span></span><br><span class="line"><span class="language-xml">        &#123;/*</span></span><br><span class="line"><span class="language-xml">        * If there is no currentAccount render this button</span></span><br><span class="line"><span class="language-xml">        */&#125;</span></span><br><span class="line"><span class="language-xml">        &#123;!currentAccount &amp;&amp; (</span></span><br><span class="line"><span class="language-xml">          <span class="tag">&lt;<span class="name">button</span> <span class="attr">className</span>=<span class="string">&quot;waveButton&quot;</span> <span class="attr">onClick</span>=<span class="string">&#123;connectWallet&#125;</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">            Connect Wallet</span></span><br><span class="line"><span class="language-xml">          <span class="tag">&lt;/<span class="name">button</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">        )&#125;</span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">  );</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="title class_">App</span></span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>const accounts &#x3D; await ethereum.request({ method: “eth_requestAccounts” });</p>
-</blockquote>
-<p>我们定义了connectWallet函数连接钱包，这一句代码请求连接我们的钱包账号。</p>
-<p>当我们的网站没有被钱包授权时，会显示这个按钮Connect Wallet，否则这个按钮不会显示，当我们点击网页的按钮时，就会调用连接钱包的函数。</p>
-<p><img src="http://luwenjuan.luyuedan.com/mweb/16532890444849.png"></p>
-<p><img src="http://luwenjuan.luyuedan.com/mweb/16532896608291.png"></p>
-<p><img src="http://luwenjuan.luyuedan.com/mweb/16614222661429.png"></p>
-<p>好了，连接到小狐狸钱包，connect wallnet的按钮消失了。</p>
-<p><img src="http://luwenjuan.luyuedan.com/mweb/16532897432800.png"></p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
 
     
 
@@ -473,6 +338,289 @@
 <p>我们部署了智能合约，也在区块链有了地址，在我们本地区块链网络上，我们也能看到相应的信息：</p>
 <p><img src="http://luwenjuan.luyuedan.com/mweb/16531258246573.png"></p>
 <p>可以看到Block #1，是指这是区块链的第一个节点。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/07/02/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6%EF%BC%884%EF%BC%89/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/luwenjuan.jpeg">
+      <meta itemprop="name" content="卢文娟">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="卢文娟">
+      <meta itemprop="description" content="微信: 13246411679">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 卢文娟">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2022/07/02/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6%EF%BC%884%EF%BC%89/" class="post-title-link" itemprop="url">智能合约项目从0到1：部署智能合约到测试链（四）</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-07-02 15:21:41" itemprop="dateCreated datePublished" datetime="2022-07-02T15:21:41+08:00">2022-07-02</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-08-25 18:11:39" itemprop="dateModified" datetime="2022-08-25T18:11:39+08:00">2022-08-25</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6/" itemprop="url" rel="index"><span itemprop="name">智能合约</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Changyan：</span>
+    
+    <a title="智能合约项目从0到1：部署智能合约到测试链（四）" href="/2022/07/02/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6%EF%BC%884%EF%BC%89/#SOHUCS" itemprop="discussionUrl">
+      <span id="sourceId::4692e0bc7bc94a937669caf2666b019e" class="cy_cmt_count" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="注册Metamask钱包"><a href="#注册Metamask钱包" class="headerlink" title="注册Metamask钱包"></a>注册Metamask钱包</h2><p>为什么我们需要注册钱包呢？</p>
+<p>在前面我们说过，我们想要访问区块链上的智能合约，是必须要先连接钱包，获取钱包地址和私钥。</p>
+<p>之前在本地测试时，是使用工具生成的钱包地址，但是在真实的网络环境，我们就需要注册真实的钱包地址了。</p>
+<p>注册钱包的地址：<a target="_blank" rel="noopener" href="https://metamask.io/">https://metamask.io/</a></p>
+<h2 id="部署智能合约到真实的测试网络"><a href="#部署智能合约到真实的测试网络" class="headerlink" title="部署智能合约到真实的测试网络"></a>部署智能合约到真实的测试网络</h2><p>之前我们是把智能合约部署到本地了，现在我们尝试开始部署到真实的网络上，我们使用Alchemy工具。</p>
+<p>我们先注册一个账号：<a target="_blank" rel="noopener" href="https://www.alchemy.com/">https://www.alchemy.com/</a></p>
+<p>区块链不属于某个人，而是一系列的分布于全世界的有一份区块链拷贝的电脑，这些电脑被区块链矿工运行，如果我们想要把我们的智能合约部署到区块链上，我们需要告诉所有矿工，请你把我的智能合约加入区块链，并告诉其他所有人。</p>
+<p>Alchemy的作用就是帮助我们广播我们的智能合约，让矿工尽快把我们的智能合约加入区块链。</p>
+<p>当我们注册好了Alchemy之后，我们需要获取测试网络的API key，点击get started，这里我们随意填，最后一个，我们选择一个测试链Rinkeby，创建app。</p>
+<p>为什么要选择测试链呢？因为如果选真实链，那个花的就是真实的钱呀，我们只有在测试完成没问题才上真实链。这个测试链是以太链的一个拷贝，是真实的矿工在运行，但是用的是虚假的钱，除了钱是假的，其他都是真的。</p>
+<p><img src="http://luwenjuan.luyuedan.com/mweb/16614220347875.png"></p>
+<p>然后我们就可以看到我们的测试app了。<br><img src="http://luwenjuan.luyuedan.com/mweb/16531344976350.png"></p>
+<p>点进去可以看到，这个view key，这个http字段是将要在小狐狸钱包还有hardhat里面设置的。</p>
+<p><img src="http://luwenjuan.luyuedan.com/mweb/16614220556411.png"></p>
+<p>好了，接下来我们要做的就是：</p>
+<blockquote>
+<p>广播我们的智能合约上链请求</p>
+<p>等待请求被真实矿工执行</p>
+<p>等待智能合约上链</p>
+<p>等待链上所有节点都更新了他们的拷贝</p>
+</blockquote>
+<h2 id="获取测试币"><a href="#获取测试币" class="headerlink" title="获取测试币"></a>获取测试币</h2><p>因为真实的区块链需要的是真钱，测试的区块链除了钱是假的，其他都是真的，所以我们需要去向这个测试网络申请一些测试币，当然这个测试币只能在测试网络使用。</p>
+<p>在申请测试币之前，我们的小狐狸钱包也要添加这个测试链，url是刚刚查看的http字段，ID是4，不用管红色字体，保存即可。</p>
+<p><img src="http://luwenjuan.luyuedan.com/mweb/16531363333590.png"></p>
+<p>当我们的小狐狸钱包连接到了测试链，我们进入这个网址申请测试币：<a target="_blank" rel="noopener" href="https://app.mycrypto.com/faucet">https://app.mycrypto.com/faucet</a></p>
+<p>第一次点进去的时候，需要连接小狐狸钱包，连接成功后，我们退出网站再次进入，就会有这样的界面：</p>
+<p><img src="http://luwenjuan.luyuedan.com/mweb/16531367396079.png"></p>
+<p>选择我们的钱包账号，request即可。</p>
+<h2 id="部署到Rinkeby测试链"><a href="#部署到Rinkeby测试链" class="headerlink" title="部署到Rinkeby测试链"></a>部署到Rinkeby测试链</h2><p>要配置测试链，我们要修改代码的hardhat.config.js文件，由于这个文件涉及到账号的key，所以我们用一个工具来保护这个key：</p>
+<p>在终端运行：</p>
+<figure class="highlight ada"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install <span class="comment">--save dotenv</span></span><br></pre></td></tr></table></figure>
+
+<p>hardhat.config.js文件内容：</p>
+<figure class="highlight dts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">require(<span class="string">&quot;@nomiclabs/hardhat-waffle&quot;</span>)<span class="punctuation">;</span></span><br><span class="line"><span class="comment">// Import and configure dotenv</span></span><br><span class="line">require(<span class="string">&quot;dotenv&quot;</span>).config()<span class="punctuation">;</span></span><br><span class="line"></span><br><span class="line">module.<span class="attr">exports</span> <span class="operator">=</span> <span class="punctuation">&#123;</span></span><br><span class="line"><span class="symbol">  solidity:</span> <span class="string">&quot;0.8.0&quot;</span>,</span><br><span class="line"><span class="symbol">  networks:</span> <span class="punctuation">&#123;</span></span><br><span class="line"><span class="symbol">    rinkeby:</span> <span class="punctuation">&#123;</span></span><br><span class="line">      <span class="comment">// This value will be replaced on runtime</span></span><br><span class="line"><span class="symbol">      url:</span> process.env.STAGING_ALCHEMY_KEY,</span><br><span class="line"><span class="symbol">      accounts:</span> [process.env.PRIVATE_KEY],</span><br><span class="line">    <span class="punctuation">&#125;</span>,</span><br><span class="line"><span class="symbol">    mainnet:</span> <span class="punctuation">&#123;</span></span><br><span class="line"><span class="symbol">      chainId:</span> <span class="number">1</span>,</span><br><span class="line"><span class="symbol">      url:</span> process.env.PROD_ALCHEMY_KEY,</span><br><span class="line"><span class="symbol">      accounts:</span> [process.env.PRIVATE_KEY],</span><br><span class="line">    <span class="punctuation">&#125;</span>,</span><br><span class="line">  <span class="punctuation">&#125;</span>,</span><br><span class="line"><span class="punctuation">&#125;;</span></span><br></pre></td></tr></table></figure>
+<p>在项目的根目录，创建一个.env文件：</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">STAGING_ALCHEMY_KEY</span>=REPLACE_WITH_ACTUAL_ALCHEMY_URL</span><br><span class="line"><span class="attribute">PROD_ALCHEMY_KEY</span>=BLAHBLAH</span><br><span class="line">PRIVATE_KEY=</span><br></pre></td></tr></table></figure>
+
+<p>这里第一个URL是我们的前面看到的Alchemy里面的http字段;</p>
+<p>private key是小狐狸钱包里面的，在小狐狸钱包里，切换网络到Rinkeby网络，点击右上角三个点-&gt;账户详情-&gt;导出私钥</p>
+<p><img src="http://luwenjuan.luyuedan.com/mweb/16614220767024.png"></p>
+<p>.env文件不要上传到公网，因为这个key和你主网络的key是一样的，所以把.env文件加入.gitignore文件中。</p>
+<p>在终端运行以下命令：</p>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npx hardhat <span class="built_in">run</span> scripts/deploy.js <span class="comment">--network rinkeby</span></span><br></pre></td></tr></table></figure>
+
+<p>可以看到，这个命令和之前命令不同地方在于，之前使用localhost，而这里使用了rinkeby。</p>
+<p>ok，可以看到，运行成功。</p>
+<p><img src="http://luwenjuan.luyuedan.com/mweb/16531421564979.png"></p>
+<p>请记住最后一个address，这个在后面需要使用：0xc850155CB95A1a73e9a1FA4ca0cF96089112b744。</p>
+<p>使用这个address，我们也可以在区块链浏览器上搜索到我们的智能合约：<a target="_blank" rel="noopener" href="https://rinkeby.etherscan.io/">https://rinkeby.etherscan.io/</a></p>
+<p><img src="http://luwenjuan.luyuedan.com/mweb/16531422466407.png"></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/07/02/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6%EF%BC%885%EF%BC%89/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/luwenjuan.jpeg">
+      <meta itemprop="name" content="卢文娟">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="卢文娟">
+      <meta itemprop="description" content="微信: 13246411679">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 卢文娟">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2022/07/02/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6%EF%BC%885%EF%BC%89/" class="post-title-link" itemprop="url">智能合约项目从0到1：客户端网站连接小狐狸钱包（五）</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-07-02 15:21:41" itemprop="dateCreated datePublished" datetime="2022-07-02T15:21:41+08:00">2022-07-02</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-08-25 18:11:57" itemprop="dateModified" datetime="2022-08-25T18:11:57+08:00">2022-08-25</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6/" itemprop="url" rel="index"><span itemprop="name">智能合约</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Changyan：</span>
+    
+    <a title="智能合约项目从0到1：客户端网站连接小狐狸钱包（五）" href="/2022/07/02/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6%EF%BC%885%EF%BC%89/#SOHUCS" itemprop="discussionUrl">
+      <span id="sourceId::7d78fe0add17d96446aa96b54e77365e" class="cy_cmt_count" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>我们的智能合约已经成功部署到了区块链上，那么接下来就是我们如何通过客户端来访问区块链服务了。</p>
+<h2 id="使用Replit开发客户端"><a href="#使用Replit开发客户端" class="headerlink" title="使用Replit开发客户端"></a>使用Replit开发客户端</h2><p>我们使用Replit来开发客户端，Replit是一个基于浏览器的IDE，我们可以方便的使用它来构建我们的web app，并部署到浏览器。</p>
+<p>我们需要先注册Replit账号，链接：<a target="_blank" rel="noopener" href="https://replit.com/login?goto=/">https://replit.com/login?goto=%2F</a>~</p>
+<p>然后我们可以使用一个现成的框架：<a target="_blank" rel="noopener" href="https://replit.com/@adilanchian/waveportal-starter-project?v=1">https://replit.com/@adilanchian/waveportal-starter-project?v=1</a></p>
+<p>点击左上角的Fork repl，可以把这个项目放入自己的空间，并进行进一步的开发。</p>
+<p>就是这样子了，加载完毕之后，点击右上角的绿色按钮run，就可以运行了，这时我们对代码的改动，会实时反应到网页上，这里我已经点击了run，所以按钮变成了stop。</p>
+<p><img src="http://luwenjuan.luyuedan.com/mweb/16531277423829.png"></p>
+<p>接下来，为了让我们的网站连接到区块链，我们需要连接钱包，因为只有当网站连接钱包之后，才能够允许调用智能合约。</p>
+<h2 id="检查钱包是否登陆"><a href="#检查钱包是否登陆" class="headerlink" title="检查钱包是否登陆"></a>检查钱包是否登陆</h2><p>如果我们登陆了小狐狸钱包，它将会自动在窗口产生一个对象ethereum，通过检查这个对象，我们可以检查钱包状态。</p>
+<p>在前端代码中，找到src的App.jsx文件，添加这些代码：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="title class_">React</span>, &#123; useEffect &#125; <span class="keyword">from</span> <span class="string">&quot;react&quot;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">&quot;./App.css&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="title function_">App</span> = (<span class="params"></span>) =&gt; &#123;</span><br><span class="line">  <span class="keyword">const</span> <span class="title function_">checkIfWalletIsConnected</span> = (<span class="params"></span>) =&gt; &#123;</span><br><span class="line">    <span class="comment">/*</span></span><br><span class="line"><span class="comment">    * First make sure we have access to window.ethereum</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">    <span class="keyword">const</span> &#123; ethereum &#125; = <span class="variable language_">window</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (!ethereum) &#123;</span><br><span class="line">      <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;Make sure you have metamask!&quot;</span>);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;We have the ethereum object&quot;</span>, ethereum);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/*</span></span><br><span class="line"><span class="comment">  * This runs our function when the page loads.</span></span><br><span class="line"><span class="comment">  */</span></span><br><span class="line">  <span class="title function_">useEffect</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="title function_">checkIfWalletIsConnected</span>();</span><br><span class="line">  &#125;, [])</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;<span class="name">div</span> <span class="attr">className</span>=<span class="string">&quot;mainContainer&quot;</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;<span class="name">div</span> <span class="attr">className</span>=<span class="string">&quot;dataContainer&quot;</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">className</span>=<span class="string">&quot;header&quot;</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">        👋 Hey there!</span></span><br><span class="line"><span class="language-xml">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="language-xml"></span></span><br><span class="line"><span class="language-xml">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">className</span>=<span class="string">&quot;bio&quot;</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">          I am farza and I worked on self-driving cars so that&#x27;s pretty cool right? Connect your Ethereum wallet and wave at me!</span></span><br><span class="line"><span class="language-xml">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="language-xml"></span></span><br><span class="line"><span class="language-xml">        <span class="tag">&lt;<span class="name">button</span> <span class="attr">className</span>=<span class="string">&quot;waveButton&quot;</span> <span class="attr">onClick</span>=<span class="string">&#123;null&#125;</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">          Wave at Me</span></span><br><span class="line"><span class="language-xml">        <span class="tag">&lt;/<span class="name">button</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">  );</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="title class_">App</span></span><br></pre></td></tr></table></figure>
+
+<p>checkIfWalletIsConnected是一个检查勤包的函数，当网页加载的时候，这个函数会被运行。</p>
+<p><img src="http://luwenjuan.luyuedan.com/mweb/16532880093047.png"></p>
+<p>我的钱包一直是登陆状态，所以显示我有这个ethereum对象。</p>
+<h2 id="检查钱包是否被我们的网站授权"><a href="#检查钱包是否被我们的网站授权" class="headerlink" title="检查钱包是否被我们的网站授权"></a>检查钱包是否被我们的网站授权</h2><p>接下来，我们就要检查能否连接到钱包，因为网站要连接钱包，是要经过我们的授权的。</p>
+<p>我们修改App.jsx文件：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="title class_">React</span>, &#123; useEffect, useState &#125; <span class="keyword">from</span> <span class="string">&quot;react&quot;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">&quot;./App.css&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="title function_">App</span> = (<span class="params"></span>) =&gt; &#123;</span><br><span class="line">  <span class="comment">/*</span></span><br><span class="line"><span class="comment">  * Just a state variable we use to store our user&#x27;s public wallet.</span></span><br><span class="line"><span class="comment">  */</span></span><br><span class="line">  <span class="keyword">const</span> [currentAccount, setCurrentAccount] = <span class="title function_">useState</span>(<span class="string">&quot;&quot;</span>);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> <span class="title function_">checkIfWalletIsConnected</span> = <span class="keyword">async</span> (<span class="params"></span>) =&gt; &#123;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">      <span class="keyword">const</span> &#123; ethereum &#125; = <span class="variable language_">window</span>;</span><br><span class="line"></span><br><span class="line">      <span class="keyword">if</span> (!ethereum) &#123;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;Make sure you have metamask!&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;We have the ethereum object&quot;</span>, ethereum);</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      <span class="comment">/*</span></span><br><span class="line"><span class="comment">      * Check if we&#x27;re authorized to access the user&#x27;s wallet</span></span><br><span class="line"><span class="comment">      */</span></span><br><span class="line">      <span class="keyword">const</span> accounts = <span class="keyword">await</span> ethereum.<span class="title function_">request</span>(&#123; <span class="attr">method</span>: <span class="string">&quot;eth_accounts&quot;</span> &#125;);</span><br><span class="line"></span><br><span class="line">      <span class="keyword">if</span> (accounts.<span class="property">length</span> !== <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">const</span> account = accounts[<span class="number">0</span>];</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;Found an authorized account:&quot;</span>, account);</span><br><span class="line">        <span class="title function_">setCurrentAccount</span>(account)</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;No authorized account found&quot;</span>)</span><br><span class="line">      &#125;</span><br><span class="line">    &#125; <span class="keyword">catch</span> (error) &#123;</span><br><span class="line">      <span class="variable language_">console</span>.<span class="title function_">log</span>(error);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="title function_">useEffect</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="title function_">checkIfWalletIsConnected</span>();</span><br><span class="line">  &#125;, [])</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;<span class="name">div</span> <span class="attr">className</span>=<span class="string">&quot;mainContainer&quot;</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;<span class="name">div</span> <span class="attr">className</span>=<span class="string">&quot;dataContainer&quot;</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">className</span>=<span class="string">&quot;header&quot;</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">          👋 Hey there!</span></span><br><span class="line"><span class="language-xml">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="language-xml"></span></span><br><span class="line"><span class="language-xml">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">className</span>=<span class="string">&quot;bio&quot;</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">          I am farza and I worked on self-driving cars so that&#x27;s pretty cool right? Connect your Ethereum wallet and wave at me!</span></span><br><span class="line"><span class="language-xml">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="language-xml"></span></span><br><span class="line"><span class="language-xml">        <span class="tag">&lt;<span class="name">button</span> <span class="attr">className</span>=<span class="string">&quot;waveButton&quot;</span> <span class="attr">onClick</span>=<span class="string">&#123;null&#125;</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">          Wave at Me</span></span><br><span class="line"><span class="language-xml">        <span class="tag">&lt;/<span class="name">button</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="title class_">App</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>const accounts &#x3D; await ethereum.request({ method: “eth_accounts” });</p>
+</blockquote>
+<p>这一句获取已有的钱包账号列表。</p>
+<p>如果是第一次连接，那么我们的网站肯定是没有被钱包授权的，所以结果显示：</p>
+<p><img src="http://luwenjuan.luyuedan.com/mweb/16532885038365.png"></p>
+<h2 id="授权网站连接钱包"><a href="#授权网站连接钱包" class="headerlink" title="授权网站连接钱包"></a>授权网站连接钱包</h2><p>我们在网站放一个连接钱包的按钮，当我们按下按钮时，网站请求连接钱包。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="title class_">React</span>, &#123; useEffect, useState &#125; <span class="keyword">from</span> <span class="string">&quot;react&quot;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">&quot;./App.css&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="title function_">App</span> = (<span class="params"></span>) =&gt; &#123;</span><br><span class="line">  <span class="keyword">const</span> [currentAccount, setCurrentAccount] = <span class="title function_">useState</span>(<span class="string">&quot;&quot;</span>);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> <span class="title function_">checkIfWalletIsConnected</span> = <span class="keyword">async</span> (<span class="params"></span>) =&gt; &#123;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">      <span class="keyword">const</span> &#123; ethereum &#125; = <span class="variable language_">window</span>;</span><br><span class="line"></span><br><span class="line">      <span class="keyword">if</span> (!ethereum) &#123;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;Make sure you have metamask!&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;We have the ethereum object&quot;</span>, ethereum);</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      <span class="keyword">const</span> accounts = <span class="keyword">await</span> ethereum.<span class="title function_">request</span>(&#123; <span class="attr">method</span>: <span class="string">&quot;eth_accounts&quot;</span> &#125;);</span><br><span class="line"></span><br><span class="line">      <span class="keyword">if</span> (accounts.<span class="property">length</span> !== <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">const</span> account = accounts[<span class="number">0</span>];</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;Found an authorized account:&quot;</span>, account);</span><br><span class="line">        <span class="title function_">setCurrentAccount</span>(account);</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;No authorized account found&quot;</span>)</span><br><span class="line">      &#125;</span><br><span class="line">    &#125; <span class="keyword">catch</span> (error) &#123;</span><br><span class="line">      <span class="variable language_">console</span>.<span class="title function_">log</span>(error);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">  * Implement your connectWallet method here</span></span><br><span class="line"><span class="comment">  */</span></span><br><span class="line">  <span class="keyword">const</span> <span class="title function_">connectWallet</span> = <span class="keyword">async</span> (<span class="params"></span>) =&gt; &#123;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">      <span class="keyword">const</span> &#123; ethereum &#125; = <span class="variable language_">window</span>;</span><br><span class="line"></span><br><span class="line">      <span class="keyword">if</span> (!ethereum) &#123;</span><br><span class="line">        <span class="title function_">alert</span>(<span class="string">&quot;Get MetaMask!&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      <span class="keyword">const</span> accounts = <span class="keyword">await</span> ethereum.<span class="title function_">request</span>(&#123; <span class="attr">method</span>: <span class="string">&quot;eth_requestAccounts&quot;</span> &#125;);</span><br><span class="line"></span><br><span class="line">      <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;Connected&quot;</span>, accounts[<span class="number">0</span>]);</span><br><span class="line">      <span class="title function_">setCurrentAccount</span>(accounts[<span class="number">0</span>]);</span><br><span class="line">    &#125; <span class="keyword">catch</span> (error) &#123;</span><br><span class="line">      <span class="variable language_">console</span>.<span class="title function_">log</span>(error)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="title function_">useEffect</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="title function_">checkIfWalletIsConnected</span>();</span><br><span class="line">  &#125;, [])</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;<span class="name">div</span> <span class="attr">className</span>=<span class="string">&quot;mainContainer&quot;</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;<span class="name">div</span> <span class="attr">className</span>=<span class="string">&quot;dataContainer&quot;</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">className</span>=<span class="string">&quot;header&quot;</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">        👋 Hey there!</span></span><br><span class="line"><span class="language-xml">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="language-xml"></span></span><br><span class="line"><span class="language-xml">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">className</span>=<span class="string">&quot;bio&quot;</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">          I am farza and I worked on self-driving cars so that&#x27;s pretty cool right? Connect your Ethereum wallet and wave at me!</span></span><br><span class="line"><span class="language-xml">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="language-xml"></span></span><br><span class="line"><span class="language-xml">        <span class="tag">&lt;<span class="name">button</span> <span class="attr">className</span>=<span class="string">&quot;waveButton&quot;</span> <span class="attr">onClick</span>=<span class="string">&#123;null&#125;</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">          Wave at Me</span></span><br><span class="line"><span class="language-xml">        <span class="tag">&lt;/<span class="name">button</span>&gt;</span></span></span><br><span class="line"><span class="language-xml"></span></span><br><span class="line"><span class="language-xml">        &#123;/*</span></span><br><span class="line"><span class="language-xml">        * If there is no currentAccount render this button</span></span><br><span class="line"><span class="language-xml">        */&#125;</span></span><br><span class="line"><span class="language-xml">        &#123;!currentAccount &amp;&amp; (</span></span><br><span class="line"><span class="language-xml">          <span class="tag">&lt;<span class="name">button</span> <span class="attr">className</span>=<span class="string">&quot;waveButton&quot;</span> <span class="attr">onClick</span>=<span class="string">&#123;connectWallet&#125;</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">            Connect Wallet</span></span><br><span class="line"><span class="language-xml">          <span class="tag">&lt;/<span class="name">button</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">        )&#125;</span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">  );</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="title class_">App</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>const accounts &#x3D; await ethereum.request({ method: “eth_requestAccounts” });</p>
+</blockquote>
+<p>我们定义了connectWallet函数连接钱包，这一句代码请求连接我们的钱包账号。</p>
+<p>当我们的网站没有被钱包授权时，会显示这个按钮Connect Wallet，否则这个按钮不会显示，当我们点击网页的按钮时，就会调用连接钱包的函数。</p>
+<p><img src="http://luwenjuan.luyuedan.com/mweb/16532890444849.png"></p>
+<p><img src="http://luwenjuan.luyuedan.com/mweb/16532896608291.png"></p>
+<p><img src="http://luwenjuan.luyuedan.com/mweb/16614222661429.png"></p>
+<p>好了，连接到小狐狸钱包，connect wallnet的按钮消失了。</p>
+<p><img src="http://luwenjuan.luyuedan.com/mweb/16532897432800.png"></p>
 
       
     </div>
@@ -1439,261 +1587,6 @@
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@import</span> <span class="string">&quot;../../lib/style/icon.wxss&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.lihao</span><span class="selector-pseudo">:after</span>&#123;</span><br><span class="line"><span class="attribute">font-family</span>:<span class="string">&#x27;iconfont&#x27;</span>;</span><br><span class="line"><span class="attribute">font-weight</span>:<span class="number">50</span>;</span><br><span class="line"><span class="attribute">font-style</span>:normal;</span><br><span class="line"><span class="attribute">content</span>:<span class="string">&#x27;\ee32&#x27;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>其他图标都是如此排列。</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2020/06/02/%E5%90%8E%E7%AB%AF/spring%20boot%E6%9C%8D%E5%8A%A1%E9%83%A8%E7%BD%B2%E5%88%B0%E9%98%BF%E9%87%8C%E4%BA%91/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/luwenjuan.jpeg">
-      <meta itemprop="name" content="卢文娟">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="卢文娟">
-      <meta itemprop="description" content="微信: 13246411679">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 卢文娟">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2020/06/02/%E5%90%8E%E7%AB%AF/spring%20boot%E6%9C%8D%E5%8A%A1%E9%83%A8%E7%BD%B2%E5%88%B0%E9%98%BF%E9%87%8C%E4%BA%91/" class="post-title-link" itemprop="url">Java：spring boot服务部署到阿里云</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2020-06-02 15:21:41" itemprop="dateCreated datePublished" datetime="2020-06-02T15:21:41+08:00">2020-06-02</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-08-25 19:02:17" itemprop="dateModified" datetime="2022-08-25T19:02:17+08:00">2022-08-25</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
-        </span>
-    </span>
-
-  
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Changyan：</span>
-    
-    <a title="Java：spring boot服务部署到阿里云" href="/2020/06/02/%E5%90%8E%E7%AB%AF/spring%20boot%E6%9C%8D%E5%8A%A1%E9%83%A8%E7%BD%B2%E5%88%B0%E9%98%BF%E9%87%8C%E4%BA%91/#SOHUCS" itemprop="discussionUrl">
-      <span id="sourceId::8ca39a1cdc5e7aeadfc9d129dbacd492" class="cy_cmt_count" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="购买云服务器"><a href="#购买云服务器" class="headerlink" title="购买云服务器"></a>购买云服务器</h2><p>阿里云连接：<a target="_blank" rel="noopener" href="https://www.aliyun.com/product/ecs?spm=5176.21213303.744563.3.358f53c9Kue3ba&amp;scm=20140722.S_card@@%E4%BA%A7%E5%93%81@@163972._.ID_card@@%E4%BA%A7%E5%93%81@@163972-RL_%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8-OR_ser-V_2-P0_0">https://www.aliyun.com/product/ecs?spm=5176.21213303.744563.3.358f53c9Kue3ba&amp;scm=20140722.S_card@@产品@@163972._.ID_card@@产品@@163972-RL_云服务器-OR_ser-V_2-P0_0</a></p>
-<p><img src="http://luwenjuan.luyuedan.com/mweb/f374c6b5c3d44b0cbefa345da4bb842c.png" alt="f374c6b5c3d44b0cbefa345da4bb842c"></p>
-<p>申请一个试用服务器。</p>
-<p>然后它就自动跳转到云服务器面板了。</p>
-<p><img src="http://luwenjuan.luyuedan.com/mweb/16559573775497.png"></p>
-<p>进入后可以查看详细信息：</p>
-<p><img src="/media/16614251082341.png"></p>
-<h2 id="配置相关信息"><a href="#配置相关信息" class="headerlink" title="配置相关信息"></a>配置相关信息</h2><p><strong>重置实例密码</strong></p>
-<p>右上角可以看到重置实例密码的按钮，点进去重置密码。</p>
-<p><strong>配置安全组规则</strong></p>
-<p>右上角可以看到配置安全组规则，点进去配置 -&gt; 配置规则 -&gt;手动添加<br><img src="http://luwenjuan.luyuedan.com/mweb/16559586297785.png"></p>
-<h2 id="远程连接"><a href="#远程连接" class="headerlink" title="远程连接"></a>远程连接</h2><p>回到控制台，点击远程连接 -&gt; 立即登陆，选择第一个：</p>
-<p><img src="http://luwenjuan.luyuedan.com/mweb/16559602867326.png"></p>
-<p>出了点问题，让我添加白名单，我就添加了，完成了就好了。</p>
-<p><img src="http://luwenjuan.luyuedan.com/mweb/16559602365805.png"></p>
-<p><img src="http://luwenjuan.luyuedan.com/mweb/16559603261331.png"></p>
-<h2 id="ssh连接阿里云服务器"><a href="#ssh连接阿里云服务器" class="headerlink" title="ssh连接阿里云服务器"></a>ssh连接阿里云服务器</h2><p>直接在终端上通过ssh命令连接，会要求你输入密码</p>
-<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">ssh</span> root@<span class="number">121.196.215.117</span></span><br></pre></td></tr></table></figure>
-
-<p><img src="http://luwenjuan.luyuedan.com/mweb/16559656530144.png"></p>
-<h2 id="配置阿里云服务器运行环境"><a href="#配置阿里云服务器运行环境" class="headerlink" title="配置阿里云服务器运行环境"></a>配置阿里云服务器运行环境</h2><p><strong>下载jdk</strong></p>
-<p>下载jdk的linux版本：<a target="_blank" rel="noopener" href="https://www.oracle.com/java/technologies/downloads/#java8-linux">https://www.oracle.com/java/technologies/downloads/#java8-linux</a><br><img src="http://luwenjuan.luyuedan.com/mweb/16559660421739.png"></p>
-<p><strong>下载mysql</strong></p>
-<p>下载mysql的linux版本：<a target="_blank" rel="noopener" href="https://downloads.mysql.com/archives/community/">https://downloads.mysql.com/archives/community/</a><br><img src="http://luwenjuan.luyuedan.com/mweb/16559679367569.png"></p>
-<p><strong>安装包上传到阿里云服务器</strong></p>
-<p>打开终端，shell-&gt;新建远程连接：</p>
-<p><img src="http://luwenjuan.luyuedan.com/mweb/16559707559441.png"></p>
-<p>选择安全文件传输，输入公网ip和用户名root密码，然后连接：</p>
-<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">sftp</span> root@<span class="number">121.196.215.117</span></span><br></pre></td></tr></table></figure>
-<p><img src="http://luwenjuan.luyuedan.com/mweb/16559709465925.png"></p>
-<p>会提醒你输入密码，输入完成后，就可以了。</p>
-<p><img src="http://luwenjuan.luyuedan.com/mweb/16559710409795.png"></p>
-<p>使用命令上传文件：</p>
-<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">put <span class="regexp">/Users/</span>luwenjuan<span class="regexp">/Downloads/</span>jdk-<span class="number">8</span>u333-linux-x64.tar <span class="regexp">/usr/</span>local<span class="regexp">/jdk8/</span></span><br></pre></td></tr></table></figure>
-<p><img src="http://luwenjuan.luyuedan.com/mweb/16559712973243.png"></p>
-<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">put <span class="regexp">/Users/</span>luwenjuan<span class="regexp">/Downloads/my</span>sql-<span class="number">8.0</span>.<span class="number">28</span>-linux-glibc2.<span class="number">12</span>-x86_64.tar.xz <span class="regexp">/usr/</span>local<span class="regexp">/mysql8/</span></span><br></pre></td></tr></table></figure>
-
-<p><strong>安装jdk</strong></p>
-<p>ssh连接阿里云</p>
-<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">ssh</span> root@<span class="number">121.196.215.117</span></span><br></pre></td></tr></table></figure>
-
-<p>进入jdk目录，解压：</p>
-<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">tar</span> -xvf jdk-<span class="number">8</span>u333-linux-x64.tar</span><br></pre></td></tr></table></figure>
-<p><img src="http://luwenjuan.luyuedan.com/mweb/16559754811298.png"></p>
-<p>配置环境变量:</p>
-<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi <span class="regexp">/etc/</span>profile</span><br></pre></td></tr></table></figure>
-
-<p>添加环境变量：</p>
-<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> <span class="attribute">JAVA_HOME</span>=/usr/local/jdk8/jdk1.8.0_331</span><br><span class="line"><span class="built_in">export</span> <span class="attribute">CLASSPATH</span>=<span class="variable">$JAVA_HOME</span>/lib/</span><br><span class="line"><span class="built_in">export</span> <span class="attribute">PATH</span>=<span class="variable">$PATH</span>:$JAVA_HOME/bin</span><br><span class="line"><span class="built_in">export</span> PATHJAVA_HOME CLASSPATH</span><br></pre></td></tr></table></figure>
-
-<p>环境变量生效：</p>
-<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">source</span> <span class="keyword">profile</span></span><br></pre></td></tr></table></figure>
-
-<p><strong>安装mysql</strong></p>
-<p>进入mysql目录，解压：</p>
-<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">tar</span> -xvf mysql-<span class="number">8</span>.<span class="number">0</span>.<span class="number">28</span>-linux-glibc2.<span class="number">12</span>-x86_64.tar.xz</span><br></pre></td></tr></table></figure>
-
-<p>名字太长，改个名字：</p>
-<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">mv</span> mysql-<span class="number">8</span>.<span class="number">0</span>.<span class="number">28</span>-linux-glibc2.<span class="number">12</span>-x86_64 mysql8</span><br></pre></td></tr></table></figure>
-
-<p><img src="http://luwenjuan.luyuedan.com/mweb/16559895695407.png"></p>
-<p>在解压后的路径下创建目录：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> mysql8</span><br><span class="line"><span class="built_in">mkdir</span> data</span><br><span class="line"><span class="built_in">mkdir</span> tmp</span><br></pre></td></tr></table></figure>
-<p><img src="http://luwenjuan.luyuedan.com/mweb/16559896157840.png"></p>
-<p>添加用户组：mysql、用户：mysql，并将其添加到mysql用户组中</p>
-<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">groupadd mysql</span><br><span class="line">useradd -g mysql mysql</span><br><span class="line">chown -R mysql.mysql <span class="regexp">/usr/</span>local<span class="regexp">/mysql8/my</span>sql8/</span><br></pre></td></tr></table></figure>
-
-<p>mysql需要libaio依赖，这里先检查一下有没有：</p>
-<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rpm -<span class="keyword">qa</span>|<span class="keyword">grep</span> libaio</span><br></pre></td></tr></table></figure>
-<p><img src="http://luwenjuan.luyuedan.com/mweb/16559779640902.png"></p>
-<p>配置my.cnf文件：</p>
-<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi <span class="regexp">/etc/my</span>.cnf</span><br></pre></td></tr></table></figure>
-
-<p>粘贴以下内容：</p>
-<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">[mysqld]</span><br><span class="line">basedir = <span class="regexp">/usr/</span>local<span class="regexp">/mysql8/my</span>sql8</span><br><span class="line">datadir = <span class="regexp">/usr/</span>local<span class="regexp">/mysql8/my</span>sql8/data</span><br><span class="line">port = <span class="number">3306</span></span><br><span class="line">socket = <span class="regexp">/usr/</span>local<span class="regexp">/mysql8/my</span>sql8<span class="regexp">/tmp/my</span>sql.sock</span><br><span class="line"></span><br><span class="line"><span class="comment">#必填项</span></span><br><span class="line">sql_mode=NO_ENGINE_SUBSTITUTION,STRICT_TRANS_TABLES</span><br><span class="line"></span><br><span class="line">[client]</span><br><span class="line">port=<span class="number">3306</span></span><br><span class="line">default-character-set=utf8mb4</span><br><span class="line">socket = <span class="regexp">/usr/</span>local<span class="regexp">/mysql8/my</span>sql8<span class="regexp">/tmp/my</span>sql.sock</span><br></pre></td></tr></table></figure>
-
-<p>进入bin目录，初始化</p>
-<figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">cd</span> bin</span><br><span class="line"><span class="string">./mysqld</span> <span class="params">--initialize</span> <span class="params">--user=mysql</span></span><br></pre></td></tr></table></figure>
-<p><img src="http://luwenjuan.luyuedan.com/mweb/16559900275433.png"><br>密码：KzYUspLSm6.z</p>
-<p>复制mysql.server脚本到资源目录，并赋予执行权限：</p>
-<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">cd ..</span><br><span class="line">cp support-files<span class="regexp">/mysql.server /</span>etc<span class="regexp">/init.d/my</span>sql.server</span><br><span class="line">chmod +x <span class="regexp">/etc/i</span>nit.d/mysql.server</span><br><span class="line">chkconfig --add mysql.server</span><br></pre></td></tr></table></figure>
-
-<p>将 mysqld 服务加入到系统服务并检测是否生效：</p>
-<figure class="highlight ada"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chkconfig <span class="comment">--list</span></span><br></pre></td></tr></table></figure>
-
-<p>将命令添加到服务：</p>
-<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ln -sf <span class="regexp">/usr/</span>local<span class="regexp">/mysql8/my</span>sql8<span class="regexp">/bin/my</span>sql <span class="regexp">/usr/</span>bin</span><br></pre></td></tr></table></figure>
-
-<p>启动mysqld：</p>
-<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service mysql.<span class="keyword">server</span> <span class="keyword">start</span></span><br></pre></td></tr></table></figure>
-<p>终止：service mysql.server stop</p>
-<p>查看进程：</p>
-<figure class="highlight 1c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">netstat -nltp<span class="string">|grep mysql</span></span><br></pre></td></tr></table></figure>
-<p><img src="http://luwenjuan.luyuedan.com/mweb/16559908058995.png"></p>
-<p>修改环境变量：</p>
-<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi <span class="regexp">/etc/</span>profile</span><br></pre></td></tr></table></figure>
-
-<p>添加以下行：</p>
-<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#mysql环境变量</span></span><br><span class="line"><span class="title class_">PATH</span>=<span class="variable">$PATH</span><span class="symbol">:/usr/local/mysql8/mysql8/bin</span></span><br><span class="line">export <span class="title class_">PATH</span></span><br></pre></td></tr></table></figure>
-
-<p>配置生效</p>
-<figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">source</span> <span class="regexp">/etc/</span>profile</span><br></pre></td></tr></table></figure>
-
-<p>登陆mysql</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql -u root -<span class="selector-tag">p</span></span><br></pre></td></tr></table></figure>
-<p>第一次输入初始化的密码<br><img src="http://luwenjuan.luyuedan.com/mweb/16559910524933.png"></p>
-<p>好了。</p>
-<p>修改root密码：</p>
-<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">USER</span> <span class="string">&#x27;root&#x27;</span>@<span class="string">&#x27;localhost&#x27;</span> IDENTIFIED <span class="keyword">BY</span> <span class="string">&#x27;12345678&#x27;</span>;</span><br><span class="line">flush <span class="keyword">privileges</span>;</span><br></pre></td></tr></table></figure>
-
-<p>开启远程登录，授权root远程登录，通俗的讲就是：让阿里云服务器打开权限，好让咋们windows上Navicat能连接的上。</p>
-<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">use mysql;</span><br><span class="line"><span class="keyword">select</span> host,<span class="keyword">user</span>,plugin <span class="keyword">from</span> <span class="keyword">user</span>;</span><br><span class="line"><span class="keyword">update</span> <span class="keyword">user</span> <span class="keyword">set</span> host = <span class="string">&#x27;%&#x27;</span> <span class="keyword">where</span> <span class="keyword">user</span> =<span class="string">&#x27;root&#x27;</span>;</span><br><span class="line">flush <span class="keyword">privileges</span>;</span><br></pre></td></tr></table></figure>
-<p><img src="http://luwenjuan.luyuedan.com/mweb/16559912577313.png"></p>
-<p>其中plugin为caching_sha2_password 远程连接需要带上后缀allowPublicKeyRetrieval &#x3D; true，但是这种方式并不好，所以换一种方式：</p>
-<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">USER</span> <span class="string">&#x27;root&#x27;</span>@<span class="string">&#x27;%&#x27;</span> IDENTIFIED <span class="keyword">BY</span> <span class="string">&#x27;12345678&#x27;</span> <span class="keyword">PASSWORD</span> EXPIRE NEVER; #更改加密方式 </span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">USER</span> <span class="string">&#x27;root&#x27;</span>@<span class="string">&#x27;%&#x27;</span> IDENTIFIED <span class="keyword">WITH</span> mysql_native_password <span class="keyword">BY</span> <span class="string">&#x27;12345678&#x27;</span>; #更新用户密码 </span><br><span class="line">FLUSH <span class="keyword">PRIVILEGES</span>; #刷新权限</span><br></pre></td></tr></table></figure>
-
-<h2 id="数据库操作"><a href="#数据库操作" class="headerlink" title="数据库操作"></a>数据库操作</h2><p>这是一些常用操作语句：</p>
-<p>create database db_zixun default character set utf8 collate utf8_general_ci;</p>
-<p>CREATE USER ‘u_zixun‘@’%’ IDENTIFIED BY ‘12345678’;</p>
-<p>GRANT ALL ON db_zixun.* TO ‘u_zixun‘@’%’;</p>
-<p>GRANT ALL ON <em>.</em> TO ‘u_zixun‘@’%’;</p>
-<p>ALTER USER ‘u_zixun‘@’%’ IDENTIFIED BY ‘12345678’ PASSWORD EXPIRE NEVER; #更改加密方式<br>ALTER USER ‘u_zixun‘@’%’ IDENTIFIED WITH mysql_native_password BY ‘12345678’; #更新用户密码<br>FLUSH PRIVILEGES; #刷新权限</p>
-<h2 id="本地navicat连接mysql数据库"><a href="#本地navicat连接mysql数据库" class="headerlink" title="本地navicat连接mysql数据库"></a>本地navicat连接mysql数据库</h2><p>设置连接参数：<br><img src="http://luwenjuan.luyuedan.com/mweb/16559914409051.png"></p>
-<p>连接上之后，导入本地的表：<br><img src="http://luwenjuan.luyuedan.com/mweb/16559917327167.png"></p>
-<h2 id="spring-boot项目配置和打包"><a href="#spring-boot项目配置和打包" class="headerlink" title="spring boot项目配置和打包"></a>spring boot项目配置和打包</h2><p>双击package进行打包：</p>
-<p><img src="http://luwenjuan.luyuedan.com/mweb/16559925317372.png"></p>
-<p>打包的jar包在target下：<br><img src="http://luwenjuan.luyuedan.com/mweb/16559931947196.png"></p>
-<p>通过ftp连接阿里云，将jar包上传到服务器：</p>
-<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sftp root@<span class="number">121.196</span>.<span class="number">215.117</span></span><br><span class="line">put <span class="regexp">/Users/</span>luwenjuan<span class="regexp">/Downloads/</span>demo-<span class="number">0.0</span>.<span class="number">1</span>-SNAPSHOT.jar <span class="regexp">/usr/</span>local<span class="regexp">/demo/</span></span><br></pre></td></tr></table></figure>
-<p><img src="http://luwenjuan.luyuedan.com/mweb/16559933958958.png"></p>
-<p>运行jar包：</p>
-<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">netstat</span> -nltp|grep java</span><br><span class="line"><span class="attribute">nohup</span> java -jar  demo-<span class="number">0</span>.<span class="number">0</span>.<span class="number">1</span>-SNAPSHOT.jar  &amp;</span><br></pre></td></tr></table></figure>
-
-<p>打开浏览器，访问：<br><a target="_blank" rel="noopener" href="http://121.196.215.117:8800/demo/hello">http://121.196.215.117:8800/demo/hello</a><br><a target="_blank" rel="noopener" href="http://121.196.215.117:8800/demo/zixun/listzixun">http://121.196.215.117:8800/demo/zixun/listzixun</a><br>如果访问成功，说明我们部署好了。</p>
-<h2 id="设置域名"><a href="#设置域名" class="headerlink" title="设置域名"></a>设置域名</h2><p>通常我们访问网站，用的是域名，而不是ip，所以我们要购买域名。由于我之前有域名，就不购买了，直接使用。将域名解析到这个公网ip就可以了。</p>
-<p><img src="http://luwenjuan.luyuedan.com/mweb/16560510815469.png"></p>
-<p>域名解析完成就可以访问相应地址了：<br><a target="_blank" rel="noopener" href="http://www.luyuedan.com:8800/demo/zixun/listzixun">http://www.luyuedan.com:8800/demo/zixun/listzixun</a></p>
-<p>只是微信公众号需要的域名是https开头的，目前如果用https无法访问到我们的服务，是因为我们的服务还没有ssl证书。</p>
-<h2 id="申请ssl证书"><a href="#申请ssl证书" class="headerlink" title="申请ssl证书"></a>申请ssl证书</h2><p>在阿里云可以申请免费的ssl证书，一年申请一次，一次有20分证书：</p>
-<p><a target="_blank" rel="noopener" href="https://yundunnext.console.aliyun.com/?spm=5176.100251.help.29.42434f15wen9tO&amp;p=cas#/certExtend/free">https://yundunnext.console.aliyun.com/?spm=5176.100251.help.29.42434f15wen9tO&amp;p=cas#/certExtend/free</a></p>
-<p>按照它的步骤申请即可</p>
-<p><img src="http://luwenjuan.luyuedan.com/mweb/16560511950889.png"></p>
-<p>申请完之后，可以看到<br><img src="http://luwenjuan.luyuedan.com/mweb/16560512268983.png"></p>
-<p>现在下载tomcat证书。<br><img src="http://luwenjuan.luyuedan.com/mweb/16560513545723.png"></p>
-<p>里面会有密码txt和证书文件<br><img src="http://luwenjuan.luyuedan.com/mweb/16560513914146.png"></p>
-<p>将证书文件放入resources目录下</p>
-<p>在application.properties里面增加配置参数：</p>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">server<span class="selector-class">.port</span> = <span class="number">443</span></span><br><span class="line">server<span class="selector-class">.ssl</span><span class="selector-class">.key-store</span> = classpath:<span class="number">8002456</span>_www<span class="selector-class">.luyuedan</span><span class="selector-class">.com</span><span class="selector-class">.pfx</span></span><br><span class="line">server<span class="selector-class">.ssl</span><span class="selector-class">.key-store-password</span> = MRT9tsCJ</span><br><span class="line">server<span class="selector-class">.ssl</span><span class="selector-class">.keyStoreType</span> = PKCS12</span><br></pre></td></tr></table></figure>
-
-<p>这里修改了端口，需要在<strong>阿里云服务器上安全组规则开放这个端口</strong>。</p>
-<p>打包，上传服务器。</p>
-<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sftp root@<span class="number">121.196</span>.<span class="number">215.117</span></span><br><span class="line">put <span class="regexp">/Users/</span>luwenjuan<span class="regexp">/Downloads/</span>demo-<span class="number">0.0</span>.<span class="number">1</span>-SNAPSHOT.jar <span class="regexp">/usr/</span>local<span class="regexp">/demo/</span></span><br></pre></td></tr></table></figure>
-
-<p>关掉之前的服务后，重新运行<br>netstat -nltp|grep java</p>
-<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">nohup</span> java -jar  demo-<span class="number">0</span>.<span class="number">0</span>.<span class="number">1</span>-SNAPSHOT.jar  &amp;</span><br></pre></td></tr></table></figure>
-
-<p>终于搞定了，<a target="_blank" rel="noopener" href="https://www.luyuedan.com/demo/zixun/listzixun">https://www.luyuedan.com/demo/zixun/listzixun</a><br><img src="/media/16614251830414.png"></p>
 
       
     </div>
