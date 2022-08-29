@@ -202,7 +202,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/08/27/Solidity/S33-gas%E8%B4%B9/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/08/27/Solidity/S36-%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/luwenjuan.jpeg">
@@ -220,7 +220,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/08/27/Solidity/S33-gas%E8%B4%B9/" class="post-title-link" itemprop="url">Solidity编程（33）：gas费</a>
+          <a href="/2022/08/27/Solidity/S36-%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8/" class="post-title-link" itemprop="url">Solidity编程（36）：storage，memory，calldata</a>
         </h2>
 
         <div class="post-meta-container">
@@ -238,7 +238,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-08-28 23:16:39" itemprop="dateModified" datetime="2022-08-28T23:16:39+08:00">2022-08-28</time>
+      <time title="修改时间：2022-08-29 13:07:19" itemprop="dateModified" datetime="2022-08-29T13:07:19+08:00">2022-08-29</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -259,8 +259,8 @@
       </span>
       <span class="post-meta-item-text">Changyan：</span>
     
-    <a title="Solidity编程（33）：gas费" href="/2022/08/27/Solidity/S33-gas%E8%B4%B9/#SOHUCS" itemprop="discussionUrl">
-      <span id="sourceId::2c79a57ba40f12b5f47179cd90a44485" class="cy_cmt_count" itemprop="commentCount"></span>
+    <a title="Solidity编程（36）：storage，memory，calldata" href="/2022/08/27/Solidity/S36-%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8/#SOHUCS" itemprop="discussionUrl">
+      <span id="sourceId::a541b8eccdb2456b4492da9950a41dfd" class="cy_cmt_count" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -274,121 +274,15 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <p>一次交易应该付多少燃油费？</p>
-<p>由以下因素组成：</p>
+          <p>solidity数据存储位置有三种：</p>
 <blockquote>
-<p>gas消耗：是交易消耗的gas量</p>
-<p>gas价格：每单位gas需要多少eth</p>
+<p>storage：状态变量，永久保存在区块链上</p>
+<p>memory：内存变量，只有函数运行中才存在，运行完就销毁</p>
+<p>calldata：函数参数变量存储的位置，你可以理解为堆栈之类</p>
 </blockquote>
-<p>最终gas费 &#x3D; gas消耗 * gas价格</p>
-<p>gas价格更高的交易会被优先执行，多余的gas费用会被退还。</p>
-<p>gas费有两个上限：</p>
-<blockquote>
-<p>gas limit：由你设置的，最大gas费</p>
-<p>block gas limit：由区块链网络决定的，区块的最大允许gas费</p>
-</blockquote>
+<figure class="highlight zephir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">pragma solidity ^<span class="number">0.8</span><span class="number">.13</span>;</span><br><span class="line"></span><br><span class="line">contract DataLocations &#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 默认是storage</span></span><br><span class="line">    <span class="keyword">uint</span> <span class="keyword">public</span> sum;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 默认是calldata</span></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">f</span><span class="params">(<span class="keyword">uint</span> a, <span class="keyword">uint</span> b)</span> <span class="title">public</span> <span class="title">returns</span> <span class="params">(<span class="keyword">uint</span>)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 默认是memory</span></span><br><span class="line">        <span class="keyword">uint</span> c = a + b;</span><br><span class="line">        <span class="keyword">return</span> c;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">f1</span><span class="params">(<span class="keyword">uint</span> memory a, <span class="keyword">uint</span> calldata b)</span> <span class="title">public</span> <span class="title">returns</span> <span class="params">(<span class="keyword">uint</span> memory)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">uint</span> storage c = a - b;</span><br><span class="line">        <span class="keyword">return</span> c;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/08/27/Solidity/S35-struct/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/luwenjuan.jpeg">
-      <meta itemprop="name" content="卢文娟">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="卢文娟">
-      <meta itemprop="description" content="微信: 13246411679">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 卢文娟">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/08/27/Solidity/S35-struct/" class="post-title-link" itemprop="url">Solidity编程（35）：struct结构体</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2022-08-27 15:21:41" itemprop="dateCreated datePublished" datetime="2022-08-27T15:21:41+08:00">2022-08-27</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-08-29 12:36:35" itemprop="dateModified" datetime="2022-08-29T12:36:35+08:00">2022-08-29</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Solidity/" itemprop="url" rel="index"><span itemprop="name">Solidity</span></a>
-        </span>
-    </span>
-
-  
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Changyan：</span>
-    
-    <a title="Solidity编程（35）：struct结构体" href="/2022/08/27/Solidity/S35-struct/#SOHUCS" itemprop="discussionUrl">
-      <span id="sourceId::5c52bb08074b3c0a93981f1fa158ecab" class="cy_cmt_count" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>struct结构体用来定义新的类型。</p>
-<figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// SPDX-License-Identifier: MIT</span></span><br><span class="line">pragma solidity ^<span class="number">0.8</span>.<span class="number">4</span>;</span><br><span class="line"></span><br><span class="line">contract Todos &#123;</span><br><span class="line">    <span class="keyword">struct</span> Todo &#123;</span><br><span class="line">        <span class="built_in">string</span> text;</span><br><span class="line">        <span class="built_in">bool</span> completed;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    Todo<span class="literal">[]</span> public todos;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">function</span> create(<span class="built_in">string</span> calldata _text) public &#123;</span><br><span class="line">        <span class="comment">// 方法一：直接创建</span></span><br><span class="line">        todos.push(<span class="constructor">Todo(<span class="params">_text</span>, <span class="params">false</span>)</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 方法二：通过键值对创建</span></span><br><span class="line">        todos.push(<span class="constructor">Todo(&#123;<span class="params">text</span>: <span class="params">_text</span>, <span class="params">completed</span>: <span class="params">false</span>&#125;)</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 方法三：声明创建</span></span><br><span class="line">        Todo memory todo;</span><br><span class="line">        todo.text = _text;</span><br><span class="line">        todos.push(todo);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">function</span> get(uint _index) public view returns (<span class="built_in">string</span> memory text, <span class="built_in">bool</span> completed) &#123;</span><br><span class="line">        Todo storage todo = todos<span class="literal">[<span class="identifier">_index</span>]</span>;</span><br><span class="line">        return (todo.text, todo.completed);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">function</span> update<span class="constructor">Text(<span class="params">uint</span> <span class="params">_index</span>, <span class="params">string</span> <span class="params">calldata</span> <span class="params">_text</span>)</span> public &#123;</span><br><span class="line">        Todo storage todo = todos<span class="literal">[<span class="identifier">_index</span>]</span>;</span><br><span class="line">        todo.text = _text;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">function</span> toggle<span class="constructor">Completed(<span class="params">uint</span> <span class="params">_index</span>)</span> public &#123;</span><br><span class="line">        Todo storage todo = todos<span class="literal">[<span class="identifier">_index</span>]</span>;</span><br><span class="line">        todo.completed = !todo.completed;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>ps: struct可以在contract外定义，并在contract里使用。</p>
+<p>默认条件下，智能合约的状态变量是storage，函数的临时变量是memory，但是可以通过关键字显式指定。</p>
 
       
     </div>
@@ -522,7 +416,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/08/27/Solidity/S36-%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/08/27/Solidity/S35-struct/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/luwenjuan.jpeg">
@@ -540,7 +434,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/08/27/Solidity/S36-%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8/" class="post-title-link" itemprop="url">Solidity编程（36）：storage，memory，calldata</a>
+          <a href="/2022/08/27/Solidity/S35-struct/" class="post-title-link" itemprop="url">Solidity编程（35）：struct结构体</a>
         </h2>
 
         <div class="post-meta-container">
@@ -558,7 +452,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-08-29 13:07:19" itemprop="dateModified" datetime="2022-08-29T13:07:19+08:00">2022-08-29</time>
+      <time title="修改时间：2022-08-29 12:36:35" itemprop="dateModified" datetime="2022-08-29T12:36:35+08:00">2022-08-29</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -579,8 +473,8 @@
       </span>
       <span class="post-meta-item-text">Changyan：</span>
     
-    <a title="Solidity编程（36）：storage，memory，calldata" href="/2022/08/27/Solidity/S36-%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8/#SOHUCS" itemprop="discussionUrl">
-      <span id="sourceId::a541b8eccdb2456b4492da9950a41dfd" class="cy_cmt_count" itemprop="commentCount"></span>
+    <a title="Solidity编程（35）：struct结构体" href="/2022/08/27/Solidity/S35-struct/#SOHUCS" itemprop="discussionUrl">
+      <span id="sourceId::5c52bb08074b3c0a93981f1fa158ecab" class="cy_cmt_count" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -594,15 +488,121 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <p>solidity数据存储位置有三种：</p>
-<blockquote>
-<p>storage：状态变量，永久保存在区块链上</p>
-<p>memory：内存变量，只有函数运行中才存在，运行完就销毁</p>
-<p>calldata：函数参数变量存储的位置，你可以理解为堆栈之类</p>
-</blockquote>
-<figure class="highlight zephir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">pragma solidity ^<span class="number">0.8</span><span class="number">.13</span>;</span><br><span class="line"></span><br><span class="line">contract DataLocations &#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 默认是storage</span></span><br><span class="line">    <span class="keyword">uint</span> <span class="keyword">public</span> sum;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 默认是calldata</span></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">f</span><span class="params">(<span class="keyword">uint</span> a, <span class="keyword">uint</span> b)</span> <span class="title">public</span> <span class="title">returns</span> <span class="params">(<span class="keyword">uint</span>)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 默认是memory</span></span><br><span class="line">        <span class="keyword">uint</span> c = a + b;</span><br><span class="line">        <span class="keyword">return</span> c;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">f1</span><span class="params">(<span class="keyword">uint</span> memory a, <span class="keyword">uint</span> calldata b)</span> <span class="title">public</span> <span class="title">returns</span> <span class="params">(<span class="keyword">uint</span> memory)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">uint</span> storage c = a - b;</span><br><span class="line">        <span class="keyword">return</span> c;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+          <p>struct结构体用来定义新的类型。</p>
+<figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// SPDX-License-Identifier: MIT</span></span><br><span class="line">pragma solidity ^<span class="number">0.8</span>.<span class="number">4</span>;</span><br><span class="line"></span><br><span class="line">contract Todos &#123;</span><br><span class="line">    <span class="keyword">struct</span> Todo &#123;</span><br><span class="line">        <span class="built_in">string</span> text;</span><br><span class="line">        <span class="built_in">bool</span> completed;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    Todo<span class="literal">[]</span> public todos;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">function</span> create(<span class="built_in">string</span> calldata _text) public &#123;</span><br><span class="line">        <span class="comment">// 方法一：直接创建</span></span><br><span class="line">        todos.push(<span class="constructor">Todo(<span class="params">_text</span>, <span class="params">false</span>)</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 方法二：通过键值对创建</span></span><br><span class="line">        todos.push(<span class="constructor">Todo(&#123;<span class="params">text</span>: <span class="params">_text</span>, <span class="params">completed</span>: <span class="params">false</span>&#125;)</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 方法三：声明创建</span></span><br><span class="line">        Todo memory todo;</span><br><span class="line">        todo.text = _text;</span><br><span class="line">        todos.push(todo);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">function</span> get(uint _index) public view returns (<span class="built_in">string</span> memory text, <span class="built_in">bool</span> completed) &#123;</span><br><span class="line">        Todo storage todo = todos<span class="literal">[<span class="identifier">_index</span>]</span>;</span><br><span class="line">        return (todo.text, todo.completed);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">function</span> update<span class="constructor">Text(<span class="params">uint</span> <span class="params">_index</span>, <span class="params">string</span> <span class="params">calldata</span> <span class="params">_text</span>)</span> public &#123;</span><br><span class="line">        Todo storage todo = todos<span class="literal">[<span class="identifier">_index</span>]</span>;</span><br><span class="line">        todo.text = _text;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">function</span> toggle<span class="constructor">Completed(<span class="params">uint</span> <span class="params">_index</span>)</span> public &#123;</span><br><span class="line">        Todo storage todo = todos<span class="literal">[<span class="identifier">_index</span>]</span>;</span><br><span class="line">        todo.completed = !todo.completed;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>默认条件下，智能合约的状态变量是storage，函数的临时变量是memory，但是可以通过关键字显式指定。</p>
+<p>ps: struct可以在contract外定义，并在contract里使用。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/08/27/Solidity/S33-gas%E8%B4%B9/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/luwenjuan.jpeg">
+      <meta itemprop="name" content="卢文娟">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="卢文娟">
+      <meta itemprop="description" content="微信: 13246411679">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 卢文娟">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2022/08/27/Solidity/S33-gas%E8%B4%B9/" class="post-title-link" itemprop="url">Solidity编程（33）：gas费</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-08-27 15:21:41" itemprop="dateCreated datePublished" datetime="2022-08-27T15:21:41+08:00">2022-08-27</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-08-28 23:16:39" itemprop="dateModified" datetime="2022-08-28T23:16:39+08:00">2022-08-28</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Solidity/" itemprop="url" rel="index"><span itemprop="name">Solidity</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Changyan：</span>
+    
+    <a title="Solidity编程（33）：gas费" href="/2022/08/27/Solidity/S33-gas%E8%B4%B9/#SOHUCS" itemprop="discussionUrl">
+      <span id="sourceId::2c79a57ba40f12b5f47179cd90a44485" class="cy_cmt_count" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>一次交易应该付多少燃油费？</p>
+<p>由以下因素组成：</p>
+<blockquote>
+<p>gas消耗：是交易消耗的gas量</p>
+<p>gas价格：每单位gas需要多少eth</p>
+</blockquote>
+<p>最终gas费 &#x3D; gas消耗 * gas价格</p>
+<p>gas价格更高的交易会被优先执行，多余的gas费用会被退还。</p>
+<p>gas费有两个上限：</p>
+<blockquote>
+<p>gas limit：由你设置的，最大gas费</p>
+<p>block gas limit：由区块链网络决定的，区块的最大允许gas费</p>
+</blockquote>
 
       
     </div>
@@ -931,6 +931,111 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/08/27/%E7%BC%96%E7%A8%8B/J1-env/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/luwenjuan.jpeg">
+      <meta itemprop="name" content="卢文娟">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="卢文娟">
+      <meta itemprop="description" content="微信: 13246411679">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 卢文娟">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2022/08/27/%E7%BC%96%E7%A8%8B/J1-env/" class="post-title-link" itemprop="url">dotenv在浏览器无法使用</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2022-08-27 15:21:41 / 修改时间：15:16:16" itemprop="dateCreated datePublished" datetime="2022-08-27T15:21:41+08:00">2022-08-27</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Javascript-%E5%BE%85%E5%AE%8C%E6%88%90%E2%80%A6%E2%80%A6/" itemprop="url" rel="index"><span itemprop="name">Javascript, 待完成……</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Changyan：</span>
+    
+    <a title="dotenv在浏览器无法使用" href="/2022/08/27/%E7%BC%96%E7%A8%8B/J1-env/#SOHUCS" itemprop="discussionUrl">
+      <span id="sourceId::7371fd035c7fa5583b22bcf9c4d70147" class="cy_cmt_count" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>我们在react项目中使用dotenv，如果通过这种方式：</p>
+<p>（1）通过<code>npm install dotenv</code>安装dotenv</p>
+<p>（2）通过<code>require(&#39;dotenv&#39;).config()</code>来获取.env配置;</p>
+<p>（3）通过<code>process.env.MY_VALUE</code>来读取参数</p>
+<p>你会发现运行npm start时，会出一个错：</p>
+<p><img src="/media/16615836007902.png"></p>
+<p>原因是react app是运行在浏览器的，而浏览器不支持fs，而dotenv却依赖于fs，同样，浏览器也是没有process.env的。</p>
+<p>要怎么解决呢？</p>
+<p>你无需安装引入dotenv，只需要完成以下步骤：</p>
+<p>（1）在项目根目录下创建.env文件</p>
+<p>（2）变量命名以<code>REACT_APP_</code>开头，这很重要！</p>
+<p>（3）使用<code>process.env.MY_VALUE</code>来调用变量</p>
+<p>（4）运行<code>npm start</code>即可</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
     <link itemprop="mainEntityOfPage" href="http://example.com/2022/08/27/%E5%89%8D%E7%AB%AF/R1-%E6%96%B0%E5%BB%BA%E9%A1%B9%E7%9B%AE/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1040,7 +1145,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/08/27/%E7%BC%96%E7%A8%8B/J1-env/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/08/20/Harthat/H2-env%E4%BF%9D%E6%8A%A4%E7%A7%81%E9%92%A5/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/luwenjuan.jpeg">
@@ -1058,112 +1163,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/08/27/%E7%BC%96%E7%A8%8B/J1-env/" class="post-title-link" itemprop="url">dotenv在浏览器无法使用</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-      
-
-      <time title="创建时间：2022-08-27 15:21:41 / 修改时间：15:16:16" itemprop="dateCreated datePublished" datetime="2022-08-27T15:21:41+08:00">2022-08-27</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Javascript-%E5%BE%85%E5%AE%8C%E6%88%90%E2%80%A6%E2%80%A6/" itemprop="url" rel="index"><span itemprop="name">Javascript, 待完成……</span></a>
-        </span>
-    </span>
-
-  
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Changyan：</span>
-    
-    <a title="dotenv在浏览器无法使用" href="/2022/08/27/%E7%BC%96%E7%A8%8B/J1-env/#SOHUCS" itemprop="discussionUrl">
-      <span id="sourceId::7371fd035c7fa5583b22bcf9c4d70147" class="cy_cmt_count" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>我们在react项目中使用dotenv，如果通过这种方式：</p>
-<p>（1）通过<code>npm install dotenv</code>安装dotenv</p>
-<p>（2）通过<code>require(&#39;dotenv&#39;).config()</code>来获取.env配置;</p>
-<p>（3）通过<code>process.env.MY_VALUE</code>来读取参数</p>
-<p>你会发现运行npm start时，会出一个错：</p>
-<p><img src="/media/16615836007902.png"></p>
-<p>原因是react app是运行在浏览器的，而浏览器不支持fs，而dotenv却依赖于fs，同样，浏览器也是没有process.env的。</p>
-<p>要怎么解决呢？</p>
-<p>你无需安装引入dotenv，只需要完成以下步骤：</p>
-<p>（1）在项目根目录下创建.env文件</p>
-<p>（2）变量命名以<code>REACT_APP_</code>开头，这很重要！</p>
-<p>（3）使用<code>process.env.MY_VALUE</code>来调用变量</p>
-<p>（4）运行<code>npm start</code>即可</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/08/20/Harthat/H1-Harthat%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/luwenjuan.jpeg">
-      <meta itemprop="name" content="卢文娟">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="卢文娟">
-      <meta itemprop="description" content="微信: 13246411679">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 卢文娟">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/08/20/Harthat/H1-Harthat%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F/" class="post-title-link" itemprop="url">Harthat（1）：Harthat是什么？</a>
+          <a href="/2022/08/20/Harthat/H2-env%E4%BF%9D%E6%8A%A4%E7%A7%81%E9%92%A5/" class="post-title-link" itemprop="url">Harthat（2）：使用env保护私钥</a>
         </h2>
 
         <div class="post-meta-container">
@@ -1181,7 +1181,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-08-22 13:37:22" itemprop="dateModified" datetime="2022-08-22T13:37:22+08:00">2022-08-22</time>
+      <time title="修改时间：2022-08-25 16:58:25" itemprop="dateModified" datetime="2022-08-25T16:58:25+08:00">2022-08-25</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -1202,8 +1202,8 @@
       </span>
       <span class="post-meta-item-text">Changyan：</span>
     
-    <a title="Harthat（1）：Harthat是什么？" href="/2022/08/20/Harthat/H1-Harthat%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F/#SOHUCS" itemprop="discussionUrl">
-      <span id="sourceId::e082156397817a94d0acb7dc0325c9e0" class="cy_cmt_count" itemprop="commentCount"></span>
+    <a title="Harthat（2）：使用env保护私钥" href="/2022/08/20/Harthat/H2-env%E4%BF%9D%E6%8A%A4%E7%A7%81%E9%92%A5/#SOHUCS" itemprop="discussionUrl">
+      <span id="sourceId::cdb688937151dbb777a7a4e86d334062" class="cy_cmt_count" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -1217,79 +1217,22 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <p>Harthat是一个以太坊软件开发环境和框架，它可以用来编辑，编译，调试和部署智能合约，使用Harthat我们可以：</p>
-<blockquote>
-<p>生成智能合约项目模版</p>
-<p>在本地测试我们的智能合约</p>
-<p>部署智能合约到测试网络</p>
-<p>部署合约到正式网络</p>
-</blockquote>
-<p>要开始使用Harthat，只需要三步：</p>
-<blockquote>
-<p>安装必要环境</p>
-<p>安装Harthat</p>
-<p>初始化项目</p>
-</blockquote>
-<p>在看本文之前，你有必要了解一下linux命令行，不要连<code>cd</code>是什么都不知道，可以看看这篇文章：</p>
-<h2 id="安装必要环境"><a href="#安装必要环境" class="headerlink" title="安装必要环境"></a>安装必要环境</h2><p>Mac安装Node.js：</p>
-<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">curl -o- https:<span class="regexp">//</span>raw.githubusercontent.com<span class="regexp">/nvm-sh/</span>nvm<span class="regexp">/v0.39.1/i</span>nstall.sh | bash</span><br><span class="line">nvm install <span class="number">18</span></span><br><span class="line">nvm use <span class="number">18</span></span><br><span class="line">nvm alias default <span class="number">18</span></span><br><span class="line">npm install npm --global <span class="comment"># Upgrade npm to the latest version</span></span><br></pre></td></tr></table></figure>
-<p>其他操作系统，你自行找对应的方法安装Node.js。</p>
-<h2 id="安装Harthat"><a href="#安装Harthat" class="headerlink" title="安装Harthat"></a>安装Harthat</h2><p>运行：</p>
-<figure class="highlight q"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install --<span class="built_in">save</span>-<span class="built_in">dev</span> hardhat</span><br></pre></td></tr></table></figure>
+          <p>在区块链上，我们的任何操作，都需要使用钱包的唯一私钥进行签名，当然智能合约的部署也是这样。</p>
+<p>在Harthat没有浏览器插件手动签名，就只能使用私钥配置自动签名，所以需要将私钥配置进我们的项目。</p>
+<p>为了更好的保护我们的隐私，我们安装dotenv包：</p>
+<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm <span class="keyword">install</span> dotenv</span><br></pre></td></tr></table></figure>
 
-<h2 id="初始化项目"><a href="#初始化项目" class="headerlink" title="初始化项目"></a>初始化项目</h2><p>每开始一个项目，如果一步一步从0开始，那会有很多重复工作，自然最好是一个命令就搞定基本初始化，Harthat就是这样做的。</p>
-<p>就好像spring boot初始化starter一样，初始化后就是一个可以运行的项目；Harthat初始化后，也是一个可以运行的空的智能合约。</p>
-<p>我们要先新建一个项目文件夹，并进入文件夹内：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">mkdir</span> 文件夹名</span><br><span class="line"><span class="built_in">cd</span> 文件夹名</span><br></pre></td></tr></table></figure>
+<p>然后在项目根目录创建一个.env文件，将敏感的配置文件都以键值对的形式配置进这个文件.</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ALCHEMY_API_URL=https:<span class="regexp">//</span>eth-goerli.alchemyapi.io<span class="regexp">/v2/</span>&lt;your api key&gt;</span><br><span class="line">PRIVATE_KEY=&lt;your metamask api key&gt;</span><br></pre></td></tr></table></figure>
 
-<p>在项目文件夹里，运行以下命令：</p>
-<figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">npm</span> init -y</span><br><span class="line">npx hardhat</span><br></pre></td></tr></table></figure>
+<p>这个文件要在.gitignore文件里面包含上，因为绝对不可以上传到网上。</p>
+<p><img src="/media/16609265042120.png"></p>
+<p>这个键值对就可以在配置文件中被这样包含使用：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">require</span>(<span class="string">&quot;@nomicfoundation/hardhat-toolbox&quot;</span>);</span><br><span class="line"><span class="built_in">require</span>(<span class="string">&quot;dotenv&quot;</span>).<span class="title function_">config</span>();</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="variable constant_">ALCHEMY_API_URL</span> = process.<span class="property">env</span>.<span class="property">ALCHEMY_API_URL</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="variable constant_">GOERLI_PRIVATE_KEY</span> = process.<span class="property">env</span>.<span class="property">GOERLI_PRIVATE_KEY</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/** <span class="doctag">@type</span> import(&#x27;hardhat/config&#x27;).HardhatUserConfig */</span></span><br><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = &#123;</span><br><span class="line">  <span class="attr">solidity</span>: <span class="string">&quot;0.8.4&quot;</span>,</span><br><span class="line">  <span class="attr">networks</span>: &#123;</span><br><span class="line">    <span class="attr">goerli</span>: &#123;</span><br><span class="line">      <span class="attr">url</span>: <span class="variable constant_">ALCHEMY_API_URL</span>,</span><br><span class="line">      <span class="attr">accounts</span>: [<span class="string">`0x<span class="subst">$&#123;GOERLI_PRIVATE_KEY&#125;</span>`</span>]</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 
-<p>命令运行过程中，如果遇到y&#x2F;n选项，统一选择y，或者直接全部回车。</p>
-<p><img src="/media/16611465693527.png"></p>
-<p>初始化运行完成后，我们可以看到这些文件夹：</p>
-<blockquote>
-<p><strong>contracts</strong>：智能合约所在文件夹，是我们用solidity写智能合约代码的地方；</p>
-<p><strong>scripts</strong>：javascript编写的部署脚本</p>
-<p><strong>test</strong>：javascript测试脚本，当运行<code>npx hardhat test</code>时，harthat会运行test文件夹里的所有.js文件</p>
-<p><strong>harthat.config.js</strong>：solidity版本和部署设置的配置文件</p>
-</blockquote>
-<p>以上的文件是我们常常要用的，那以下的就是其他不太常用的：</p>
-<blockquote>
-<p><strong>node_modules</strong>：是node的一些依赖包</p>
-<p><strong>.gitignore</strong>：git提交时要忽视的配置，比如有些带密码的文件不能提交github</p>
-<p><strong>package.json</strong>：npm的包配置文件</p>
-<p><strong>README.md</strong>：说明文档</p>
-</blockquote>
-<p>这样我们就直接在这样的项目下开始编写智能合约了。</p>
-<h2 id="有用工具"><a href="#有用工具" class="headerlink" title="有用工具"></a>有用工具</h2><p><code>@nomicfoundation/hardhat-toolbox</code>工具箱捆绑了推荐使用的所有常用包和插件。</p>
-<p>在项目目录下执行：</p>
-<figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">npm</span> install --save-dev @nomicfoundation/hardhat-toolbox</span><br></pre></td></tr></table></figure>
 
-<p>在hardhat.config.js中添加如下代码：</p>
-<figure class="highlight perl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">require</span>(<span class="string">&quot;@nomicfoundation/hardhat-toolbox&quot;</span>);</span><br></pre></td></tr></table></figure>
 
-<p>它包括了这些东西：</p>
-<blockquote>
-<p>harthat-ethers插件，用ethers.js部署和智能合约交互；</p>
-<p>harthat chai matchers插件，mocha等用于测试智能合约；</p>
-<p>harthat network helpers插件，用于和harthat网络进行交互；</p>
-<p>harthat-etherscan插件，用于验证智能合约代码；</p>
-<p>harthat-gas-reporter插件，用于关于gas的工具；</p>
-<p>solidity-coverage插件用于测试智能合约；</p>
-</blockquote>
-<p>所以，当你导入toolbox之后：</p>
-<figure class="highlight perl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">require</span>(<span class="string">&quot;@nomicfoundation/hardhat-toolbox&quot;</span>);</span><br></pre></td></tr></table></figure>
 
-<p>这些都没必要重复导入：</p>
-<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">@nomiclabs</span>/hardhat-ethers</span><br><span class="line"><span class="variable">@nomiclabs</span>/hardhat-etherscan</span><br><span class="line">hardhat-gas-reporter</span><br><span class="line">solidity-coverage</span><br><span class="line"><span class="variable">@typechain</span>/hardhat</span><br></pre></td></tr></table></figure>
-
-<h2 id="编译合约"><a href="#编译合约" class="headerlink" title="编译合约"></a>编译合约</h2><p>我们初始化之后的项目，是可以直接编译运行的。</p>
-<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">npx hardhat compile</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="测试合约"><a href="#测试合约" class="headerlink" title="测试合约"></a>测试合约</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npx hardhat <span class="built_in">test</span></span><br></pre></td></tr></table></figure>
-<p>会运行所有test文件夹里面的脚本。</p>
-<h2 id="部署合约"><a href="#部署合约" class="headerlink" title="部署合约"></a>部署合约</h2><figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npx hardhat <span class="keyword">run</span><span class="language-bash"> scripts/deploy.js</span></span><br></pre></td></tr></table></figure>
 
 
       

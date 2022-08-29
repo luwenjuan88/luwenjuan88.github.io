@@ -202,7 +202,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/07/18/%E5%85%83%E5%AE%87%E5%AE%99/M8-%E5%85%83%E5%AE%87%E5%AE%99%E9%81%93%E5%BE%B7%E7%BB%8F/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/07/18/Solidity/S2-%E7%AE%80%E5%8D%95%E5%90%88%E7%BA%A6/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/luwenjuan.jpeg">
@@ -220,7 +220,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/07/18/%E5%85%83%E5%AE%87%E5%AE%99/M8-%E5%85%83%E5%AE%87%E5%AE%99%E9%81%93%E5%BE%B7%E7%BB%8F/" class="post-title-link" itemprop="url">元宇宙初探：元宇宙越来越接近自然的道了</a>
+          <a href="/2022/07/18/Solidity/S2-%E7%AE%80%E5%8D%95%E5%90%88%E7%BA%A6/" class="post-title-link" itemprop="url">Solidity编程（2）：实现一个简单合约</a>
         </h2>
 
         <div class="post-meta-container">
@@ -238,7 +238,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-08-25 20:18:29" itemprop="dateModified" datetime="2022-08-25T20:18:29+08:00">2022-08-25</time>
+      <time title="修改时间：2022-07-19 13:22:43" itemprop="dateModified" datetime="2022-07-19T13:22:43+08:00">2022-07-19</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -246,7 +246,7 @@
       </span>
       <span class="post-meta-item-text">分类于</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%85%83%E5%AE%87%E5%AE%99/" itemprop="url" rel="index"><span itemprop="name">元宇宙</span></a>
+          <a href="/categories/Solidity/" itemprop="url" rel="index"><span itemprop="name">Solidity</span></a>
         </span>
     </span>
 
@@ -259,8 +259,8 @@
       </span>
       <span class="post-meta-item-text">Changyan：</span>
     
-    <a title="元宇宙初探：元宇宙越来越接近自然的道了" href="/2022/07/18/%E5%85%83%E5%AE%87%E5%AE%99/M8-%E5%85%83%E5%AE%87%E5%AE%99%E9%81%93%E5%BE%B7%E7%BB%8F/#SOHUCS" itemprop="discussionUrl">
-      <span id="sourceId::eabc851857bd4a5eab30393d07d69462" class="cy_cmt_count" itemprop="commentCount"></span>
+    <a title="Solidity编程（2）：实现一个简单合约" href="/2022/07/18/Solidity/S2-%E7%AE%80%E5%8D%95%E5%90%88%E7%BA%A6/#SOHUCS" itemprop="discussionUrl">
+      <span id="sourceId::30a37919c36d15f4ab9dab90ff87e9a5" class="cy_cmt_count" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -274,47 +274,27 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <p>今天看《道德经》，看到一段话：</p>
+          <p>我们实现一个简单合约，这个合约有以下功能：</p>
 <blockquote>
-<p>大道祀兮，其可左右</p>
-<p>万物恃之以生而不辞，功成而不有，衣养万物而不为主</p>
-<p>常无欲，可名于小，万物归焉而不为主，可名为大</p>
-<p>以其终不自为大，故能成其大</p>
+<p>（1）存储一个无符号整数</p>
+<p>（2）让这个整数递增1</p>
+<p>（3）让这个整数递减1</p>
+<p>（4）获取整数的值</p>
 </blockquote>
-<p>大道无处不在，万物依赖它生长，它也不会推辞，生养万物，但是不居功。</p>
-<p>这一段描述让我想到了区块链。</p>
-<p>区块链是承载<strong>元宇宙万物</strong>的东西，而区块链不归属于任何一个人，而是由一个一个区块链节点组成，节点的运行依靠着成千上万的矿工，这些矿工自发的为区块链服务。</p>
-<p>不管是数据，还是智能合约，都由一个一个区块组成的区块链承载着，这种特性，<strong>和“道”简直太像了</strong>。</p>
+<p>看一下代码：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// SPDX-License-Identifier: MIT</span></span><br><span class="line">pragma solidity ^<span class="number">0.8</span><span class="number">.1</span>;</span><br><span class="line"></span><br><span class="line">contract <span class="title class_">Counter</span> &#123;</span><br><span class="line">    <span class="comment">// 定义一个无符号整数存储，默认64位</span></span><br><span class="line">    uint public count;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 公共的函数获取整数的值</span></span><br><span class="line">    <span class="keyword">function</span> <span class="title function_">get</span>(<span class="params"></span>) public view returns (uint) &#123;</span><br><span class="line">        <span class="keyword">return</span> count;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 公共的函数让整数增加1</span></span><br><span class="line">    <span class="keyword">function</span> <span class="title function_">inc</span>(<span class="params"></span>) public &#123;</span><br><span class="line">        count += <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 公共的函数让整数减少1</span></span><br><span class="line">    <span class="keyword">function</span> <span class="title function_">dec</span>(<span class="params"></span>) public &#123;</span><br><span class="line">        <span class="comment">// This function will fail if count = 0</span></span><br><span class="line">        count -= <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>（1）定义无符号整数时，采用unit类型，等价于unit64，后面的数字是位数，关于类型，后面会有详细文章。</p>
+<p>（2）定义的整数时public，也就是所有人都能看到它，取到它的值，所以就算没有get函数，也能取到值。</p>
+<p>（3）public关键字声明的都是对外接口，函数可见性是public，也就是所有人都能调用，关于可见性，后面会有详细文章。</p>
+<p>-End-</p>
+<p>我的文章风格是：</p>
 <blockquote>
-<p>区块链是元宇宙的基石</p>
-<p>元宇宙所有的数据和应用都依赖于区块链</p>
-<p>区块链让元宇宙生态更自由的组织和蓬勃的发展</p>
-<p>区块链不属于任何一个人或者私人组织</p>
-<p>元宇宙所有资产属于它的拥有者，而不属于区块链</p>
-<p>用户想使用区块链为自己做一件事，需要付燃油费（给那个执行命令的矿工），这是合理的</p>
+<p>每篇文章讲清一个很小的点，不求多，不求全;</p>
+<p>这非常符合智能合约的编程风格，可维护性好，可扩展性强，很适合留作长期参考；</p>
+<p>欢迎关注我的公众号【<strong>元宇宙探索之旅</strong>】</p>
 </blockquote>
-<p>也难怪区块链上的自组织结构叫做“<strong>DAO</strong>”了。</p>
-<p>这里又不得不说说现在的互联网，毕竟对比了才知道不同：</p>
-<blockquote>
-<p>在互联网中：</p>
-<p>平台属于某一个组织，或者某个个人</p>
-<p>用户确实需要使用平台来让生活更加便利</p>
-<p>用户的数据归属于平台，未来数据产生的价值也属于平台</p>
-<p>平台让用户只能选这个平台，并设定规则让用户吃不饱饿不死（垄断）</p>
-</blockquote>
-<p>所以，在互联网中，是中心化的结构，很容易形成垄断，让<strong>强者更强，弱者更弱</strong>；</p>
-<p>而在元宇宙中，是去中心化结构，在这里可以百花齐放，个体都能够实现价值变现；</p>
-<p>学经也有一句话：</p>
-<blockquote>
-<p>人世之害，在于抑弱护强，假弱护强</p>
-<p>故弱者愈弱，强者愈强，犹如削船载木，终船毀木散</p>
-</blockquote>
-<p>如果中心化造成了弱者越弱，强者越强，是不利于发展的，所以这是中心化的弊端。</p>
-<p>这也是为什么去中心化的区块链技术在08年就已经有了，直到现在才真正火起来。是因为那个时候还<strong>没有感受到中心化的弊端（当然不止垄断）</strong>，而等到互联网发展到了现在的样子，大家对去中心化有了急迫的需求，于是就看到了区块链元宇宙的潜力。</p>
-<p>区块链技术是让元宇宙这个虚拟世界，有了现实的“<strong>道</strong>”的技术。</p>
-<p>元宇宙是<strong>虚拟世界的现实化</strong>，就是因为虚拟世界<strong>加上了区块链</strong>，让它有了现实宇宙的道，才能<strong>做到现实化</strong>。</p>
-<p>不知道你有没有发现，互联网发展着发展着，它逐渐接近了中国的智慧，逐渐接近了古代先贤的道。</p>
-<p>中国的智慧是所有的，不管是科技，人文，哲学都在<strong>逐渐无限接近的目标</strong>，懂了道才真正懂元宇宙，元宇宙必然是中国的智慧遍地开花的土壤，也是高智慧人群畅游的海洋，我们拭目以待。</p>
+<p>欢迎留言，你的留言可能会成为我下一篇文章要写的内容哦！</p>
 
       
     </div>
@@ -341,7 +321,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/07/18/%E5%85%83%E5%AE%87%E5%AE%99/M9-%E5%85%83%E5%AE%87%E5%AE%99%E5%B8%A6%E6%9D%A5%E7%9A%84%E5%A5%BD%E5%A4%84/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/07/18/Solidity/S3-%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/luwenjuan.jpeg">
@@ -359,7 +339,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/07/18/%E5%85%83%E5%AE%87%E5%AE%99/M9-%E5%85%83%E5%AE%87%E5%AE%99%E5%B8%A6%E6%9D%A5%E7%9A%84%E5%A5%BD%E5%A4%84/" class="post-title-link" itemprop="url">元宇宙初探：元宇宙能给我们带来什么好处？</a>
+          <a href="/2022/07/18/Solidity/S3-%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/" class="post-title-link" itemprop="url">Solidity编程（3）：开发工具选择</a>
         </h2>
 
         <div class="post-meta-container">
@@ -377,7 +357,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-08-25 20:21:06" itemprop="dateModified" datetime="2022-08-25T20:21:06+08:00">2022-08-25</time>
+      <time title="修改时间：2022-07-22 14:40:59" itemprop="dateModified" datetime="2022-07-22T14:40:59+08:00">2022-07-22</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -385,7 +365,7 @@
       </span>
       <span class="post-meta-item-text">分类于</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%85%83%E5%AE%87%E5%AE%99/" itemprop="url" rel="index"><span itemprop="name">元宇宙</span></a>
+          <a href="/categories/Solidity/" itemprop="url" rel="index"><span itemprop="name">Solidity</span></a>
         </span>
     </span>
 
@@ -398,8 +378,8 @@
       </span>
       <span class="post-meta-item-text">Changyan：</span>
     
-    <a title="元宇宙初探：元宇宙能给我们带来什么好处？" href="/2022/07/18/%E5%85%83%E5%AE%87%E5%AE%99/M9-%E5%85%83%E5%AE%87%E5%AE%99%E5%B8%A6%E6%9D%A5%E7%9A%84%E5%A5%BD%E5%A4%84/#SOHUCS" itemprop="discussionUrl">
-      <span id="sourceId::512075263e0200a1a01d96e204cc4af9" class="cy_cmt_count" itemprop="commentCount"></span>
+    <a title="Solidity编程（3）：开发工具选择" href="/2022/07/18/Solidity/S3-%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/#SOHUCS" itemprop="discussionUrl">
+      <span id="sourceId::f4b749331c18b5457d5818792b9f224f" class="cy_cmt_count" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -413,18 +393,26 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <p>今天出去了一趟，和别人一起喝茶聊天。</p>
-<p>聊天中，对方问了我一个问题：“元宇宙能给我们带来什么好处？”。</p>
-<p>我一瞬间没反应过来，因为和别人问的套路都不一样，别人一般会问：“元宇宙是什么？”，“元宇宙怎么这么火？”</p>
-<p>最主要是因为，元宇宙能带来的东西太多了，它不是一个产品，去解决某个问题或者需求；而是因为底层的改变，几乎能把整个世界逻辑翻一遍，就像web2当初也改变了所有人的生活方式一样，所以不知道从哪里说起。</p>
-<p>我要是只说它带来的某些好处，可能以偏概全，它本就不是因为某个需求而开发出来的产品，而是因为大家有某些需求</p>
-<p>我打算今天的文章里面说一部分，其他的留着以后慢慢讲。</p>
-<p>这是之前我画过的图：</p>
-<p><img src="http://luwenjuan.luyuedan.com/mweb/16559088469045.png"></p>
-<p>今天我把这个图细化一下：</p>
-<p><img src="http://luwenjuan.luyuedan.com/mweb/16559122019844.png"></p>
-<p>有点匆忙，今天也没时间了，部分细节可能不太准确，但是能表达一些我想表达的东西。</p>
-<p>之所以元宇宙几乎会改变大家的生活工作方式，以及带来一系列好处，就是因为底层的区块链技术带来的结果。</p>
+          <p>要使用Solidity开发智能合约，有三种方式：</p>
+<h2 id="方式一：本地配置环境"><a href="#方式一：本地配置环境" class="headerlink" title="方式一：本地配置环境"></a>方式一：本地配置环境</h2><p>1.安装Solidity编译器<br>2.安装web3.js&#x2F;ethers.js<br>3.本地Ganache启动测试网络进行调试<br>4.编写Solidity并部署调用ABI交互<br>5.Etherscan上传源文件验证合约</p>
+<p>这种方式的成本太高了，要配置环境，要用什么库的话，都要自己安装调试，所以很不方便，所以不推荐。</p>
+<h2 id="方式二：线上IDE"><a href="#方式二：线上IDE" class="headerlink" title="方式二：线上IDE"></a>方式二：线上IDE</h2><p><strong>◾️Remix IDE环境</strong><br>无法长期存储，容量5M<br>插件较多，可直接部署调试</p>
+<p>网站链接：<a target="_blank" rel="noopener" href="https://remix.ethereum.org/">https://remix.ethereum.org/</a></p>
+<p><strong>◾️Replit 线上环境</strong><br>支持线上Solidity开发部署<br>支持UI可视化交互</p>
+<p>网站链接：<a target="_blank" rel="noopener" href="https://replit.com/">https://replit.com/</a>~</p>
+<p>线上的环境不需要配置安装什么东西，打开网页就可以使用，所以很容易上手，所以适合做一些小练习，写一些片断性的合约代码，以及脚本的练习。</p>
+<p>也适合做一些简单的小型项目，比如NFT网站等等。</p>
+<h2 id="方式三：采用框架"><a href="#方式三：采用框架" class="headerlink" title="方式三：采用框架"></a>方式三：采用框架</h2><p>可以采用Hardhat框架，框架内部有很多已经内置的库，可以在本地模拟一个真实的区块链网络，方便做测试。</p>
+<p>这种方式适合做大型的项目，比如交易所，游戏等等。</p>
+<p>网站链接：<a target="_blank" rel="noopener" href="https://hardhat.org/">https://hardhat.org/</a></p>
+<p>-End-</p>
+<p>我的文章风格是：</p>
+<blockquote>
+<p>每篇文章讲清一个很小的点，不求多，不求全;</p>
+<p>这非常符合智能合约的编程风格，可维护性好，可扩展性强，很适合留作长期参考；</p>
+<p>欢迎关注我的公众号【<strong>元宇宙探索之旅</strong>】</p>
+</blockquote>
+<p>欢迎留言，你的留言可能会成为我下一篇文章要写的内容哦！</p>
 
       
     </div>
@@ -451,7 +439,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/07/18/%E5%85%83%E5%AE%87%E5%AE%99/N5-%E6%89%B9%E9%87%8F%E7%94%9F%E4%BA%A7NFT/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/07/18/Solidity/S4-%E6%9F%A5%E7%9C%8B%E4%BA%A4%E6%98%93gas%E8%B4%B9/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/luwenjuan.jpeg">
@@ -469,7 +457,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/07/18/%E5%85%83%E5%AE%87%E5%AE%99/N5-%E6%89%B9%E9%87%8F%E7%94%9F%E4%BA%A7NFT/" class="post-title-link" itemprop="url">NFT初探：批量生成NFT说明书</a>
+          <a href="/2022/07/18/Solidity/S4-%E6%9F%A5%E7%9C%8B%E4%BA%A4%E6%98%93gas%E8%B4%B9/" class="post-title-link" itemprop="url">Solidity编程（4）：查看交易gas费</a>
         </h2>
 
         <div class="post-meta-container">
@@ -487,7 +475,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-08-25 20:18:39" itemprop="dateModified" datetime="2022-08-25T20:18:39+08:00">2022-08-25</time>
+      <time title="修改时间：2022-07-21 18:29:25" itemprop="dateModified" datetime="2022-07-21T18:29:25+08:00">2022-07-21</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -495,7 +483,7 @@
       </span>
       <span class="post-meta-item-text">分类于</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/NFT/" itemprop="url" rel="index"><span itemprop="name">NFT</span></a>
+          <a href="/categories/Solidity/" itemprop="url" rel="index"><span itemprop="name">Solidity</span></a>
         </span>
     </span>
 
@@ -508,8 +496,8 @@
       </span>
       <span class="post-meta-item-text">Changyan：</span>
     
-    <a title="NFT初探：批量生成NFT说明书" href="/2022/07/18/%E5%85%83%E5%AE%87%E5%AE%99/N5-%E6%89%B9%E9%87%8F%E7%94%9F%E4%BA%A7NFT/#SOHUCS" itemprop="discussionUrl">
-      <span id="sourceId::79721a974a1e5be0f16499ceedde6272" class="cy_cmt_count" itemprop="commentCount"></span>
+    <a title="Solidity编程（4）：查看交易gas费" href="/2022/07/18/Solidity/S4-%E6%9F%A5%E7%9C%8B%E4%BA%A4%E6%98%93gas%E8%B4%B9/#SOHUCS" itemprop="discussionUrl">
+      <span id="sourceId::bf7675239d69d0c908b34b9f482635cb" class="cy_cmt_count" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -523,55 +511,53 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <p>本文是针对想要进入NFT领域的设计者，以及艺术家。不过我也想告诉更多艺术家们，元宇宙是趋势，你们迟早都是要进入这个领域的，不妨早做打算，也欢迎交流。</p>
-<h2 id="第一步：安装环境"><a href="#第一步：安装环境" class="headerlink" title="第一步：安装环境"></a>第一步：安装环境</h2><p><strong>安装python</strong></p>
-<p>我把安装包放在坚果云上，直接根据自己的系统版本下载。</p>
-<p>链接：<a target="_blank" rel="noopener" href="https://www.jianguoyun.com/p/DbZWOm8Qj9_oBxjmjMUEIAA">https://www.jianguoyun.com/p/DbZWOm8Qj9_oBxjmjMUEIAA</a></p>
-<p>下载后双击运行，安装结束后，打开命令行，运行：</p>
-<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">python</span> --<span class="keyword">version</span></span><br></pre></td></tr></table></figure>
-
-<p>看看出来的结果是否是这样：</p>
-<p><img src="http://luwenjuan.luyuedan.com/mweb/16546608244392.png"></p>
-<p>如果是的话，说明安装完成。</p>
-<p><strong>安装pip</strong></p>
-<p>在命令行运行：</p>
-<figure class="highlight dsconfig"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">curl</span> <span class="string">https</span>://<span class="string">bootstrap</span>.<span class="string">pypa</span>.<span class="string">io</span>/<span class="built_in">get-pip.py</span> -<span class="string">o</span> <span class="built_in">get-pip.py</span></span><br><span class="line"></span><br><span class="line"><span class="string">python</span> <span class="built_in">get-pip.py</span></span><br></pre></td></tr></table></figure>
-
-<p><strong>安装依赖</strong></p>
-<p>在命令行运行：</p>
-<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip <span class="keyword">install</span> -r requirements.txt</span><br></pre></td></tr></table></figure>
-
-<h2 id="第二步：配置文件"><a href="#第二步：配置文件" class="headerlink" title="第二步：配置文件"></a>第二步：配置文件</h2><p><strong>代码结构</strong></p>
-<p>这是源代码结构：</p>
-<p><img src="http://luwenjuan.luyuedan.com/mweb/16538347716469.png"></p>
-<p>main.py：源代码文件<br>trait-layers：输入的素材文件<br>setup.txt：输入的配置文件<br>metadata：输出的特征文件<br>images：输出的图片文件</p>
-<p>metadata，images作为输出文件夹，不需要管，main.py作为源代码，也不需要理会，要使用这个代码批量生成NFT，需要设置trait-layers素材文件夹，以及setup.txt配置文件。</p>
-<p><strong>配置文件</strong></p>
-<p>这是配置文件的setup.txt的内容：</p>
-<p><img src="/media/16614248996629.png"></p>
-<p>这个设置里面，有六个图层（图层数量不限制，可以无限增加），第一个图层在最下面，最后一个图层在最上面；</p>
-<p>每个图层有三行设置，第一行是图层对应的文件夹名，第二行是图层对应的素材文件名，素材文件就在文件夹下，第三行是针对每一个素材文件的概率，也就是稀有度。</p>
-<p>这是素材文件夹的样子：</p>
-<p><img src="http://luwenjuan.luyuedan.com/mweb/16538356514520.png"></p>
-<p>与配置文件夹是一一对应的，图层文件夹名字与配置文件一样，文件夹下的素材名字，也和配置文件一样。</p>
-<p>这里不限制图层数量，只要把图层素材文件夹，以及配置文件夹一一配置好就可以。</p>
-<p>配置好了之后，就可以运行代码了。</p>
-<p><strong>运行代码</strong></p>
-<p>在命令行，直接进入这个文件夹的位置，运行命令就可以：</p>
-<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">python3</span> main.<span class="keyword">py</span></span><br></pre></td></tr></table></figure>
-
-<p>运行之后，输出的图像就在images的文件夹下面:<br><img src="http://luwenjuan.luyuedan.com/mweb/16538359800068.png"></p>
-<h2 id="第三步：修改代码"><a href="#第三步：修改代码" class="headerlink" title="第三步：修改代码"></a>第三步：修改代码</h2><p>代码在main.py里面，用任意文本编辑器打开代码，可以随意修改，以下是代码的功能说明：</p>
+          <p>我们知道，智能合约要提交到区块链上，需要矿工打包成区块，并帮我们运行，然后我们支付给矿工gas费用，所以这个<strong>gas费就是成本</strong>，太重要了。</p>
+<p>那么支付的gas费用是多少，我们怎么查看呢，在代码里面又如何设置呢，这就是本文要写的内容了。</p>
+<p>最开始，gas费采用的是竞价的方式；不过现在采用的是基础费+小费的方式。</p>
+<p>我们直接去一个以太坊浏览器上查看，这个浏览器上可以查到所有部署在以太坊上的智能合约，交易情况，以及其他信息。</p>
+<p>网址：<a target="_blank" rel="noopener" href="https://etherscan.io/">https://etherscan.io/</a></p>
+<p>这里我们在主页随意打开一项交易：</p>
+<p><img src="http://luwenjuan.luyuedan.com/mweb/%E6%88%AA%E5%B1%8F2022-07-21%20%E4%B8%8B%E5%8D%882.51.12.png" alt="截屏2022-07-21 下午2.51.12"></p>
+<p>我一一解释一下：</p>
 <blockquote>
-<p>read_setup()函数读取setup配置，将所有的素材和配置读入项目中；</p>
-<p>create_new_image()生成一张新的图片元文件，为了保证每个图片都独一无二，每次生成的时候都会检查；</p>
-<p>add_tokenId()为每一个图片生成唯一的ID；</p>
-<p>write_metadata()将图片元文件写入元文件文件夹中，名字和图片编号一一对应；</p>
-<p>generate_images()将图片元文件与素材对应，并按照图层顺序合成新的图片文件；</p>
+<p>from：是交易发起方地址</p>
+<p>to：是交易接收方地址</p>
+<p>Value：就是金额</p>
+<p>所以这里的意思是，从from这个合约地址，到to这个合约地址，转账0.22…个以太坊，也就是328.87美金</p>
 </blockquote>
-<p>图片数量是在源代码中修改的，这里是100张，你可以修改成你想要的张数，但是不能超过你的素材最多能生成的图片数量哦。</p>
-<p><img src="/media/16614249321821.png"></p>
-<p>其他地方没有什么可修改的，如果你想要源码，欢迎加我微信：<strong>13246411679</strong>。</p>
+<p>关于gas的就是下面几项了：</p>
+<blockquote>
+<p>Transaction Fee：交易gas费用</p>
+<p>Gas Price：gas的价格</p>
+<p>Gas Limit &amp; Usage by Txn：最多能使用多少gas（设置的我们要给多少gas），本次交易使用的gas</p>
+<p>Gas Fees：基础gas价格，最大gas价格（设置的gas最大价格），小费（也是设置的）</p>
+<p>Burnt &amp; Txn Savings Fees：烧掉的gas费，省下的gas费</p>
+</blockquote>
+<p>它们的计算方式是这样：</p>
+<p>交易gas费用 &#x3D; 交易使用的gas X gas的价格</p>
+<p>gas的价格 &#x3D; 基础gas价格 + gas小费，如果超过最大gas价格，就采用最大值</p>
+<p>烧掉的gas费 &#x3D; 基础gas价格 X 交易使用的gas</p>
+<p>省下的gas费 &#x3D; （最大gas价格 - gas的价格）X 交易使用的gas</p>
+<p>这里的基础gas价格是怎么来的呢？</p>
+<p>因为我们的交易是在一个一个区块上进行的，同一个区块中，所有交易的基础费都是一样的，下一个区块中，基础费由上一个区块决定，有一点上下浮动。</p>
+<p>比如我们的这个例子是在区块编号15184373上的，我们点击编号进入区块信息：</p>
+<p><img src="http://luwenjuan.luyuedan.com/mweb/16583981156284.png"></p>
+<p>有一项Gas Used的状态，Gas Target是它的载重，</p>
+<p>这个值会影响下一个区块的基础gas费：</p>
+<blockquote>
+<p>如果+100%，那么下一个区块的基础费会增加大概12.5%</p>
+<p>如果+10%，那么下一个区块的基础费会增加大概1.25%</p>
+<p>如果-10%，那么下一个区块的基础费会减少大概1.25%</p>
+</blockquote>
+<p>这个多算算大概就清楚了，因为也改变不了什么，了解就行。</p>
+<p>-End-</p>
+<p>我的文章风格是：</p>
+<blockquote>
+<p>每篇文章讲清一个很小的点，不求多，不求全;</p>
+<p>这非常符合智能合约的编程风格，可维护性好，可扩展性强，很适合留作长期参考；</p>
+<p>欢迎关注我的公众号【<strong>元宇宙探索之旅</strong>】</p>
+</blockquote>
+<p>欢迎留言，你的留言可能会成为我下一篇文章要写的内容哦！</p>
 
       
     </div>
@@ -1018,7 +1004,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/07/02/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6%EF%BC%881%EF%BC%89/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/07/02/%E5%85%83%E5%AE%87%E5%AE%99/M1-%E4%B8%BA%E4%BB%80%E4%B9%88%E5%85%83%E5%AE%87%E5%AE%99%E5%9C%A8%E5%88%9D%E6%9C%9F/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/luwenjuan.jpeg">
@@ -1036,7 +1022,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/07/02/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6%EF%BC%881%EF%BC%89/" class="post-title-link" itemprop="url">智能合约项目从0到1：开发环境配置（一）</a>
+          <a href="/2022/07/02/%E5%85%83%E5%AE%87%E5%AE%99/M1-%E4%B8%BA%E4%BB%80%E4%B9%88%E5%85%83%E5%AE%87%E5%AE%99%E5%9C%A8%E5%88%9D%E6%9C%9F/" class="post-title-link" itemprop="url">元宇宙初探：为什么元宇宙还在初期？</a>
         </h2>
 
         <div class="post-meta-container">
@@ -1054,7 +1040,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-08-25 17:59:31" itemprop="dateModified" datetime="2022-08-25T17:59:31+08:00">2022-08-25</time>
+      <time title="修改时间：2022-08-29 14:50:27" itemprop="dateModified" datetime="2022-08-29T14:50:27+08:00">2022-08-29</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -1062,7 +1048,7 @@
       </span>
       <span class="post-meta-item-text">分类于</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6/" itemprop="url" rel="index"><span itemprop="name">智能合约</span></a>
+          <a href="/categories/%E5%85%83%E5%AE%87%E5%AE%99/" itemprop="url" rel="index"><span itemprop="name">元宇宙</span></a>
         </span>
     </span>
 
@@ -1075,8 +1061,8 @@
       </span>
       <span class="post-meta-item-text">Changyan：</span>
     
-    <a title="智能合约项目从0到1：开发环境配置（一）" href="/2022/07/02/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6%EF%BC%881%EF%BC%89/#SOHUCS" itemprop="discussionUrl">
-      <span id="sourceId::ac588c00f25968e89edbe375409bad33" class="cy_cmt_count" itemprop="commentCount"></span>
+    <a title="元宇宙初探：为什么元宇宙还在初期？" href="/2022/07/02/%E5%85%83%E5%AE%87%E5%AE%99/M1-%E4%B8%BA%E4%BB%80%E4%B9%88%E5%85%83%E5%AE%87%E5%AE%99%E5%9C%A8%E5%88%9D%E6%9C%9F/#SOHUCS" itemprop="discussionUrl">
+      <span id="sourceId::48701f260432d8958564f4278ae7ca91" class="cy_cmt_count" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -1090,47 +1076,32 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <p>这个过程是在<strong>苹果系统</strong>演示的，如果你的电脑不是苹果系统，你可以在每一个步骤下相对应内容，自己去寻找你的系统的使用方法。</p>
-<p>步骤不会有差，但细节可能有些差距。</p>
-<h2 id="第一步：安装git"><a href="#第一步：安装git" class="headerlink" title="第一步：安装git"></a>第一步：安装git</h2><p>因为我的电脑之前都没有写过代码，所以连git都没有，如果你有git了，就跳过这一步。</p>
-<p>直接在这里下载最新版安装包：<a target="_blank" rel="noopener" href="https://sourceforge.net/projects/git-osx-installer/files/">https://sourceforge.net/projects/git-osx-installer/files/</a></p>
-<p><img src="http://luwenjuan.luyuedan.com/mweb/16530497660941.png"></p>
-<p>下载的是dmg包，下载后，双击安装即可。</p>
-<h2 id="第二步：安装npm"><a href="#第二步：安装npm" class="headerlink" title="第二步：安装npm"></a>第二步：安装npm</h2><p>终端运行这句命令安装nvm：</p>
-<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -o- https:<span class="regexp">//</span>raw.githubusercontent.com<span class="regexp">/creationix/</span>nvm<span class="regexp">/v0.39.1/i</span>nstall.sh | bash</span><br></pre></td></tr></table></figure>
-
-<p>根据运行后的提示，如果安装成功，则重启终端，运行以下代码安装npm：</p>
-<figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">nvm install <span class="number">16</span></span><br><span class="line">nvm use <span class="number">16</span></span><br><span class="line">nvm alias <span class="keyword">default</span> <span class="number">16</span></span><br><span class="line"><span class="built_in">npm</span> install <span class="built_in">npm</span> --global <span class="comment"># Upgrade npm to the latest version</span></span><br></pre></td></tr></table></figure>
-<p><img src="http://luwenjuan.luyuedan.com/mweb/16531034361280.png"></p>
-<h2 id="第三步：安装node-js"><a href="#第三步：安装node-js" class="headerlink" title="第三步：安装node.js"></a>第三步：安装node.js</h2><p>下载LTS版本：<a target="_blank" rel="noopener" href="https://nodejs.org/en/download/">https://nodejs.org/en/download/</a></p>
-<p>下载后，双击安装即可。<br><img src="http://luwenjuan.luyuedan.com/mweb/16531037042095.png"></p>
-<p>安装成功，这是node的路径变量：</p>
-<p><img src="http://luwenjuan.luyuedan.com/mweb/16531037711207.png"></p>
-<h2 id="第四步：使用hardhat"><a href="#第四步：使用hardhat" class="headerlink" title="第四步：使用hardhat"></a>第四步：使用hardhat</h2><p>hardhat是一个帮助我们构建以太坊开发环境的工具，它还内置了hardhat network，这是专门为开发而设计的本地以太坊网络，让开发人员方便的部署合约，运行测试和调试代码。</p>
-<p>现在，我们先创建一个工作文件夹my-wave-portal，cd到这个文件夹后，运行以下代码安装hardhat：</p>
-<figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">npm</span> init -y</span><br><span class="line"><span class="built_in">npm</span> install --save-dev hardhat</span><br></pre></td></tr></table></figure>
-
-<p>这样，我们就把hardhat下载到本地了，现在我们创建示例项目。</p>
-<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">npx hardhat</span></span><br></pre></td></tr></table></figure>
-<p><img src="http://luwenjuan.luyuedan.com/mweb/16531054105662.png"></p>
-<p>要你选择的话，看着无误，就直接回车，选择（Y&#x2F;N）的时候写y，最后我们可以看到，创建完成。</p>
-<p><img src="http://luwenjuan.luyuedan.com/mweb/16531058214647.png"></p>
-<p>安装其他依赖包：</p>
-<figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">npm</span> install --save-dev @nomiclabs/hardhat-waffle ethereum-waffle chai @nomiclabs/hardhat-ethers ethers</span><br></pre></td></tr></table></figure>
-<p>然后运行：</p>
-<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">npx hardhat accounts</span></span><br></pre></td></tr></table></figure>
-<p><img src="http://luwenjuan.luyuedan.com/mweb/16531060913328.png"><br>我们可以看到一系列地址，这是hardhat帮我们生成的，模拟以太链真实用户的地址，这些可以帮我们后面测试的时候模拟用户。</p>
-<p>最后，我们运行hardhat：</p>
-<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">npx hardhat compile</span></span><br></pre></td></tr></table></figure>
-
-<p>然后运行做一下测试：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npx hardhat <span class="built_in">test</span></span><br></pre></td></tr></table></figure>
-<p><img src="http://luwenjuan.luyuedan.com/mweb/16531062071840.png"></p>
-<p>说明代码测试没问题了。</p>
-<h2 id="第五步：删除不必要的代码"><a href="#第五步：删除不必要的代码" class="headerlink" title="第五步：删除不必要的代码"></a>第五步：删除不必要的代码</h2><p>用vscode打开工作文件夹my-wave-portal，删掉不必要的。</p>
-<p>test文件夹下的sample-test.js<br>scripts文件夹下的sample-script.js<br>contracts文件夹下的Greeter.sol</p>
-<p><img src="http://luwenjuan.luyuedan.com/mweb/16531072789824.png"></p>
-<p>好了，开发环境配置完成。</p>
+          <p>前一段时间，看到一个数字藏品平台说即将用保证金制度，来保证藏家不会被侵犯利益。</p>
+<p>我一瞬间大脑就有个表情包：what？</p>
+<p>有没有一点熟悉的味道？</p>
+<p>不就和淘宝店铺的保证金一样嘛！</p>
+<p>淘宝是什么样的平台？用户的数据全部属于淘宝，用户只能遵守淘宝规则，淘宝对用户有生杀大权……</p>
+<p>典型的中心化系统。</p>
+<p>如果说在元宇宙里面做软件，或者做平台，或者开公司，却还保持着中心化的思想，可能就很难突破了。</p>
+<p>因为元宇宙最大的突破，就是从中心化变成去中心化。</p>
+<p>没有去中心化思想，元宇宙是玩不起来的。</p>
+<p>至于周边的AR技术，虚拟现实，物联网等等，都是技术上的升级，真正本质的改变是因为成为<strong>去中心化的结构</strong>。</p>
+<p>技术的迭代是自然而然的，但是思想的改变，从根深蒂固的中心化思想，到新一代去中心化思想，看来还有很长一段路要走。</p>
+<p>如果用现在我们看到的这些平台，来对比元宇宙中要产生的平台，也是很难摆脱中心化的思想的；</p>
+<p>所以，我认为，只有可能是元宇宙原生的东西，才能真正成为元宇宙里的东西。</p>
+<p>有很多传统企业的老板，说想要进入元宇宙赛道，就会问，我这个行业（比如旅游），怎么在元宇宙赛道做呢？</p>
+<p>我觉得用传统行业的方式，思考元宇宙的事情，是摆脱不了思想的限制的，所以想要在元宇宙开辟一片天地，可能就是这两种方式：</p>
+<blockquote>
+<p>一，完全摆脱传统企业的思维和结构，重新用元宇宙的方式启动一个全新的项目</p>
+<p>二，和元宇宙原生的项目和团队合作，得到他们的赋能，让他们带你进入元宇宙的赛道</p>
+</blockquote>
+<p>而对于又想自己做，又丢不掉过去的传统包袱的，可能就很难了，因为一叶障目，中心化的这个思想，就是会蒙蔽眼睛。</p>
+<p>引用张琦的一句话</p>
+<blockquote>
+<p>旧地图找不到新大陆</p>
+</blockquote>
+<p>如果要进入元宇宙世界，要学习的有太多了，要丢掉的包袱，那就更多了，真正想要在元宇宙做点事情的，就真的要回到学生时代的精神，假装自己是一张白纸，从头开始认真学习了</p>
+<p>今天就放松的随便说点闲话，欢迎交流！</p>
 
       
     </div>
@@ -1157,7 +1128,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/07/02/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6%EF%BC%882%EF%BC%89/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/07/02/%E5%85%83%E5%AE%87%E5%AE%99/M2-%E4%BB%80%E4%B9%88%E6%98%AF%E5%85%83%E5%AE%87%E5%AE%99/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/luwenjuan.jpeg">
@@ -1175,7 +1146,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/07/02/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6%EF%BC%882%EF%BC%89/" class="post-title-link" itemprop="url">智能合约项目从0到1：成功运行第一个智能合约（二）</a>
+          <a href="/2022/07/02/%E5%85%83%E5%AE%87%E5%AE%99/M2-%E4%BB%80%E4%B9%88%E6%98%AF%E5%85%83%E5%AE%87%E5%AE%99/" class="post-title-link" itemprop="url">元宇宙探秘：什么是元宇宙？（深度探秘）</a>
         </h2>
 
         <div class="post-meta-container">
@@ -1193,7 +1164,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-08-25 18:01:27" itemprop="dateModified" datetime="2022-08-25T18:01:27+08:00">2022-08-25</time>
+      <time title="修改时间：2022-08-29 14:51:45" itemprop="dateModified" datetime="2022-08-29T14:51:45+08:00">2022-08-29</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -1201,7 +1172,7 @@
       </span>
       <span class="post-meta-item-text">分类于</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6/" itemprop="url" rel="index"><span itemprop="name">智能合约</span></a>
+          <a href="/categories/%E5%85%83%E5%AE%87%E5%AE%99/" itemprop="url" rel="index"><span itemprop="name">元宇宙</span></a>
         </span>
     </span>
 
@@ -1214,8 +1185,8 @@
       </span>
       <span class="post-meta-item-text">Changyan：</span>
     
-    <a title="智能合约项目从0到1：成功运行第一个智能合约（二）" href="/2022/07/02/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6%EF%BC%882%EF%BC%89/#SOHUCS" itemprop="discussionUrl">
-      <span id="sourceId::d32d8ac7c287c62d538c584504eac38b" class="cy_cmt_count" itemprop="commentCount"></span>
+    <a title="元宇宙探秘：什么是元宇宙？（深度探秘）" href="/2022/07/02/%E5%85%83%E5%AE%87%E5%AE%99/M2-%E4%BB%80%E4%B9%88%E6%98%AF%E5%85%83%E5%AE%87%E5%AE%99/#SOHUCS" itemprop="discussionUrl">
+      <span id="sourceId::7341cfb22b17a02803b1834c659aee2d" class="cy_cmt_count" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -1229,56 +1200,107 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h2 id="第一步：新建contract智能合约类"><a href="#第一步：新建contract智能合约类" class="headerlink" title="第一步：新建contract智能合约类"></a>第一步：新建contract智能合约类</h2><p>在contracts文件夹下新建文件，取名WavePortal.sol，把以下内容复制进去。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// SPDX-License-Identifier: UNLICENSED</span></span><br><span class="line"></span><br><span class="line">pragma solidity ^<span class="number">0.8</span><span class="number">.0</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="string">&quot;hardhat/console.sol&quot;</span>;</span><br><span class="line"></span><br><span class="line">contract <span class="title class_">WavePortal</span> &#123;</span><br><span class="line">    <span class="title function_">constructor</span>(<span class="params"></span>) &#123;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;Yo yo, I am a contract and I am smart&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>这个结构是所有contract文件的固定结构，我们一行行解释。</p>
-<p>第一行是注释行，说明这是一个测试代码。</p>
+          <p>继之前的一篇文章【NFT是什么】之后，又有很多人问我，什么是元宇宙？</p>
+<p>所以我就尽量使用浅显的语言，深度说明一下：</p>
+<h2 id="元宇宙是什么？"><a href="#元宇宙是什么？" class="headerlink" title="元宇宙是什么？"></a>元宇宙是什么？</h2><p>元宇宙和现实宇宙有一个共同点，那就是都是一个完整的世界，区别在于现实宇宙是物理的世界，元宇宙是虚拟的世界。</p>
+<p>那有人就说了，互联网也是一个虚拟世界呀！</p>
+<p>其实，目前的互联网确实是想要打造一个虚拟世界，但是它发展的方向有些反了。当下的互联网，它是现实世界的虚拟，是从现实世界延伸出来的虚拟世界。</p>
+<p>因为是建立在现实世界的基础上，所以<strong>永远都是附属</strong>，无法成为一个完整的世界，反而因为虚拟的特性，出现了信任危机的问题，很多人在互联网带着马甲上蹿下跳，反正可以消号重来。</p>
+<p>而元宇宙，它是一个原本就存在的宇宙，不管是我们的神话故事还是游戏，其实都是不成型的元宇宙，而区块链技术的出现，让它的现实化成为可能，互联网信任危机，进一步催化了人们对元宇宙的诉求。</p>
+<p>所以，<strong>元宇宙是虚拟世界的现实化。</strong></p>
+<p>为什么区块链技术这么牛，能让一个虚拟的宇宙现实化呢？得益于它的几个特性：</p>
 <blockquote>
-<p>pragma solidity ^0.8.0;</p>
+<p><strong>唯一性</strong>：宇宙中所有的东西都是唯一的，这是宇宙的法则，现实宇宙是这样，互联网做不到这样，但元宇宙也可以；</p>
+<p><strong>不可篡改性</strong>：宇宙中所有东西，都是不可篡改的，现实宇宙你能接受你家的冰箱莫名其妙空了，而且是被一股神秘力量弄空的吗，不会，否则那不是世界观崩塌了嘛，所有东西都可以追踪的，但互联网就不行，而元宇宙可以；</p>
+<p><strong>去中心化</strong>：如果现实宇宙有一个主宰者，今天改一下这个法则，明天改一下那个东西，那也是挺吓人的，正是自然的生长，去中心化是宇宙的法则，而中心化是社会的法则；</p>
+<p><strong>可确权</strong>：就是资产是可以追溯的。</p>
 </blockquote>
-<p>这一句是solidity编译器的版本，这里要注意，版本号要和hardhat.config.js文件里面一致。</p>
+<p>这几个特性，把宇宙的法则蕴含其中，所以元宇宙才能成为一个完整的宇宙。</p>
+<p>因为物理宇宙也是有这些特性的：唯一性，不可篡改性，去中心化，可确权性。</p>
+<p>这个图你就看一看吧，关于价值回归和信任机制接下来讲，其他暂时没时间解释了。</p>
+<p><img src="http://luwenjuan.luyuedan.com/mweb/16534035951629.png"></p>
+<p>目前元宇宙除了有这样的法则作为基石，以及部分人在其中开荒，相对成熟（钱是最重要的东西嘛），比如NFT，FT等等，其他还在发展，大部分还是一片荒芜，等待着创世者在其中创造五彩斑斓的世界。</p>
+<p>那么我们接下来就讲一讲元宇宙为我们带来的：价值回归和信任机制，是怎么回事。</p>
+<h2 id="元宇宙能给我们带来什么？"><a href="#元宇宙能给我们带来什么？" class="headerlink" title="元宇宙能给我们带来什么？"></a>元宇宙能给我们带来什么？</h2><h3 id="一，价值回归"><a href="#一，价值回归" class="headerlink" title="一，价值回归"></a>一，价值回归</h3><p>越来越多的人，更加重视自身的价值，重视自己产生的价值，应该得到相应的回报。</p>
+<p>为了更加清楚地说明，这里举两个例子：</p>
+<p><strong>举例一：附加价值</strong></p>
 <blockquote>
-<p>import “hardhat&#x2F;console.sol”;</p>
+<p>有一天，我看到一个老师的文章非常好，于是我把他的文章转发给我的一个好友。</p>
+<p>我这个好友之前从未听说过这个老师，因为我转发的文章，他认识了这个老师，最后付费报名了这个老师的课程。</p>
+<p>好了，请问，我是否应该从中分到一部分利益？</p>
+<p>我认为是的，因为在这次交易中，我是产生了客源价值的。但事实上，大部分时候，我们产生的这样的客源价值，是没有得到回报的。</p>
+<p>之所以没有得到回报，不是因为这个老师多么资本主义，导致我免费帮他干活，而是因为技术没到位，如果我不说，老师不说，谁知道谁因为我的撮合产生了价值呢？</p>
 </blockquote>
-<p>这一句让我们可以打印一些控制台的log日志，方便后续调试。</p>
+<p>所以，这里我也跟你保证，不管你把我的文章发给谁，你截个图给我，将来你分享出去的那个人，他在我这里产生任何消费，我都会给你20%的客源回报，以我为开始，进行价值回归。</p>
+<p>有些人说，这不是和分销一样吗，其实有差别，分销是真的在销售，你发给别人的链接就是购买链接，但是这不一样，我保证的是，我的文章都是干货文章，而且产量很高。</p>
+<p>你分享给了别人，只是因为别人需要，你给予的是帮助，别人只会感激你的分享；不过你分享的动作，将来产生的附带价值，也是应该属于你的；</p>
+<p>不能因为你当初只是想帮助别人，而否定这份帮助产生的附加价值对吧，这样的附加价值可能某天让你得到躺赚的可能。</p>
+<p><strong>举例二：用户价值</strong></p>
 <blockquote>
-<p>contract WavePortal{…constructor（）…}</p>
+<p>你应该知道，有很多内容展示平台，对吧</p>
+<p>这些平台本身贡献了平台这样一个场所，让所有内容生产者入驻产生内容，因为他们产生了优质的内容，让平台用户越来越多，让平台用户愿意留下来，让平台估值越来越大。</p>
+<p>好了，请问，平台能做到很大的估值和升值，这些内容生产者是否应该分到其中的利益？</p>
+<p>是的，因为是他们做出的贡献，让公司有了更高的价值。但事实上，大部分人产生的价值，是没有得到回报的。</p>
 </blockquote>
-<p>我们创建了一个contract类，当我们创建这个类时，constructor（）方法会运行，所以这里会在控制台打印一行字。</p>
-<p>这就是一个最简单的合约，相当于hello word，合约开始时，打印一行字。</p>
-<h2 id="代码高亮插件"><a href="#代码高亮插件" class="headerlink" title="代码高亮插件"></a>代码高亮插件</h2><p>你应该看到了，目前我们的代码是没有语法高亮的，所以我们安装一个vscode插件，进入这个网站，点击install即可：<a target="_blank" rel="noopener" href="https://marketplace.visualstudio.com/items?itemName=JuanBlanco.solidity">https://marketplace.visualstudio.com/items?itemName=JuanBlanco.solidity</a></p>
-<p>可以看到，语法有了高亮区分显示：</p>
-<p><img src="http://luwenjuan.luyuedan.com/mweb/16531088481247.png"></p>
-<h2 id="第二步：编译并部署智能合约到本地区块链"><a href="#第二步：编译并部署智能合约到本地区块链" class="headerlink" title="第二步：编译并部署智能合约到本地区块链"></a>第二步：编译并部署智能合约到本地区块链</h2><p>因为智能合约就是运行在区块链上的，所以我们在本地测试，也要模拟这样的环境。</p>
-<p>回到vscode，在scripts文件夹下，新建一个文件，取名run.js，将以下代码复制进去。</p>
-<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">const main = async () =&gt; &#123;</span><br><span class="line">  const waveContractFactory = await hre.ethers.getContractFactory(<span class="string">&quot;WavePortal&quot;</span>);</span><br><span class="line">  const waveContract = await waveContractFactory.deploy();</span><br><span class="line">  await waveContract.deployed();</span><br><span class="line">  console.log(<span class="string">&quot;Contract deployed to:&quot;</span>, waveContract.address);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">const runMain = async () =&gt; &#123;</span><br><span class="line">  try &#123;</span><br><span class="line">    await main();</span><br><span class="line">    process.<span class="keyword">exit</span>(<span class="number">0</span>); <span class="regexp">//</span> <span class="keyword">exit</span> Node process without error</span><br><span class="line">  &#125; catch (error) &#123;</span><br><span class="line">    console.log(error);</span><br><span class="line">    process.<span class="keyword">exit</span>(<span class="number">1</span>); <span class="regexp">//</span> <span class="keyword">exit</span> Node process <span class="keyword">while</span> indicating <span class="string">&#x27;Uncaught Fatal Exception&#x27;</span> error</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="regexp">//</span> Read more about Node <span class="keyword">exit</span> (<span class="string">&#x27;process.exit(num)&#x27;</span>) status codes here: https:<span class="regexp">//</span>stackoverflow.com<span class="regexp">/a/</span><span class="number">47163396</span>/<span class="number">7974948</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">runMain();</span><br></pre></td></tr></table></figure>
-
-<p>接下来我们一行一行解释。</p>
+<p>很多用户都没意识到这一点，在免费创作，免费活动，产生用户数据资产，这些资产为平台产出更多价值，这些价值只会输送到少部分人手上。</p>
+<p>但是，很多00后已经意识到他们产生的价值，被别人白嫖了，这就是用户资产价值。</p>
+<p>这其实就是中心化的组织结构导致的。什么是中心化？数据中心化，权益中心化，利益中心化。</p>
+<p>在中心化结构中，所有终端用户的数据，对于这个中心来说，是透明的，不仅是透明的，这些数据还会成为这个中心的资产，用来产生更多利益。</p>
+<p>那元宇宙如何做到<strong>价值回归</strong>呢？</p>
+<p>其中一大功臣，那就是NFT，NFT是元宇宙的资产，它有重要特性，是唯一性，不可篡改性，可确权性。</p>
+<p>正是因为元宇宙NFT的资产确权，这个资产（包括你自己在元宇宙的身份），产生的任何价值，都可以准确回报到你的身上。</p>
+<p>这里举例说说是如何准确回报到你的身上的，目前元宇宙有三个领域：</p>
+<p><strong>DeFi：金融领域</strong></p>
+<p>我们不管是我们自己创造NFT，还是购买NFT资产，这个资产未来产生的增值就是我们自己的，创造者可以享受每次交易的红利，这个是很明确的价值回归，没什么可展开的。</p>
+<p><strong>GameFi：活动领域</strong></p>
+<p>比如：</p>
 <blockquote>
-<p>const waveContractFactory &#x3D; await hre.ethers.getContractFactory(“WavePortal”);</p>
+<p>move to earn：走路赚钱，类似StepN<br>learn to earn：学习赚钱，类似LMS<br>sleep to earn：睡觉赚钱，类似Sleep future<br>play to earn：游戏赚钱，类似宝可梦</p>
 </blockquote>
-<p>这个将会编译我们的智能合约，并生成一些合约运行必要的文件，这些文件会存放在artifacts路径下，到时候我们运行之后可以去看看是什么样的文件。</p>
+<p>我们购买的NFT，在平台活动，为平台产生了价值，会以代币的形式返还给用户。</p>
+<p>如果平台发展好，产生增值，那所有在平台活动的，都是价值产生者。代币肯定也是会增值的，这也就是实现了平台用户价值返还给用户的效果。</p>
+<p><strong>SocialFi：社交领域</strong></p>
+<p>这个领域目前没有什么成熟的平台，都是一些正在酝酿的。</p>
+<p>但是，我相信社交领域要实现的，除了用户价值的回归，还会有附加价值的回归。</p>
+<p>所以，元宇宙的意义在于，在资产确权之后，让资产所有者受益，让元宇宙居民的劳动产生的价值，都能得到相应的回报。</p>
+<h3 id="二，信任机制"><a href="#二，信任机制" class="headerlink" title="二，信任机制"></a>二，信任机制</h3><p>有人说，前面说的那些附加价值，会不会让将来分享泛滥？用户价值，会不会产生很多作弊现象？</p>
+<p>当然，如果仅仅是我说的这些，很多人很快会反应过来，这些可能存在的问题。</p>
+<p>但是，也许在互联网的世界里，这种问题无法规避，这也是互联网世界无法带来真正的价值回归的原因；</p>
+<p>但是在元宇宙的世界里，是可以做到规避的，为什么？</p>
+<p>还是因为NFT的重要特性，唯一性，不可篡改性，可确权性。</p>
+<p>为了做对比，我们设想分享的两个场景，分别是元宇宙和互联网：</p>
 <blockquote>
-<p>const waveContract &#x3D; await waveContractFactory.deploy();</p>
+<p><strong>互联网：</strong></p>
+<p>可以分享赚钱了吗？那有何难，我直接群发给所有人，从此这些人产生的消费，我都能拿到分成了，搞起来，反正就是拼概率。</p>
+<p>这种行为肯定会导致大家的反感，但是这些人反感，也投诉无门啊，骂我几句，我当没看到就行，实在不行我拉黑他，反正他已经成为我的客源，我就逍遥自在的等着躺赚就行。</p>
+<p>如果更多人这样呢，社交就会变得一团乱糟，一个号废了，再换个号继续搞就行，人家也不知道是谁。</p>
+<p><strong>元宇宙：</strong></p>
+<p>个人身份变成NFT，NFT可确权，你的任何行为，必然要联系到你的钱包，你的NFT身份上。</p>
+<p>个人所有行为都会被记录下来，至于你想投诉谁，虽然现在还没有人做这样的功能，但是以目前的技术，实现起来也不难，等socialFi需要的时候自然就实现了。</p>
+<p>你如果想换号重来，估计不太可能，你过去的黑历史累累的话，再申请号，你认为会给你洗白吗？</p>
+<p>所以，在元宇宙世界，因为技术上的硬实力，大家不得不精心维护自己的社交身份NFT，因为这个东西，可能跟自己未来的很多很多挂钩，教育，社保，保险，贷款等，调取一下你的NFT的记录，你就知道该干嘛不该干嘛了。</p>
+<p>甚至，为了让自己记录变得更好，你会做更多帮助别人的事情，这个时候，产生的任何价值都是正面的，社交本身也就变得越来越好。</p>
 </blockquote>
-<p>这里，hardhat将会为我们的智能合约创建一个本地以太坊网络，而当我们的脚本运行完成，这个本地网络也会销毁；所以我们每次运行的时候，都是一个全新的以太坊网络，方便我们做调试。</p>
+<p>看完这个例子，你应该已经知道了，元宇宙凭什么能够建立信任机制了。在现实世界，我们靠面对面的感受和良心驱使，在互联网世界，完全是凭运气，而在元宇宙世界，可以靠技术实现，多好。</p>
+<p>良心容易被人性的恶打败，但技术是大公无私的。</p>
+<p>而这些技术，则是直接写入智能合约中，强制执行，而且完全透明。</p>
+<p>遵守不同智能合约的，会组成不同的DAO，比如一个国家是DAO，一个公司是DAO，一个机构也有DAO，在同一个DAO的，遵守的就是这个DAO定义的法则。</p>
+<p>其实就是和现实中一样的，只不过，现实中法则的执行，需要管理部门，职责部门来推进，而且因为是中心化，这些法则其实代表的是领导层的利益，而且领导层可以随意修改，底下的人只有遵守的责任。</p>
+<p>但是在元宇宙中，这些法则的执行，是智能合约自动强制执行的，对所有人透明公平，而且不可随意篡改，就算要修改，也是要经过所有人投票表决的。</p>
+<p>信任机制靠的就是，计算机执行是铁面无私，对所有人公平透明的。</p>
+<h3 id="三，虚拟与现实无限接近"><a href="#三，虚拟与现实无限接近" class="headerlink" title="三，虚拟与现实无限接近"></a>三，虚拟与现实无限接近</h3><p>我们还是看看这几个活动领域的gamefi。</p>
+<p>move to earn：走路赚钱，类似StepN<br>learn to earn：学习赚钱，类似LMS<br>sleep to earn：睡觉赚钱，类似Sleep future</p>
+<p>其实它实现了虚拟世界个体的活动，到现实世界的映射，什么意思呢？这个我只能跟以前的web2虚拟世界做一下对比：</p>
 <blockquote>
-<p>await waveContract.deployed();</p>
+<p>在web2互联网中，就是现在的我们，玩了网络游戏之后，比如，玩王者，哪怕我们打游戏打到再高级别，都不会映射到现实世界中的我们自己</p>
+<p>不会因为在游戏中我是王者，现实我就能成为王者，有可能现实就是个屌丝。</p>
+<p>但是元宇宙的GameFi，它实现的就是更加真实的映射，这里只说更加，不是完全。</p>
+<p>比如走路赚钱，我们走了很多路升级了，现实中我们也发生了变化也升级了，因为我们经常锻炼，身体变得更健康，当然附带赚钱了（这个属性不应该是主要的，应该只是初期要增加人气的一些福利吧）</p>
+<p>比如学习赚钱，我们学习了升级了，现实中我们也升级了，因为我们学到了更多知识，其他的也是一样。</p>
 </blockquote>
-<p>等待智能合约部署到我们的本地以太坊网络，当合约部署完成后，合约的constructor方法就会运行。</p>
-<blockquote>
-<p>console.log(“Contract deployed to:”, waveContract.address);</p>
-</blockquote>
-<p>最后，当智能合约部署完成，我们会得到一个智能合约地址，就是这个字段waveContract.address，这个地址可以帮助我们在区块链上找到智能合约，我们把地址打印到控制台。</p>
-<h2 id="第三步：运行智能合约"><a href="#第三步：运行智能合约" class="headerlink" title="第三步：运行智能合约"></a>第三步：运行智能合约</h2><p>在终端运行命令：</p>
-<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npx hardhat <span class="built_in">run</span> scripts/<span class="built_in">run</span>.js</span><br></pre></td></tr></table></figure>
-
-<p>可以看到运行成功，终端成功打印了智能合约的内容，以及智能合约的地址。<br><img src="http://luwenjuan.luyuedan.com/mweb/16531118818321.png"></p>
-<p>我们应该在前面的代码里面看到了hre，hre其实就是hardhat的运行环境（Hardhat Runtime Environment）的对象，只要在运行这样的项目，就可以随时通过它调用hardhat提供的方法。</p>
-<p>这样我们就成功运行了第一个智能合约！</p>
-<p>我们刚刚说要看一下这个artifacts里面生成的文件，就是这样的：</p>
-<p><img src="http://luwenjuan.luyuedan.com/mweb/16531124823281.png"></p>
+<p>当然目前因为在早期，体验感没有更加真实，后期增加VR虚拟现实之后，体验必然会更好。</p>
+<p>而且目前虽然看起来很赚钱的样子，但是活动的意义不在于钱，钱只是激励，慢慢的，钱的额度会变小，总额会受限，起到激励就行，重点还是活动本身。</p>
+<p>可能后面和物联网关联起来以后，体验会更加真实，两者会更加接近。</p>
 
       
     </div>
@@ -1305,7 +1327,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/07/02/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6%EF%BC%883%EF%BC%89/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/07/02/%E5%85%83%E5%AE%87%E5%AE%99/M3-%E5%85%83%E5%AE%87%E5%AE%99%E8%A7%86%E9%A2%91/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/luwenjuan.jpeg">
@@ -1323,7 +1345,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/07/02/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6%EF%BC%883%EF%BC%89/" class="post-title-link" itemprop="url">智能合约项目从0到1：成功部署属于自己的智能合约（三）</a>
+          <a href="/2022/07/02/%E5%85%83%E5%AE%87%E5%AE%99/M3-%E5%85%83%E5%AE%87%E5%AE%99%E8%A7%86%E9%A2%91/" class="post-title-link" itemprop="url">元宇宙初探：元宇宙的短视频平台会是什么样子？</a>
         </h2>
 
         <div class="post-meta-container">
@@ -1341,7 +1363,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-08-25 18:02:40" itemprop="dateModified" datetime="2022-08-25T18:02:40+08:00">2022-08-25</time>
+      <time title="修改时间：2022-08-25 18:16:19" itemprop="dateModified" datetime="2022-08-25T18:16:19+08:00">2022-08-25</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -1349,7 +1371,7 @@
       </span>
       <span class="post-meta-item-text">分类于</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6/" itemprop="url" rel="index"><span itemprop="name">智能合约</span></a>
+          <a href="/categories/%E5%85%83%E5%AE%87%E5%AE%99/" itemprop="url" rel="index"><span itemprop="name">元宇宙</span></a>
         </span>
     </span>
 
@@ -1362,8 +1384,8 @@
       </span>
       <span class="post-meta-item-text">Changyan：</span>
     
-    <a title="智能合约项目从0到1：成功部署属于自己的智能合约（三）" href="/2022/07/02/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6%EF%BC%883%EF%BC%89/#SOHUCS" itemprop="discussionUrl">
-      <span id="sourceId::95e0a3c91b6ffea45140a55f5184a3f2" class="cy_cmt_count" itemprop="commentCount"></span>
+    <a title="元宇宙初探：元宇宙的短视频平台会是什么样子？" href="/2022/07/02/%E5%85%83%E5%AE%87%E5%AE%99/M3-%E5%85%83%E5%AE%87%E5%AE%99%E8%A7%86%E9%A2%91/#SOHUCS" itemprop="discussionUrl">
+      <span id="sourceId::eb556a5ed9dabf2b369519d07a65edca" class="cy_cmt_count" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -1377,70 +1399,52 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h2 id="第一步：修改智能合约"><a href="#第一步：修改智能合约" class="headerlink" title="第一步：修改智能合约"></a>第一步：修改智能合约</h2><p>现在我们写一下更复杂的智能合约，比如允许别人给我们打个招呼，并保存别人给我们打的招呼。</p>
-<p>首先，我们需要一个方法，当他们给我们打招呼的时候调用。</p>
-<p>所以，我们更新了我们的contract类，让它可以保存别人的招呼。</p>
-<figure class="highlight arcade"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// SPDX-License-Identifier: UNLICENSED</span></span><br><span class="line"></span><br><span class="line">pragma solidity ^<span class="number">0.8</span><span class="number">.0</span>;</span><br><span class="line"></span><br><span class="line">import <span class="string">&quot;hardhat/console.sol&quot;</span>;</span><br><span class="line"></span><br><span class="line">contract WavePortal &#123;</span><br><span class="line">    uint256 totalWaves;</span><br><span class="line"></span><br><span class="line">    constructor() &#123;</span><br><span class="line">        <span class="built_in">console</span>.<span class="built_in">log</span>(<span class="string">&quot;Yo yo, I am a contract and I am smart&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">function</span> <span class="title function_">wave</span>(<span class="params"></span>) <span class="title function_">public</span> &#123;</span><br><span class="line">        totalWaves += <span class="number">1</span>;</span><br><span class="line">        <span class="built_in">console</span>.<span class="built_in">log</span>(<span class="string">&quot;%s has waved!&quot;</span>, msg.sender);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">function</span> <span class="title function_">getTotalWaves</span>(<span class="params"></span>) <span class="title function_">public</span> <span class="title function_">view</span> <span class="title function_">returns</span> (<span class="params">uint256</span>) &#123;</span><br><span class="line">        <span class="built_in">console</span>.<span class="built_in">log</span>(<span class="string">&quot;We have %d total waves!&quot;</span>, totalWaves);</span><br><span class="line">        <span class="keyword">return</span> totalWaves;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>我们增加了一个变量totalWaves来保存打招呼的数量，这个变量初始值是0，而且它会永久保存。</p>
-<p>我们还可以看到一个变量msg.sender，这个是调用这个方法的人的钱包地址，这个就可以做身份鉴定，因为我们知道调用这个方法具体的人。</p>
-<p>所以说，想要在一个智能合约系统行动，哪怕做任何小的动作，都必须拥有一个钱包，而且在调用之前连接钱包，真正实现智能合约记录每一个人的行为。</p>
-<p>因为有这样的功能，我们甚至可以写一些特殊合约，只有特定的某些钱包地址可以访问。</p>
-<h2 id="第二步：修改调用函数"><a href="#第二步：修改调用函数" class="headerlink" title="第二步：修改调用函数"></a>第二步：修改调用函数</h2><p>当我们把智能合约部署到区块链以后，我们可以在区块链访问智能合约里的public函数。</p>
-<p>这里我们需要修改一下run.js，来访问智能合约的函数。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="title function_">main</span> = <span class="keyword">async</span> (<span class="params"></span>) =&gt; &#123;</span><br><span class="line">  <span class="keyword">const</span> [owner, randomPerson] = <span class="keyword">await</span> hre.<span class="property">ethers</span>.<span class="title function_">getSigners</span>();</span><br><span class="line">  <span class="keyword">const</span> waveContractFactory = <span class="keyword">await</span> hre.<span class="property">ethers</span>.<span class="title function_">getContractFactory</span>(<span class="string">&quot;WavePortal&quot;</span>);</span><br><span class="line">  <span class="keyword">const</span> waveContract = <span class="keyword">await</span> waveContractFactory.<span class="title function_">deploy</span>();</span><br><span class="line">  <span class="keyword">await</span> waveContract.<span class="title function_">deployed</span>();</span><br><span class="line"></span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;Contract deployed to:&quot;</span>, waveContract.<span class="property">address</span>);</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;Contract deployed by:&quot;</span>, owner.<span class="property">address</span>);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">let</span> waveCount;</span><br><span class="line">  waveCount = <span class="keyword">await</span> waveContract.<span class="title function_">getTotalWaves</span>();</span><br><span class="line"></span><br><span class="line">  <span class="keyword">let</span> waveTxn = <span class="keyword">await</span> waveContract.<span class="title function_">wave</span>();</span><br><span class="line">  <span class="keyword">await</span> waveTxn.<span class="title function_">wait</span>();</span><br><span class="line"></span><br><span class="line">  waveCount = <span class="keyword">await</span> waveContract.<span class="title function_">getTotalWaves</span>();</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="title function_">runMain</span> = <span class="keyword">async</span> (<span class="params"></span>) =&gt; &#123;</span><br><span class="line">  <span class="keyword">try</span> &#123;</span><br><span class="line">    <span class="keyword">await</span> <span class="title function_">main</span>();</span><br><span class="line">    process.<span class="title function_">exit</span>(<span class="number">0</span>);</span><br><span class="line">  &#125; <span class="keyword">catch</span> (error) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(error);</span><br><span class="line">    process.<span class="title function_">exit</span>(<span class="number">1</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="title function_">runMain</span>();</span><br></pre></td></tr></table></figure>
-
-<p>这里我们解释一下：</p>
+          <p>我之前有说过，元宇宙的根本目标是价值回归，也就是让创造价值的人得到价值的回报，你可以看一下这一篇文章：【什么是元宇宙】</p>
+<p>这里再展开一下：</p>
+<p>先说明哪些人在创造价值，这个其实毫无疑问，<strong>每个人来到世界上都是为了实现自己的价值</strong>。所以，每个人都在创造价值，具体是哪些价值，我可以打几个比方。</p>
+<p>例子1：创作者产生的原创价值</p>
 <blockquote>
-<p>const [owner, randomPerson] &#x3D; await hre.ethers.getSigners();</p>
+<p>作家，画家，艺术品原创作者等等产生作品的价值，可能是书，杂志文章，绘画，工艺品设计等等；</p>
+<p>他们很辛勤的劳作，并产生他们的原创作品来，进入商业世界得到价值变现。</p>
+<p>但是这些价值被互联网化，变成数据之后，得到价值回报的很多时候不是原创作者本人，很可能是一个盗版搬运工，原创作者很多时候没有拿到他付出的价值的回报。</p>
 </blockquote>
-<p>想要部署合约到区块链，我们需要钱包地址，hardhat会帮我们生成一些测试地址。</p>
-<p>这里我们随机生成一些合约的钱包地址，还有用户的钱包地址。</p>
+<p>例子2：用户产生的数据价值</p>
 <blockquote>
-<p>console.log(“Contract deployed by:”, owner.address);</p>
+<p>比如，你在电商，视频，社交各种平台注册，你作为他们千万用户中的一位，提供了用户价值（没有这么多用户，他们怎么做到估值那么高，所以估值都是每一个用户价值堆积起来的）</p>
+<p>你在平台努力活动，又产生更多数据（元宇宙叫做挖矿），这些数据又成为平台资产，为平台带来更多价值变现；</p>
+<p>但是这些数据产生者本人（也就是用户），他们没有拿到他们产生价值得到的回报，平台的增长不会给用户带来利益。</p>
 </blockquote>
-<p>这里打印了我们的合约部署的地址。</p>
-<p>这里说明一下区块链和智能合约的关系，你可以想象成为云端服务器，但他们不属于某个人，他们由世界各地的挖矿计算机运行，这些人成为挖矿者。</p>
-<p>他们帮我们运行代码，然后得到回报，而具体是由谁运行，那就是通过区块链的底层运行机制来选择了，你可以百度了解一下。</p>
-<p>所以这些我们合约部署的地址，也就是帮我们运行代码的地址了。</p>
-<blockquote>
-<p>let waveCount;<br>waveCount &#x3D; await waveContract.getTotalWaves();</p>
-<p>let waveTxn &#x3D; await waveContract.wave();<br>await waveTxn.wait();</p>
-<p>waveCount &#x3D; await waveContract.getTotalWaves();</p>
-</blockquote>
-<p>这几句代码调用函数，首先我们获取所有的招呼数量，其次我打个招呼，然后我再获取一下招呼数量。</p>
-<h2 id="第三步：运行试试看"><a href="#第三步：运行试试看" class="headerlink" title="第三步：运行试试看"></a>第三步：运行试试看</h2><p>再次运行代码看看效果：</p>
-<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npx hardhat <span class="built_in">run</span> scripts/<span class="built_in">run</span>.js</span><br></pre></td></tr></table></figure>
-
-<p><img src="http://luwenjuan.luyuedan.com/mweb/16531148661918.png"></p>
-<p>你可以看到，部署智能合约的地址，和打招呼的地址是一样的，也就是，我自己在给自己打招呼。</p>
-<h2 id="第四步：使用其他用户测试"><a href="#第四步：使用其他用户测试" class="headerlink" title="第四步：使用其他用户测试"></a>第四步：使用其他用户测试</h2><p>我们继续修改run.js，来让其他用户给自己打招呼。</p>
-<p>其他地方不用修改，我们增加了三行：</p>
-<figure class="highlight abnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">waveTxn</span> <span class="operator">=</span> await waveContract.connect(randomPerson).wave()<span class="comment">;</span></span><br><span class="line">await waveTxn.wait()<span class="comment">;</span></span><br><span class="line"></span><br><span class="line"><span class="attribute">waveCount</span> <span class="operator">=</span> await waveContract.getTotalWaves()<span class="comment">;</span></span><br></pre></td></tr></table></figure>
-
-<p>我们修改的部分，其实就是在打招呼前，连接一下用户randomPerson的钱包地址。</p>
-<p>再运行一下：</p>
-<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npx hardhat <span class="built_in">run</span> scripts/<span class="built_in">run</span>.js</span><br></pre></td></tr></table></figure>
-
-<p><img src="http://luwenjuan.luyuedan.com/mweb/16531156871153.png"></p>
-<p>我们可以看到，一共有两个打了招呼，一个是自己，还有一个是随机生成的用户。</p>
-<h2 id="第五步：做一些更有意思的改动"><a href="#第五步：做一些更有意思的改动" class="headerlink" title="第五步：做一些更有意思的改动"></a>第五步：做一些更有意思的改动</h2><p>至此，其实智能合约的大概框架，都已经知道了，现在你可以考虑你想要做一个什么样的功能，并修改智能合约的内容。</p>
-<p>这里我想要统计不同用户打招呼的次数，你要怎么修改代码呢，欢迎讨论。</p>
-<p><img src="http://luwenjuan.luyuedan.com/mweb/16531246057041.png"></p>
-<h2 id="第六步：部署持久运行的智能合约"><a href="#第六步：部署持久运行的智能合约" class="headerlink" title="第六步：部署持久运行的智能合约"></a>第六步：部署持久运行的智能合约</h2><p>前面每次运行，都是部署后，运行完成就退出了，这里我们部署一个稳定运行的智能合约，我们随时可以和它交互。</p>
-<p>因为智能合约是运行在区块链上的，那么现在，我们在本地部署一个区块链网络，我们新开一个终端，运行（这个终端运行后不能关，所以我们重新开一个）：</p>
-<figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npx hardhat <span class="keyword">node</span><span class="title"></span></span><br></pre></td></tr></table></figure>
-<p><img src="http://luwenjuan.luyuedan.com/mweb/16531253214365.png"></p>
-<p>我们已经在本地部署了区块链，但是目前区块链是空的，还没有任何节点，所以现在我们生成一个新的节点，并让我们的智能合约在上面运行。</p>
-<p>在scripts文件夹，我们创建一个文件deploy.js，这是代码：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="title function_">main</span> = <span class="keyword">async</span> (<span class="params"></span>) =&gt; &#123;</span><br><span class="line">  <span class="keyword">const</span> [deployer] = <span class="keyword">await</span> hre.<span class="property">ethers</span>.<span class="title function_">getSigners</span>();</span><br><span class="line">  <span class="keyword">const</span> accountBalance = <span class="keyword">await</span> deployer.<span class="title function_">getBalance</span>();</span><br><span class="line"></span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;Deploying contracts with account: &quot;</span>, deployer.<span class="property">address</span>);</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;Account balance: &quot;</span>, accountBalance.<span class="title function_">toString</span>());</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> waveContractFactory = <span class="keyword">await</span> hre.<span class="property">ethers</span>.<span class="title function_">getContractFactory</span>(<span class="string">&quot;WavePortal&quot;</span>);</span><br><span class="line">  <span class="keyword">const</span> waveContract = <span class="keyword">await</span> waveContractFactory.<span class="title function_">deploy</span>();</span><br><span class="line">  <span class="keyword">await</span> waveContract.<span class="title function_">deployed</span>();</span><br><span class="line"></span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;WavePortal address: &quot;</span>, waveContract.<span class="property">address</span>);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="title function_">runMain</span> = <span class="keyword">async</span> (<span class="params"></span>) =&gt; &#123;</span><br><span class="line">  <span class="keyword">try</span> &#123;</span><br><span class="line">    <span class="keyword">await</span> <span class="title function_">main</span>();</span><br><span class="line">    process.<span class="title function_">exit</span>(<span class="number">0</span>);</span><br><span class="line">  &#125; <span class="keyword">catch</span> (error) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(error);</span><br><span class="line">    process.<span class="title function_">exit</span>(<span class="number">1</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="title function_">runMain</span>();</span><br></pre></td></tr></table></figure>
-
-<p>好的，回到原来的终端，我们运行命令：</p>
-<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npx hardhat <span class="built_in">run</span> scripts/deploy.js <span class="comment">--network localhost</span></span><br></pre></td></tr></table></figure>
-<p>可以看到这样的结果：<br><img src="http://luwenjuan.luyuedan.com/mweb/16531256609593.png"></p>
-<p>我们部署了智能合约，也在区块链有了地址，在我们本地区块链网络上，我们也能看到相应的信息：</p>
-<p><img src="http://luwenjuan.luyuedan.com/mweb/16531258246573.png"></p>
-<p>可以看到Block #1，是指这是区块链的第一个节点。</p>
+<p>所以互联网的数据是可以随意复制和篡改的，不可能交易，也是中心化的，互联网产生的所有数据归属于平台。</p>
+<p>元宇宙推崇的是：<strong>数据资产化</strong>（数据有资产价值），<strong>去中心化</strong>（数据归属于用户自己）。</p>
+<p>原创者本人原创的作品是属于他本人的资产，用户产生的数据也是用户自己的资产，不管有没有价值，有多少价值，数据的版权一定是属于最初生产数据的那个人。</p>
+<p>既然是资产，那就是可以交易的，交易后，变成二手资产，而且交易多少次都没问题，就是这么简单。</p>
+<p>就像现实世界中，购买了一张桌子，就是属于自己的，还可以卖掉换钱，卖的时候它也是正版，只不过是二手。</p>
+<p>但是数字资产化无法在互联网中实现，就是因为互联网无法做到唯一性，不可篡改性，可确权性，所以如果互联网买了一本电子书，你如果再卖出去，就是盗版，根本无法确认你卖的是原版，否则你卖出去，你自己的还在又怎么解释。</p>
+<p>但是元宇宙可以做到，而且因为是数字世界，会有更多灵活性，你的资产不管倒多少次，他都是可以确权最初创作的人，所以可以做到在每次交易时，都让原作者收益。</p>
+<p>所以在元宇宙世界，要么是原创作者创作的产品在市场交易，要么是用户的数据资产在市场交易。</p>
+<p>所以，<strong>如果元宇宙有一个短视频平台，那它会是什么样子的呢？</strong></p>
+<p>先确定这个平台的价值在哪里，对，短视频平台的价值就是用户的数据资产。</p>
+<p>用户在短视频平台活动，他们产生了很多数据，如果一个短视频平台的用户数量多，它的价值就很大。</p>
+<p>先不说它的价值是怎么变现的，因为没必要解释，大家都知道，只要有数据，就有一万种变现方式，参照我们目前的短视频平台就行了。</p>
+<p>我只说明它出现的新的东西，那就是在元宇宙中，数据不再属于平台，而是属于他自己，所以，用户为平台贡献的数据资产，产生的这一系列价值是怎样回归到用户身上呢？</p>
+<p>其实，有一个平台已经在做这件事了，那就是火箭视频。</p>
+<p>这是它的白皮书截图：</p>
+<p><img src="http://luwenjuan.luyuedan.com/mweb/16534578864587.png"></p>
+<p>我不清楚它能做到什么程度，可能在目前浮躁的条件下，容易被人炒糊淘汰，但是这确实就是价值回归到用户的一种很有效的方式，也是目前gamefi用的方式，说明方向大体是对了，可能还需要更多勇士进去试错改进后，才能得到最终能存活下来的好平台。</p>
+<p>火箭视频和所有gamefi使用的方式一样，使用代币的方式，用户在平台活动，就可以产生代币（叫做挖矿，也就是把用户产生的数据资产用代币的形式显化）。</p>
+<p>因为在元宇宙生态中，是有代币交易所的，所以代币都是可以在交易所进行交易买卖的，这个时候，代币就可以变现，也就实现了数据资产让数据产生者受益的结果。</p>
+<p>如果在理想的情况下，一个运营不那么好的公司，代币自然不好卖，价格也更低，产生的数据资产，变现也更少，这也符合逻辑，因为确实在一个不好的平台上，产生的数据价值确实就没那么大。</p>
+<p>如果是一个运营非常好的公司，利润很可观，代币肯定也是更好卖，价格更高，用户产生的数据资产，变现也会更多，这也符合逻辑，因为确实在一个好的平台上，产生的数据价值确实有那么大。</p>
+<p>但是这只是理想的情况，事实的情况是，在用户数据资产也能赚钱的情况下，很可能用户贪念一起，产生很多垃圾数据，某些机构贪念一起，产生一些导向性数据，反而让这个市场产生很多泡沫。</p>
+<p>实际上没有那么大的价值，却让用户变现了那么大价值，也让一些机构从中牟利，反而欺负起平台了，平台赚不到钱了。</p>
+<p>用一句话说，就是<strong>防作弊问题</strong>，防作弊就成为元宇宙数据资产回归用户路上要解决的的<strong>核心问题</strong>，防止刷数据，也是在元宇宙化的趋势下，在一个一个平台尝试试错之后，终将会解决的问题。</p>
+<p>比如之前stepn为什么那么火，为什么火了之后他们依然简直只做跑步，不做游泳这些呢？因为他们说了，他们的技术，有信心识别是人在跑步并且做到防作弊，但是别的就没有那么大信心。</p>
+<p>一旦某个平台防作弊这个问题做到了，基本你可以相信这个平台，而这只是时间问题，再大量的试错，大量的尝试后，未来这样的平台会越来越多，做得越来越好。</p>
+<p>这里再拓展一下，</p>
+<p>其实现实世界里的所有应用场景，都可以在元宇宙中寻找一个用户价值归位的模型，并实现出来，实现更大的价值。</p>
+<p>只要用户看到自己的价值得到了回报，他们来到你的平台不过是时间问题。</p>
+<p>元宇宙不是一次技术革命，否则区块链技术早在08年就出现了，那个时候元宇宙怎么没出现呢，因为那个时候用户还没有这样的需求；</p>
+<p>但是在互联网的弊端出现后，新一代用户对于自身价值的更高认识后，对原有中心化结构发起的挑战。</p>
 
       
     </div>
@@ -1467,7 +1471,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/07/02/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6%EF%BC%884%EF%BC%89/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/07/02/%E5%85%83%E5%AE%87%E5%AE%99/M4-gamifi/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/luwenjuan.jpeg">
@@ -1485,7 +1489,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/07/02/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6%EF%BC%884%EF%BC%89/" class="post-title-link" itemprop="url">智能合约项目从0到1：部署智能合约到测试链（四）</a>
+          <a href="/2022/07/02/%E5%85%83%E5%AE%87%E5%AE%99/M4-gamifi/" class="post-title-link" itemprop="url">元宇宙初探：对于想玩gamefi玩家的几点忠告</a>
         </h2>
 
         <div class="post-meta-container">
@@ -1503,7 +1507,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-08-25 18:11:39" itemprop="dateModified" datetime="2022-08-25T18:11:39+08:00">2022-08-25</time>
+      <time title="修改时间：2022-08-25 18:36:19" itemprop="dateModified" datetime="2022-08-25T18:36:19+08:00">2022-08-25</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -1511,7 +1515,7 @@
       </span>
       <span class="post-meta-item-text">分类于</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6/" itemprop="url" rel="index"><span itemprop="name">智能合约</span></a>
+          <a href="/categories/%E5%85%83%E5%AE%87%E5%AE%99/" itemprop="url" rel="index"><span itemprop="name">元宇宙</span></a>
         </span>
     </span>
 
@@ -1524,8 +1528,8 @@
       </span>
       <span class="post-meta-item-text">Changyan：</span>
     
-    <a title="智能合约项目从0到1：部署智能合约到测试链（四）" href="/2022/07/02/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6%EF%BC%884%EF%BC%89/#SOHUCS" itemprop="discussionUrl">
-      <span id="sourceId::4692e0bc7bc94a937669caf2666b019e" class="cy_cmt_count" itemprop="commentCount"></span>
+    <a title="元宇宙初探：对于想玩gamefi玩家的几点忠告" href="/2022/07/02/%E5%85%83%E5%AE%87%E5%AE%99/M4-gamifi/#SOHUCS" itemprop="discussionUrl">
+      <span id="sourceId::d7ec8639f75f87431384f24c9331452b" class="cy_cmt_count" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -1539,56 +1543,46 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h2 id="注册Metamask钱包"><a href="#注册Metamask钱包" class="headerlink" title="注册Metamask钱包"></a>注册Metamask钱包</h2><p>为什么我们需要注册钱包呢？</p>
-<p>在前面我们说过，我们想要访问区块链上的智能合约，是必须要先连接钱包，获取钱包地址和私钥。</p>
-<p>之前在本地测试时，是使用工具生成的钱包地址，但是在真实的网络环境，我们就需要注册真实的钱包地址了。</p>
-<p>注册钱包的地址：<a target="_blank" rel="noopener" href="https://metamask.io/">https://metamask.io/</a></p>
-<h2 id="部署智能合约到真实的测试网络"><a href="#部署智能合约到真实的测试网络" class="headerlink" title="部署智能合约到真实的测试网络"></a>部署智能合约到真实的测试网络</h2><p>之前我们是把智能合约部署到本地了，现在我们尝试开始部署到真实的网络上，我们使用Alchemy工具。</p>
-<p>我们先注册一个账号：<a target="_blank" rel="noopener" href="https://www.alchemy.com/">https://www.alchemy.com/</a></p>
-<p>区块链不属于某个人，而是一系列的分布于全世界的有一份区块链拷贝的电脑，这些电脑被区块链矿工运行，如果我们想要把我们的智能合约部署到区块链上，我们需要告诉所有矿工，请你把我的智能合约加入区块链，并告诉其他所有人。</p>
-<p>Alchemy的作用就是帮助我们广播我们的智能合约，让矿工尽快把我们的智能合约加入区块链。</p>
-<p>当我们注册好了Alchemy之后，我们需要获取测试网络的API key，点击get started，这里我们随意填，最后一个，我们选择一个测试链Rinkeby，创建app。</p>
-<p>为什么要选择测试链呢？因为如果选真实链，那个花的就是真实的钱呀，我们只有在测试完成没问题才上真实链。这个测试链是以太链的一个拷贝，是真实的矿工在运行，但是用的是虚假的钱，除了钱是假的，其他都是真的。</p>
-<p><img src="http://luwenjuan.luyuedan.com/mweb/16614220347875.png"></p>
-<p>然后我们就可以看到我们的测试app了。<br><img src="http://luwenjuan.luyuedan.com/mweb/16531344976350.png"></p>
-<p>点进去可以看到，这个view key，这个http字段是将要在小狐狸钱包还有hardhat里面设置的。</p>
-<p><img src="http://luwenjuan.luyuedan.com/mweb/16614220556411.png"></p>
-<p>好了，接下来我们要做的就是：</p>
+          <p>随着元宇宙的热门，相应的gamefi也变得火了起来，网络上对于gamefi的说法，褒贬不一。</p>
+<h2 id="gamefi是什么"><a href="#gamefi是什么" class="headerlink" title="gamefi是什么"></a>gamefi是什么</h2><p>鉴于我的粉丝很多不是圈内人，这里普及一下gamefi。</p>
+<p>其实就是game+defi，也就是游戏加金融属性，也就是带金融属性的游戏，正是因为如此，它有很重要的两大特征。</p>
+<h3 id="特征一：游戏特征"><a href="#特征一：游戏特征" class="headerlink" title="特征一：游戏特征"></a>特征一：游戏特征</h3><p>游戏是什么特征？就是可玩性，能够激发用户玩它的兴趣，能让用户的体验感非常好，这样的游戏才是能持续留住用户的。</p>
+<h3 id="特征二：金融特征"><a href="#特征二：金融特征" class="headerlink" title="特征二：金融特征"></a>特征二：金融特征</h3><p>这一类游戏一般有激励机制，通过发行代币的方式，在用户玩游戏过程中，给予代币的激励；</p>
+<p>然后利用区块链的特征，让代币可以到交易所进行交易，这样金融属性也出现了。</p>
+<h3 id="特征三：结合现实"><a href="#特征三：结合现实" class="headerlink" title="特征三：结合现实"></a>特征三：结合现实</h3><p>这个特征是另一项我想增加的，以前互联网的游戏，就算想结合现实，是会受到很多限制的。</p>
+<p>但是，虽然现在元宇宙gamefi还是没有很好的结合现实，但我认为未来元宇宙gamefi的趋势就是与现实更加深度的结合。</p>
+<p>因为我一直觉得，互联网游戏之所以被人不理解，就是因为，就算在游戏中修炼到王者，在现实中可能依然是屌丝，虚拟和现实没有很深度的结合。</p>
+<p>未来的话，可能在元宇宙游戏修炼到一个程度，现实世界的自己也是对应到了这个阶段，这才真正实现虚拟世界现实化，元宇宙游戏成为修炼自己必不可少的工具，虽然现在还没有。</p>
+<h2 id="gamefi现状"><a href="#gamefi现状" class="headerlink" title="gamefi现状"></a>gamefi现状</h2><p>虽然我想象中的gamefi是另一个样子，但是现状却是另外一个样子。</p>
+<p>从去年的axie崩盘，今年stepn大火之后，要退出中国市场，到前几天pokemoney跑路；</p>
+<p>在这个过程中，也很多gamefi项目从火了一把到最终死掉，其实币圈人已经见怪不怪了。</p>
+<p>好像gamefi就应该是这样的一茬又一茬的生长周期，确实现状也是这样。</p>
+<p>为什么会有这样的情况呢？</p>
+<p>因为它的模式就是玩游戏赚钱的模式，部分人来玩游戏可能是为了好玩，不过大部分人玩游戏可能就是要赚钱。</p>
+<p>所以基本玩这个都要算一下回本周期，我也看过，一个到两个月是比较常见的。</p>
+<p>这里就可以算一个帐：</p>
 <blockquote>
-<p>广播我们的智能合约上链请求</p>
-<p>等待请求被真实矿工执行</p>
-<p>等待智能合约上链</p>
-<p>等待链上所有节点都更新了他们的拷贝</p>
+<p>如果一个月回本的话：</p>
+<p>1块钱一年后就是2的11次方&#x3D;2048元</p>
+<p>如果两个月回本的话：</p>
+<p>1块钱一年后就是2的6次方&#x3D;64元</p>
 </blockquote>
-<h2 id="获取测试币"><a href="#获取测试币" class="headerlink" title="获取测试币"></a>获取测试币</h2><p>因为真实的区块链需要的是真钱，测试的区块链除了钱是假的，其他都是真的，所以我们需要去向这个测试网络申请一些测试币，当然这个测试币只能在测试网络使用。</p>
-<p>在申请测试币之前，我们的小狐狸钱包也要添加这个测试链，url是刚刚查看的http字段，ID是4，不用管红色字体，保存即可。</p>
-<p><img src="http://luwenjuan.luyuedan.com/mweb/16531363333590.png"></p>
-<p>当我们的小狐狸钱包连接到了测试链，我们进入这个网址申请测试币：<a target="_blank" rel="noopener" href="https://app.mycrypto.com/faucet">https://app.mycrypto.com/faucet</a></p>
-<p>第一次点进去的时候，需要连接小狐狸钱包，连接成功后，我们退出网站再次进入，就会有这样的界面：</p>
-<p><img src="http://luwenjuan.luyuedan.com/mweb/16531367396079.png"></p>
-<p>选择我们的钱包账号，request即可。</p>
-<h2 id="部署到Rinkeby测试链"><a href="#部署到Rinkeby测试链" class="headerlink" title="部署到Rinkeby测试链"></a>部署到Rinkeby测试链</h2><p>要配置测试链，我们要修改代码的hardhat.config.js文件，由于这个文件涉及到账号的key，所以我们用一个工具来保护这个key：</p>
-<p>在终端运行：</p>
-<figure class="highlight ada"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install <span class="comment">--save dotenv</span></span><br></pre></td></tr></table></figure>
-
-<p>hardhat.config.js文件内容：</p>
-<figure class="highlight dts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">require(<span class="string">&quot;@nomiclabs/hardhat-waffle&quot;</span>)<span class="punctuation">;</span></span><br><span class="line"><span class="comment">// Import and configure dotenv</span></span><br><span class="line">require(<span class="string">&quot;dotenv&quot;</span>).config()<span class="punctuation">;</span></span><br><span class="line"></span><br><span class="line">module.<span class="attr">exports</span> <span class="operator">=</span> <span class="punctuation">&#123;</span></span><br><span class="line"><span class="symbol">  solidity:</span> <span class="string">&quot;0.8.0&quot;</span>,</span><br><span class="line"><span class="symbol">  networks:</span> <span class="punctuation">&#123;</span></span><br><span class="line"><span class="symbol">    rinkeby:</span> <span class="punctuation">&#123;</span></span><br><span class="line">      <span class="comment">// This value will be replaced on runtime</span></span><br><span class="line"><span class="symbol">      url:</span> process.env.STAGING_ALCHEMY_KEY,</span><br><span class="line"><span class="symbol">      accounts:</span> [process.env.PRIVATE_KEY],</span><br><span class="line">    <span class="punctuation">&#125;</span>,</span><br><span class="line"><span class="symbol">    mainnet:</span> <span class="punctuation">&#123;</span></span><br><span class="line"><span class="symbol">      chainId:</span> <span class="number">1</span>,</span><br><span class="line"><span class="symbol">      url:</span> process.env.PROD_ALCHEMY_KEY,</span><br><span class="line"><span class="symbol">      accounts:</span> [process.env.PRIVATE_KEY],</span><br><span class="line">    <span class="punctuation">&#125;</span>,</span><br><span class="line">  <span class="punctuation">&#125;</span>,</span><br><span class="line"><span class="punctuation">&#125;;</span></span><br></pre></td></tr></table></figure>
-<p>在项目的根目录，创建一个.env文件：</p>
-<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">STAGING_ALCHEMY_KEY</span>=REPLACE_WITH_ACTUAL_ALCHEMY_URL</span><br><span class="line"><span class="attribute">PROD_ALCHEMY_KEY</span>=BLAHBLAH</span><br><span class="line">PRIVATE_KEY=</span><br></pre></td></tr></table></figure>
-
-<p>这里第一个URL是我们的前面看到的Alchemy里面的http字段;</p>
-<p>private key是小狐狸钱包里面的，在小狐狸钱包里，切换网络到Rinkeby网络，点击右上角三个点-&gt;账户详情-&gt;导出私钥</p>
-<p><img src="http://luwenjuan.luyuedan.com/mweb/16614220767024.png"></p>
-<p>.env文件不要上传到公网，因为这个key和你主网络的key是一样的，所以把.env文件加入.gitignore文件中。</p>
-<p>在终端运行以下命令：</p>
-<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npx hardhat <span class="built_in">run</span> scripts/deploy.js <span class="comment">--network rinkeby</span></span><br></pre></td></tr></table></figure>
-
-<p>可以看到，这个命令和之前命令不同地方在于，之前使用localhost，而这里使用了rinkeby。</p>
-<p>ok，可以看到，运行成功。</p>
-<p><img src="http://luwenjuan.luyuedan.com/mweb/16531421564979.png"></p>
-<p>请记住最后一个address，这个在后面需要使用：0xc850155CB95A1a73e9a1FA4ca0cF96089112b744。</p>
-<p>使用这个address，我们也可以在区块链浏览器上搜索到我们的智能合约：<a target="_blank" rel="noopener" href="https://rinkeby.etherscan.io/">https://rinkeby.etherscan.io/</a></p>
-<p><img src="http://luwenjuan.luyuedan.com/mweb/16531422466407.png"></p>
+<p>在币圈之外，你无法想象一年翻这么多倍的收益，但是却是圈内很正常的数字。</p>
+<p>所以说为什么币圈一天，人间一年，也不无道理，人间一年的金融起伏，在币圈一天内可以领教到，所以不管是赚钱还是亏钱，都是大起大落。</p>
+<h2 id="gamefi的可取之处"><a href="#gamefi的可取之处" class="headerlink" title="gamefi的可取之处"></a>gamefi的可取之处</h2><p>虽然很多人吐槽gamefi，但是我认为gamefi是有很大的可取之处的。</p>
+<p>我之前讲过，在元宇宙，其实就是数字资产的价值，真正回报到产生数字资产的用户身上，也就是价值回归的一种有效的形式。</p>
+<p>比如用户玩游戏，其实产生了数据，过去可能用户产生的数据是商家的，商家免费就得到了，数据产生的巨大价值，也是商家所有。</p>
+<p>数字资产价值回报到用户身上，可能就是以代币的形式，只是可能这种游戏回报率和方式用力过猛，让一些人只关注回报，不关注软件本身了，这又成为了一种极端。</p>
+<p>从一个极端走到另一个极端，自然会慢慢回归到健康的方式，当时这也是所有人共同正在探讨尝试的，所以它也有它的价值。</p>
+<h2 id="gamefi的几点忠告"><a href="#gamefi的几点忠告" class="headerlink" title="gamefi的几点忠告"></a>gamefi的几点忠告</h2><p>虽然我一直觉得gamefi有和现实深度结合的一天，那一天可能就比较好玩，但是现状还是有现状的玩法。</p>
+<p><strong>忠告一：一定要去玩输得起的钱</strong></p>
+<p>就好像说投资的人一样，要用闲钱投资，玩gamefi也要用闲钱玩。</p>
+<p>因为它确实是在一定周期可以赚钱，但如果贪心太大，或者赌性太重，很容易亏。</p>
+<p><strong>忠告二：按照规律来玩</strong></p>
+<p>其实我们已经清楚的知道，gamefi的周期是很快的，可能别人需要几年才能走完一轮生长收藏，但这里可能只需要一个月。</p>
+<p>而gamefi又和经济周期不同，经济周期有轮回，有循环，牛熊转换，但是游戏死了就死了，不会起死回生，有那个钱起死回生一个快死的游戏，还不如起盘一个新的游戏。</p>
+<p>所以说要按照规律来，如果你要赚钱，就遵循赚钱的规律，如果你想找一个好玩的游戏，那就好好体验，别想着赚多少钱。</p>
+<p>因为如果游戏回本周期一个月，两个月，基本就别想着长期发展了，他们基本就是靠亏钱拉新，而且拉新的产能，是不足以补充消耗的。</p>
 
       
     </div>
