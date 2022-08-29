@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.2.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha256-DfWjNxDkM94fVBWx1H5BMMp0Zq7luBlV8QRcSES7s+0=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.12.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="这个过程是在苹果系统演示的，如果你的电脑不是苹果系统，你可以在每一个步骤下相对应内容，自己去寻找你的系统的使用方法。 步骤不会有差，但细节可能有些差距。 第一步：安装git因为我的电脑之前都没有写过代码，所以连git都没有，如果你有git了，就跳过这一步。 直接在这里下载最新版安装包：https:&#x2F;&#x2F;sourceforge.net&#x2F;projects&#x2F;git-osx-installer&#x2F;files&#x2F;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="智能合约项目从0到1：开发环境配置（一）">
+<meta property="og:url" content="http://example.com/2022/07/02/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6%EF%BC%881%EF%BC%89/index.html">
+<meta property="og:site_name" content="卢文娟">
+<meta property="og:description" content="这个过程是在苹果系统演示的，如果你的电脑不是苹果系统，你可以在每一个步骤下相对应内容，自己去寻找你的系统的使用方法。 步骤不会有差，但细节可能有些差距。 第一步：安装git因为我的电脑之前都没有写过代码，所以连git都没有，如果你有git了，就跳过这一步。 直接在这里下载最新版安装包：https:&#x2F;&#x2F;sourceforge.net&#x2F;projects&#x2F;git-osx-installer&#x2F;files&#x2F;">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://luwenjuan.luyuedan.com/mweb/16530497660941.png">
+<meta property="og:image" content="http://luwenjuan.luyuedan.com/mweb/16531034361280.png">
+<meta property="og:image" content="http://luwenjuan.luyuedan.com/mweb/16531037042095.png">
+<meta property="og:image" content="http://luwenjuan.luyuedan.com/mweb/16531037711207.png">
+<meta property="og:image" content="http://luwenjuan.luyuedan.com/mweb/16531054105662.png">
+<meta property="og:image" content="http://luwenjuan.luyuedan.com/mweb/16531058214647.png">
+<meta property="og:image" content="http://luwenjuan.luyuedan.com/mweb/16531060913328.png">
+<meta property="og:image" content="http://luwenjuan.luyuedan.com/mweb/16531062071840.png">
+<meta property="og:image" content="http://luwenjuan.luyuedan.com/mweb/16531072789824.png">
+<meta property="article:published_time" content="2022-07-02T07:21:41.000Z">
+<meta property="article:modified_time" content="2022-08-25T09:59:31.713Z">
+<meta property="article:author" content="卢文娟">
+<meta property="article:tag" content="元宇宙, 智能合约">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://luwenjuan.luyuedan.com/mweb/16530497660941.png">
+
+
+<link rel="canonical" href="http://example.com/2022/07/02/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6%EF%BC%881%EF%BC%89/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2022/07/02/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6%EF%BC%881%EF%BC%89/","path":"2022/07/02/智能合约/智能合约（1）/","title":"智能合约项目从0到1：开发环境配置（一）"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>智能合约项目从0到1：开发环境配置（一） | 卢文娟</title>
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">卢文娟</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">元宇宙，区块链，币圈知识分享，关注我公众号：元宇宙探索之旅</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-每日任务"><a href="/dailytask/" rel="section"><i class="fa fa-calendar fa-fw"></i>每日任务</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%B8%80%E6%AD%A5%EF%BC%9A%E5%AE%89%E8%A3%85git"><span class="nav-number">1.</span> <span class="nav-text">第一步：安装git</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E6%AD%A5%EF%BC%9A%E5%AE%89%E8%A3%85npm"><span class="nav-number">2.</span> <span class="nav-text">第二步：安装npm</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%B8%89%E6%AD%A5%EF%BC%9A%E5%AE%89%E8%A3%85node-js"><span class="nav-number">3.</span> <span class="nav-text">第三步：安装node.js</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E5%9B%9B%E6%AD%A5%EF%BC%9A%E4%BD%BF%E7%94%A8hardhat"><span class="nav-number">4.</span> <span class="nav-text">第四步：使用hardhat</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%BA%94%E6%AD%A5%EF%BC%9A%E5%88%A0%E9%99%A4%E4%B8%8D%E5%BF%85%E8%A6%81%E7%9A%84%E4%BB%A3%E7%A0%81"><span class="nav-number">5.</span> <span class="nav-text">第五步：删除不必要的代码</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="卢文娟"
+      src="/images/luwenjuan.jpeg">
+  <p class="site-author-name" itemprop="name">卢文娟</p>
+  <div class="site-description" itemprop="description">微信: 13246411679</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">91</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-name">分类</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">27</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/07/02/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6%EF%BC%881%EF%BC%89/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/luwenjuan.jpeg">
+      <meta itemprop="name" content="卢文娟">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="卢文娟">
+      <meta itemprop="description" content="微信: 13246411679">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="智能合约项目从0到1：开发环境配置（一） | 卢文娟">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          智能合约项目从0到1：开发环境配置（一）
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-07-02 15:21:41" itemprop="dateCreated datePublished" datetime="2022-07-02T15:21:41+08:00">2022-07-02</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-08-25 17:59:31" itemprop="dateModified" datetime="2022-08-25T17:59:31+08:00">2022-08-25</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6/" itemprop="url" rel="index"><span itemprop="name">智能合约</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Changyan：</span>
+    
+    <a title="智能合约项目从0到1：开发环境配置（一）" href="/2022/07/02/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6%EF%BC%881%EF%BC%89/#SOHUCS" itemprop="discussionUrl">
+      <span id="sourceId::ac588c00f25968e89edbe375409bad33" class="cy_cmt_count" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>这个过程是在<strong>苹果系统</strong>演示的，如果你的电脑不是苹果系统，你可以在每一个步骤下相对应内容，自己去寻找你的系统的使用方法。</p>
+<p>步骤不会有差，但细节可能有些差距。</p>
+<h2 id="第一步：安装git"><a href="#第一步：安装git" class="headerlink" title="第一步：安装git"></a>第一步：安装git</h2><p>因为我的电脑之前都没有写过代码，所以连git都没有，如果你有git了，就跳过这一步。</p>
+<p>直接在这里下载最新版安装包：<a target="_blank" rel="noopener" href="https://sourceforge.net/projects/git-osx-installer/files/">https://sourceforge.net/projects/git-osx-installer/files/</a></p>
+<p><img src="http://luwenjuan.luyuedan.com/mweb/16530497660941.png"></p>
+<p>下载的是dmg包，下载后，双击安装即可。</p>
+<h2 id="第二步：安装npm"><a href="#第二步：安装npm" class="headerlink" title="第二步：安装npm"></a>第二步：安装npm</h2><p>终端运行这句命令安装nvm：</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -o- https:<span class="regexp">//</span>raw.githubusercontent.com<span class="regexp">/creationix/</span>nvm<span class="regexp">/v0.39.1/i</span>nstall.sh | bash</span><br></pre></td></tr></table></figure>
+
+<p>根据运行后的提示，如果安装成功，则重启终端，运行以下代码安装npm：</p>
+<figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">nvm install <span class="number">16</span></span><br><span class="line">nvm use <span class="number">16</span></span><br><span class="line">nvm alias <span class="keyword">default</span> <span class="number">16</span></span><br><span class="line"><span class="built_in">npm</span> install <span class="built_in">npm</span> --global <span class="comment"># Upgrade npm to the latest version</span></span><br></pre></td></tr></table></figure>
+<p><img src="http://luwenjuan.luyuedan.com/mweb/16531034361280.png"></p>
+<h2 id="第三步：安装node-js"><a href="#第三步：安装node-js" class="headerlink" title="第三步：安装node.js"></a>第三步：安装node.js</h2><p>下载LTS版本：<a target="_blank" rel="noopener" href="https://nodejs.org/en/download/">https://nodejs.org/en/download/</a></p>
+<p>下载后，双击安装即可。<br><img src="http://luwenjuan.luyuedan.com/mweb/16531037042095.png"></p>
+<p>安装成功，这是node的路径变量：</p>
+<p><img src="http://luwenjuan.luyuedan.com/mweb/16531037711207.png"></p>
+<h2 id="第四步：使用hardhat"><a href="#第四步：使用hardhat" class="headerlink" title="第四步：使用hardhat"></a>第四步：使用hardhat</h2><p>hardhat是一个帮助我们构建以太坊开发环境的工具，它还内置了hardhat network，这是专门为开发而设计的本地以太坊网络，让开发人员方便的部署合约，运行测试和调试代码。</p>
+<p>现在，我们先创建一个工作文件夹my-wave-portal，cd到这个文件夹后，运行以下代码安装hardhat：</p>
+<figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">npm</span> init -y</span><br><span class="line"><span class="built_in">npm</span> install --save-dev hardhat</span><br></pre></td></tr></table></figure>
+
+<p>这样，我们就把hardhat下载到本地了，现在我们创建示例项目。</p>
+<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">npx hardhat</span></span><br></pre></td></tr></table></figure>
+<p><img src="http://luwenjuan.luyuedan.com/mweb/16531054105662.png"></p>
+<p>要你选择的话，看着无误，就直接回车，选择（Y&#x2F;N）的时候写y，最后我们可以看到，创建完成。</p>
+<p><img src="http://luwenjuan.luyuedan.com/mweb/16531058214647.png"></p>
+<p>安装其他依赖包：</p>
+<figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">npm</span> install --save-dev @nomiclabs/hardhat-waffle ethereum-waffle chai @nomiclabs/hardhat-ethers ethers</span><br></pre></td></tr></table></figure>
+<p>然后运行：</p>
+<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">npx hardhat accounts</span></span><br></pre></td></tr></table></figure>
+<p><img src="http://luwenjuan.luyuedan.com/mweb/16531060913328.png"><br>我们可以看到一系列地址，这是hardhat帮我们生成的，模拟以太链真实用户的地址，这些可以帮我们后面测试的时候模拟用户。</p>
+<p>最后，我们运行hardhat：</p>
+<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">npx hardhat compile</span></span><br></pre></td></tr></table></figure>
+
+<p>然后运行做一下测试：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npx hardhat <span class="built_in">test</span></span><br></pre></td></tr></table></figure>
+<p><img src="http://luwenjuan.luyuedan.com/mweb/16531062071840.png"></p>
+<p>说明代码测试没问题了。</p>
+<h2 id="第五步：删除不必要的代码"><a href="#第五步：删除不必要的代码" class="headerlink" title="第五步：删除不必要的代码"></a>第五步：删除不必要的代码</h2><p>用vscode打开工作文件夹my-wave-portal，删掉不必要的。</p>
+<p>test文件夹下的sample-test.js<br>scripts文件夹下的sample-script.js<br>contracts文件夹下的Greeter.sol</p>
+<p><img src="http://luwenjuan.luyuedan.com/mweb/16531072789824.png"></p>
+<p>好了，开发环境配置完成。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="reward-container">
+  <div></div>
+  <button>
+    赞赏
+  </button>
+  <div class="post-reward">
+      <div>
+        <img src="/images/weichat.jpeg" alt="卢文娟 微信">
+        <span>微信</span>
+      </div>
+      <div>
+        <img src="/images/alipay.jpeg" alt="卢文娟 支付宝">
+        <span>支付宝</span>
+      </div>
+
+  </div>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/%E5%85%83%E5%AE%87%E5%AE%99-%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6/" rel="tag"># 元宇宙, 智能合约</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2022/07/02/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6%EF%BC%882%EF%BC%89/" rel="prev" title="智能合约项目从0到1：成功运行第一个智能合约（二）">
+                  <i class="fa fa-chevron-left"></i> 智能合约项目从0到1：成功运行第一个智能合约（二）
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2022/07/13/%E5%85%83%E5%AE%87%E5%AE%99/N4-%E5%89%8D5000%E5%A4%A9/" rel="next" title="NFT初探：为什么《每一天：前5000天》值6900万？">
+                  NFT初探：为什么《每一天：前5000天》值6900万？ <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments" id="SOHUCS" sid="ac588c00f25968e89edbe375409bad33"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">卢文娟</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/next-theme-pjax/0.5.0/pjax.min.js" integrity="sha256-3NkoLDrmHLTYj7csHIZSr0MHAFTXth7Ua/DDt4MRUAg=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script><script src="/js/pjax.js"></script>
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.0/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+
+
+
+
+<script class="next-config" data-name="changyan" type="application/json">{"enable":true,"appid":"cywbdqFL8","appkey":"1e0802ef26195d974f4576578a580da3"}</script>
+<script src="/js/third-party/comments/changyan.js"></script>
+
+</body>
+</html>

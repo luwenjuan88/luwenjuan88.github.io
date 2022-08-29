@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.2.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha256-DfWjNxDkM94fVBWx1H5BMMp0Zq7luBlV8QRcSES7s+0=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.12.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="注册Metamask钱包为什么我们需要注册钱包呢？ 在前面我们说过，我们想要访问区块链上的智能合约，是必须要先连接钱包，获取钱包地址和私钥。 之前在本地测试时，是使用工具生成的钱包地址，但是在真实的网络环境，我们就需要注册真实的钱包地址了。 注册钱包的地址：https:&#x2F;&#x2F;metamask.io&#x2F; 部署智能合约到真实的测试网络之前我们是把智能合约部署到本地了，现在我们尝试开始部署到真实的网络上，我">
+<meta property="og:type" content="article">
+<meta property="og:title" content="智能合约项目从0到1：部署智能合约到测试链（四）">
+<meta property="og:url" content="http://example.com/2022/07/02/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6%EF%BC%884%EF%BC%89/index.html">
+<meta property="og:site_name" content="卢文娟">
+<meta property="og:description" content="注册Metamask钱包为什么我们需要注册钱包呢？ 在前面我们说过，我们想要访问区块链上的智能合约，是必须要先连接钱包，获取钱包地址和私钥。 之前在本地测试时，是使用工具生成的钱包地址，但是在真实的网络环境，我们就需要注册真实的钱包地址了。 注册钱包的地址：https:&#x2F;&#x2F;metamask.io&#x2F; 部署智能合约到真实的测试网络之前我们是把智能合约部署到本地了，现在我们尝试开始部署到真实的网络上，我">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://luwenjuan.luyuedan.com/mweb/16614220347875.png">
+<meta property="og:image" content="http://luwenjuan.luyuedan.com/mweb/16531344976350.png">
+<meta property="og:image" content="http://luwenjuan.luyuedan.com/mweb/16614220556411.png">
+<meta property="og:image" content="http://luwenjuan.luyuedan.com/mweb/16531363333590.png">
+<meta property="og:image" content="http://luwenjuan.luyuedan.com/mweb/16531367396079.png">
+<meta property="og:image" content="http://luwenjuan.luyuedan.com/mweb/16614220767024.png">
+<meta property="og:image" content="http://luwenjuan.luyuedan.com/mweb/16531421564979.png">
+<meta property="og:image" content="http://luwenjuan.luyuedan.com/mweb/16531422466407.png">
+<meta property="article:published_time" content="2022-07-02T07:21:41.000Z">
+<meta property="article:modified_time" content="2022-08-25T10:11:39.891Z">
+<meta property="article:author" content="卢文娟">
+<meta property="article:tag" content="元宇宙, 智能合约">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://luwenjuan.luyuedan.com/mweb/16614220347875.png">
+
+
+<link rel="canonical" href="http://example.com/2022/07/02/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6%EF%BC%884%EF%BC%89/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2022/07/02/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6%EF%BC%884%EF%BC%89/","path":"2022/07/02/智能合约/智能合约（4）/","title":"智能合约项目从0到1：部署智能合约到测试链（四）"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>智能合约项目从0到1：部署智能合约到测试链（四） | 卢文娟</title>
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">卢文娟</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">元宇宙，区块链，币圈知识分享，关注我公众号：元宇宙探索之旅</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-每日任务"><a href="/dailytask/" rel="section"><i class="fa fa-calendar fa-fw"></i>每日任务</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B3%A8%E5%86%8CMetamask%E9%92%B1%E5%8C%85"><span class="nav-number">1.</span> <span class="nav-text">注册Metamask钱包</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%83%A8%E7%BD%B2%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6%E5%88%B0%E7%9C%9F%E5%AE%9E%E7%9A%84%E6%B5%8B%E8%AF%95%E7%BD%91%E7%BB%9C"><span class="nav-number">2.</span> <span class="nav-text">部署智能合约到真实的测试网络</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%8E%B7%E5%8F%96%E6%B5%8B%E8%AF%95%E5%B8%81"><span class="nav-number">3.</span> <span class="nav-text">获取测试币</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%83%A8%E7%BD%B2%E5%88%B0Rinkeby%E6%B5%8B%E8%AF%95%E9%93%BE"><span class="nav-number">4.</span> <span class="nav-text">部署到Rinkeby测试链</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="卢文娟"
+      src="/images/luwenjuan.jpeg">
+  <p class="site-author-name" itemprop="name">卢文娟</p>
+  <div class="site-description" itemprop="description">微信: 13246411679</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">91</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-name">分类</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">27</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/07/02/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6%EF%BC%884%EF%BC%89/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/luwenjuan.jpeg">
+      <meta itemprop="name" content="卢文娟">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="卢文娟">
+      <meta itemprop="description" content="微信: 13246411679">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="智能合约项目从0到1：部署智能合约到测试链（四） | 卢文娟">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          智能合约项目从0到1：部署智能合约到测试链（四）
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-07-02 15:21:41" itemprop="dateCreated datePublished" datetime="2022-07-02T15:21:41+08:00">2022-07-02</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-08-25 18:11:39" itemprop="dateModified" datetime="2022-08-25T18:11:39+08:00">2022-08-25</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6/" itemprop="url" rel="index"><span itemprop="name">智能合约</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Changyan：</span>
+    
+    <a title="智能合约项目从0到1：部署智能合约到测试链（四）" href="/2022/07/02/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6%EF%BC%884%EF%BC%89/#SOHUCS" itemprop="discussionUrl">
+      <span id="sourceId::4692e0bc7bc94a937669caf2666b019e" class="cy_cmt_count" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h2 id="注册Metamask钱包"><a href="#注册Metamask钱包" class="headerlink" title="注册Metamask钱包"></a>注册Metamask钱包</h2><p>为什么我们需要注册钱包呢？</p>
+<p>在前面我们说过，我们想要访问区块链上的智能合约，是必须要先连接钱包，获取钱包地址和私钥。</p>
+<p>之前在本地测试时，是使用工具生成的钱包地址，但是在真实的网络环境，我们就需要注册真实的钱包地址了。</p>
+<p>注册钱包的地址：<a target="_blank" rel="noopener" href="https://metamask.io/">https://metamask.io/</a></p>
+<h2 id="部署智能合约到真实的测试网络"><a href="#部署智能合约到真实的测试网络" class="headerlink" title="部署智能合约到真实的测试网络"></a>部署智能合约到真实的测试网络</h2><p>之前我们是把智能合约部署到本地了，现在我们尝试开始部署到真实的网络上，我们使用Alchemy工具。</p>
+<p>我们先注册一个账号：<a target="_blank" rel="noopener" href="https://www.alchemy.com/">https://www.alchemy.com/</a></p>
+<p>区块链不属于某个人，而是一系列的分布于全世界的有一份区块链拷贝的电脑，这些电脑被区块链矿工运行，如果我们想要把我们的智能合约部署到区块链上，我们需要告诉所有矿工，请你把我的智能合约加入区块链，并告诉其他所有人。</p>
+<p>Alchemy的作用就是帮助我们广播我们的智能合约，让矿工尽快把我们的智能合约加入区块链。</p>
+<p>当我们注册好了Alchemy之后，我们需要获取测试网络的API key，点击get started，这里我们随意填，最后一个，我们选择一个测试链Rinkeby，创建app。</p>
+<p>为什么要选择测试链呢？因为如果选真实链，那个花的就是真实的钱呀，我们只有在测试完成没问题才上真实链。这个测试链是以太链的一个拷贝，是真实的矿工在运行，但是用的是虚假的钱，除了钱是假的，其他都是真的。</p>
+<p><img src="http://luwenjuan.luyuedan.com/mweb/16614220347875.png"></p>
+<p>然后我们就可以看到我们的测试app了。<br><img src="http://luwenjuan.luyuedan.com/mweb/16531344976350.png"></p>
+<p>点进去可以看到，这个view key，这个http字段是将要在小狐狸钱包还有hardhat里面设置的。</p>
+<p><img src="http://luwenjuan.luyuedan.com/mweb/16614220556411.png"></p>
+<p>好了，接下来我们要做的就是：</p>
+<blockquote>
+<p>广播我们的智能合约上链请求</p>
+<p>等待请求被真实矿工执行</p>
+<p>等待智能合约上链</p>
+<p>等待链上所有节点都更新了他们的拷贝</p>
+</blockquote>
+<h2 id="获取测试币"><a href="#获取测试币" class="headerlink" title="获取测试币"></a>获取测试币</h2><p>因为真实的区块链需要的是真钱，测试的区块链除了钱是假的，其他都是真的，所以我们需要去向这个测试网络申请一些测试币，当然这个测试币只能在测试网络使用。</p>
+<p>在申请测试币之前，我们的小狐狸钱包也要添加这个测试链，url是刚刚查看的http字段，ID是4，不用管红色字体，保存即可。</p>
+<p><img src="http://luwenjuan.luyuedan.com/mweb/16531363333590.png"></p>
+<p>当我们的小狐狸钱包连接到了测试链，我们进入这个网址申请测试币：<a target="_blank" rel="noopener" href="https://app.mycrypto.com/faucet">https://app.mycrypto.com/faucet</a></p>
+<p>第一次点进去的时候，需要连接小狐狸钱包，连接成功后，我们退出网站再次进入，就会有这样的界面：</p>
+<p><img src="http://luwenjuan.luyuedan.com/mweb/16531367396079.png"></p>
+<p>选择我们的钱包账号，request即可。</p>
+<h2 id="部署到Rinkeby测试链"><a href="#部署到Rinkeby测试链" class="headerlink" title="部署到Rinkeby测试链"></a>部署到Rinkeby测试链</h2><p>要配置测试链，我们要修改代码的hardhat.config.js文件，由于这个文件涉及到账号的key，所以我们用一个工具来保护这个key：</p>
+<p>在终端运行：</p>
+<figure class="highlight ada"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install <span class="comment">--save dotenv</span></span><br></pre></td></tr></table></figure>
+
+<p>hardhat.config.js文件内容：</p>
+<figure class="highlight dts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">require(<span class="string">&quot;@nomiclabs/hardhat-waffle&quot;</span>)<span class="punctuation">;</span></span><br><span class="line"><span class="comment">// Import and configure dotenv</span></span><br><span class="line">require(<span class="string">&quot;dotenv&quot;</span>).config()<span class="punctuation">;</span></span><br><span class="line"></span><br><span class="line">module.<span class="attr">exports</span> <span class="operator">=</span> <span class="punctuation">&#123;</span></span><br><span class="line"><span class="symbol">  solidity:</span> <span class="string">&quot;0.8.0&quot;</span>,</span><br><span class="line"><span class="symbol">  networks:</span> <span class="punctuation">&#123;</span></span><br><span class="line"><span class="symbol">    rinkeby:</span> <span class="punctuation">&#123;</span></span><br><span class="line">      <span class="comment">// This value will be replaced on runtime</span></span><br><span class="line"><span class="symbol">      url:</span> process.env.STAGING_ALCHEMY_KEY,</span><br><span class="line"><span class="symbol">      accounts:</span> [process.env.PRIVATE_KEY],</span><br><span class="line">    <span class="punctuation">&#125;</span>,</span><br><span class="line"><span class="symbol">    mainnet:</span> <span class="punctuation">&#123;</span></span><br><span class="line"><span class="symbol">      chainId:</span> <span class="number">1</span>,</span><br><span class="line"><span class="symbol">      url:</span> process.env.PROD_ALCHEMY_KEY,</span><br><span class="line"><span class="symbol">      accounts:</span> [process.env.PRIVATE_KEY],</span><br><span class="line">    <span class="punctuation">&#125;</span>,</span><br><span class="line">  <span class="punctuation">&#125;</span>,</span><br><span class="line"><span class="punctuation">&#125;;</span></span><br></pre></td></tr></table></figure>
+<p>在项目的根目录，创建一个.env文件：</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">STAGING_ALCHEMY_KEY</span>=REPLACE_WITH_ACTUAL_ALCHEMY_URL</span><br><span class="line"><span class="attribute">PROD_ALCHEMY_KEY</span>=BLAHBLAH</span><br><span class="line">PRIVATE_KEY=</span><br></pre></td></tr></table></figure>
+
+<p>这里第一个URL是我们的前面看到的Alchemy里面的http字段;</p>
+<p>private key是小狐狸钱包里面的，在小狐狸钱包里，切换网络到Rinkeby网络，点击右上角三个点-&gt;账户详情-&gt;导出私钥</p>
+<p><img src="http://luwenjuan.luyuedan.com/mweb/16614220767024.png"></p>
+<p>.env文件不要上传到公网，因为这个key和你主网络的key是一样的，所以把.env文件加入.gitignore文件中。</p>
+<p>在终端运行以下命令：</p>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npx hardhat <span class="built_in">run</span> scripts/deploy.js <span class="comment">--network rinkeby</span></span><br></pre></td></tr></table></figure>
+
+<p>可以看到，这个命令和之前命令不同地方在于，之前使用localhost，而这里使用了rinkeby。</p>
+<p>ok，可以看到，运行成功。</p>
+<p><img src="http://luwenjuan.luyuedan.com/mweb/16531421564979.png"></p>
+<p>请记住最后一个address，这个在后面需要使用：0xc850155CB95A1a73e9a1FA4ca0cF96089112b744。</p>
+<p>使用这个address，我们也可以在区块链浏览器上搜索到我们的智能合约：<a target="_blank" rel="noopener" href="https://rinkeby.etherscan.io/">https://rinkeby.etherscan.io/</a></p>
+<p><img src="http://luwenjuan.luyuedan.com/mweb/16531422466407.png"></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="reward-container">
+  <div></div>
+  <button>
+    赞赏
+  </button>
+  <div class="post-reward">
+      <div>
+        <img src="/images/weichat.jpeg" alt="卢文娟 微信">
+        <span>微信</span>
+      </div>
+      <div>
+        <img src="/images/alipay.jpeg" alt="卢文娟 支付宝">
+        <span>支付宝</span>
+      </div>
+
+  </div>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/%E5%85%83%E5%AE%87%E5%AE%99-%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6/" rel="tag"># 元宇宙, 智能合约</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2022/07/02/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6%EF%BC%887%EF%BC%89/" rel="prev" title="智能合约项目从0到1：实现向智能合约发送消息（七）">
+                  <i class="fa fa-chevron-left"></i> 智能合约项目从0到1：实现向智能合约发送消息（七）
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2022/07/02/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6%EF%BC%883%EF%BC%89/" rel="next" title="智能合约项目从0到1：成功部署属于自己的智能合约（三）">
+                  智能合约项目从0到1：成功部署属于自己的智能合约（三） <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments" id="SOHUCS" sid="4692e0bc7bc94a937669caf2666b019e"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">卢文娟</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/next-theme-pjax/0.5.0/pjax.min.js" integrity="sha256-3NkoLDrmHLTYj7csHIZSr0MHAFTXth7Ua/DDt4MRUAg=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script><script src="/js/pjax.js"></script>
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.0/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+
+
+
+
+<script class="next-config" data-name="changyan" type="application/json">{"enable":true,"appid":"cywbdqFL8","appkey":"1e0802ef26195d974f4576578a580da3"}</script>
+<script src="/js/third-party/comments/changyan.js"></script>
+
+</body>
+</html>

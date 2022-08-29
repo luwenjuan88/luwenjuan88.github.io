@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.2.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha256-DfWjNxDkM94fVBWx1H5BMMp0Zq7luBlV8QRcSES7s+0=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.12.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="本文是Alchemy的一个示例项目，参考链接how-to-make-nfts-with-on-chain-metadata-hardhat-and-javascript 本文运行环境是：  Mac操作系统 npm 8.10.0 node v16.15.0 hardhat v2.10.2  Harthat的安装请参考之前的文章： 本文假设你已经安装Harthat，并且了解Harthat的基本操作了。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Solidity案例（3）：使用链上元数据制作NFT">
+<meta property="og:url" content="http://example.com/2022/08/20/Samples/A3-MetaNFT/index.html">
+<meta property="og:site_name" content="卢文娟">
+<meta property="og:description" content="本文是Alchemy的一个示例项目，参考链接how-to-make-nfts-with-on-chain-metadata-hardhat-and-javascript 本文运行环境是：  Mac操作系统 npm 8.10.0 node v16.15.0 hardhat v2.10.2  Harthat的安装请参考之前的文章： 本文假设你已经安装Harthat，并且了解Harthat的基本操作了。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/media/16611439665449.png">
+<meta property="og:image" content="http://example.com/media/16614433030242.png">
+<meta property="article:published_time" content="2022-08-20T07:21:41.000Z">
+<meta property="article:modified_time" content="2022-08-25T16:11:35.026Z">
+<meta property="article:author" content="卢文娟">
+<meta property="article:tag" content="Solidity,Hardhat,Ethers.js,Alchemy">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/media/16611439665449.png">
+
+
+<link rel="canonical" href="http://example.com/2022/08/20/Samples/A3-MetaNFT/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2022/08/20/Samples/A3-MetaNFT/","path":"2022/08/20/Samples/A3-MetaNFT/","title":"Solidity案例（3）：使用链上元数据制作NFT"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Solidity案例（3）：使用链上元数据制作NFT | 卢文娟</title>
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">卢文娟</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">元宇宙，区块链，币圈知识分享，关注我公众号：元宇宙探索之旅</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-每日任务"><a href="/dailytask/" rel="section"><i class="fa fa-calendar fa-fw"></i>每日任务</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%83%8C%E6%99%AF"><span class="nav-number">1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Polygon%E6%B5%8B%E8%AF%95%E9%93%BEMumbai"><span class="nav-number">2.</span> <span class="nav-text">Polygon测试链Mumbai</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SVG%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="nav-number">3.</span> <span class="nav-text">SVG是什么？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8Harthat%E9%A1%B9%E7%9B%AE%E5%88%9D%E5%A7%8B%E5%8C%96"><span class="nav-number">4.</span> <span class="nav-text">使用Harthat项目初始化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%BE%E7%BD%AEhardhat-config-js-%E6%96%87%E4%BB%B6"><span class="nav-number">5.</span> <span class="nav-text">设置hardhat.config.js 文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%80%E5%8F%91%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6"><span class="nav-number">6.</span> <span class="nav-text">开发智能合约</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%9B%E5%BB%BASVG%E5%9B%BE%E5%83%8F"><span class="nav-number">7.</span> <span class="nav-text">创建SVG图像</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%94%9F%E6%88%90NFT%E7%9A%84URI"><span class="nav-number">8.</span> <span class="nav-text">生成NFT的URI</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%9B%E5%BB%BANFT"><span class="nav-number">9.</span> <span class="nav-text">创建NFT</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%AD%E7%BB%83NFT"><span class="nav-number">10.</span> <span class="nav-text">训练NFT</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%83%A8%E7%BD%B2"><span class="nav-number">11.</span> <span class="nav-text">部署</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%8E%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6%E4%BA%A4%E4%BA%92"><span class="nav-number">12.</span> <span class="nav-text">与智能合约交互</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9C%A8OpenSea%E4%B8%8A%E6%9F%A5%E7%9C%8B%E5%8A%A8%E6%80%81NFT"><span class="nav-number">13.</span> <span class="nav-text">在OpenSea上查看动态NFT</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9B%B4%E6%96%B0%E5%8A%A8%E6%80%81NFT"><span class="nav-number">14.</span> <span class="nav-text">更新动态NFT</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%BE%E7%BD%AE%E6%9B%B4%E5%A4%9A%E5%B1%9E%E6%80%A7"><span class="nav-number">15.</span> <span class="nav-text">设置更多属性</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="卢文娟"
+      src="/images/luwenjuan.jpeg">
+  <p class="site-author-name" itemprop="name">卢文娟</p>
+  <div class="site-description" itemprop="description">微信: 13246411679</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">91</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-name">分类</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">27</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/08/20/Samples/A3-MetaNFT/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/luwenjuan.jpeg">
+      <meta itemprop="name" content="卢文娟">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="卢文娟">
+      <meta itemprop="description" content="微信: 13246411679">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Solidity案例（3）：使用链上元数据制作NFT | 卢文娟">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Solidity案例（3）：使用链上元数据制作NFT
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-08-20 15:21:41" itemprop="dateCreated datePublished" datetime="2022-08-20T15:21:41+08:00">2022-08-20</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-08-26 00:11:35" itemprop="dateModified" datetime="2022-08-26T00:11:35+08:00">2022-08-26</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Solidity%E6%A1%88%E4%BE%8B-%E5%BE%85%E5%AE%8C%E6%88%90%E2%80%A6%E2%80%A6/" itemprop="url" rel="index"><span itemprop="name">Solidity案例, 待完成……</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Changyan：</span>
+    
+    <a title="Solidity案例（3）：使用链上元数据制作NFT" href="/2022/08/20/Samples/A3-MetaNFT/#SOHUCS" itemprop="discussionUrl">
+      <span id="sourceId::95ac02a822d148f6b87e5f5c6c12590c" class="cy_cmt_count" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>本文是Alchemy的一个示例项目，参考链接<a target="_blank" rel="noopener" href="https://docs.alchemy.com/docs/how-to-make-nfts-with-on-chain-metadata-hardhat-and-javascript">how-to-make-nfts-with-on-chain-metadata-hardhat-and-javascript</a></p>
+<p>本文运行环境是：</p>
+<blockquote>
+<p>Mac操作系统</p>
+<p>npm 8.10.0</p>
+<p>node v16.15.0</p>
+<p>hardhat v2.10.2</p>
+</blockquote>
+<p>Harthat的安装请参考之前的文章：</p>
+<p>本文假设你已经安装Harthat，并且了解Harthat的基本操作了。</p>
+<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>当我们创建NFT时，往往是将元数据存储在IPFS中，避免在链上存储大量数据（图像和Json对象）产生巨额gas费。</p>
+<p>但是，这样存储元数据会有个问题：我们无法通过智能合约和它进行交互，对于游戏这样的场景就不行了；如果我们想直接从我们的智能合约更新我们的元数据，就要将它存储在链上。</p>
+<p>像Polygon这样的侧链可以给我们大大降低gas成本，我们要开发动态NFT，链上元数据就会根据我们的交互产生变化，所以将其部署在Polygon Mumbai上以降低汽油费。</p>
+<h2 id="Polygon测试链Mumbai"><a href="#Polygon测试链Mumbai" class="headerlink" title="Polygon测试链Mumbai"></a>Polygon测试链Mumbai</h2><p>添加Mumbai链，进入网站：<a target="_blank" rel="noopener" href="https://mumbai.polygonscan.com/%EF%BC%8C%E6%8B%89%E5%88%B0%E5%BA%95%E9%83%A8%EF%BC%8C%E5%8F%AF%E4%BB%A5%E7%9C%8B%E5%88%B0%E2%80%9CAdd">https://mumbai.polygonscan.com/，拉到底部，可以看到“Add</a> Mumbai Metamask”，点击添加到我们的钱包中：</p>
+<p><img src="/media/16611439665449.png"></p>
+<p>获取测试币（链接）：</p>
+<p><a target="_blank" rel="noopener" href="https://mumbaifaucet.com/">https://mumbaifaucet.com/</a><br><a target="_blank" rel="noopener" href="https://faucet.polygon.technology/">https://faucet.polygon.technology/</a></p>
+<h2 id="SVG是什么？"><a href="#SVG是什么？" class="headerlink" title="SVG是什么？"></a>SVG是什么？</h2><p>SVG是可缩放矢量图形的缩写，是一种标准的图形文件类型，用于在 Internet上渲染二维图像。SVG格式将图像存储为矢量，矢量是一种基于数学公式由点、线、曲线和形状组成的图形。</p>
+<p>SVG文件是用XML编写的，XML是一种用于存储和传输数字信息的标记语言。SVG文件中的XML代码指定了构成图像的所有形状、颜色和文本。</p>
+<p>SVG的好处在于：</p>
+<blockquote>
+<p>可以使用代码轻松修改和生成</p>
+<p>可以轻松转换为Base64数据</p>
+</blockquote>
+<p>为什么我们要将SVG文件转换为Base64数据？因为base64图像可以直接在浏览器显示，而无需托管服务提供商。</p>
+<p>由于SVG图像是用代码标示的，所以可以轻松的使用Solidity进行编码和处理；将内容转换为base64，让我们可以直接将图像存储在链上。</p>
+<h2 id="使用Harthat项目初始化"><a href="#使用Harthat项目初始化" class="headerlink" title="使用Harthat项目初始化"></a>使用Harthat项目初始化</h2><p>新建一个文件夹，命名Week3-MetaNFT，进入这个目录，运行项目初始化命令：</p>
+<figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">npm</span> init -y</span><br><span class="line">npx hardhat</span><br></pre></td></tr></table></figure>
+
+<p>安装OpenZeppelin库：</p>
+<figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">npm</span> install @openzeppelin/contracts</span><br></pre></td></tr></table></figure>
+
+<p>至此，项目初始化完成，我们使用VScode打开编辑。</p>
+<h2 id="设置hardhat-config-js-文件"><a href="#设置hardhat-config-js-文件" class="headerlink" title="设置hardhat.config.js 文件"></a>设置hardhat.config.js 文件</h2><p>项目中有一个配置文件hardhat.config.js，修改配置如下：</p>
+<figure class="highlight dts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">require(<span class="string">&quot;@nomicfoundation/hardhat-toolbox&quot;</span>)<span class="punctuation">;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/** @type import(&#x27;hardhat/config&#x27;).HardhatUserConfig */</span></span><br><span class="line">module.<span class="attr">exports</span> <span class="operator">=</span> <span class="punctuation">&#123;</span></span><br><span class="line"><span class="symbol">  solidity:</span> <span class="string">&quot;0.8.10&quot;</span>,</span><br><span class="line"><span class="symbol">  networks:</span> <span class="punctuation">&#123;</span></span><br><span class="line"><span class="symbol">    mumbai:</span> <span class="punctuation">&#123;</span></span><br><span class="line"><span class="symbol">      url:</span> process.env.TESTNET_RPC,</span><br><span class="line"><span class="symbol">      accounts:</span> [process.env.PRIVATE_KEY]</span><br><span class="line">    <span class="punctuation">&#125;</span>,</span><br><span class="line">  <span class="punctuation">&#125;</span>,</span><br><span class="line"><span class="symbol">  etherscan:</span> <span class="punctuation">&#123;</span></span><br><span class="line"><span class="symbol">    apiKey:</span> process.env.POLYGONSCAN_API_KEY</span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;;</span></span><br></pre></td></tr></table></figure>
+
+<p>（1）这里除了mumbai，还设置了etherscan，这是为了验证我们的智能合约而设置；</p>
+<p>（2）私钥在metamask上获取，TESTNET_RPC在alchemy上获取<a target="_blank" rel="noopener" href="https://dashboard.alchemy.com/%EF%BC%9B">https://dashboard.alchemy.com/；</a></p>
+<p>（3）etherscan的账号在这里注册：<a target="_blank" rel="noopener" href="https://polygonscan.com/%EF%BC%8C%E8%8E%B7%E5%8F%96POLYGONSCAN_API_KEY%E7%9A%84%E5%80%BC%EF%BC%9B">https://polygonscan.com/，获取POLYGONSCAN_API_KEY的值；</a></p>
+<p>（4）这里的私钥和URL采用.env来配置，见这篇文章：</p>
+<h2 id="开发智能合约"><a href="#开发智能合约" class="headerlink" title="开发智能合约"></a>开发智能合约</h2><p>在contracts文件夹中，删除原来的demo，并创建新的智能合约，命名为ChainBattles.sol：</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// SPDX-License-Identifier: MIT</span></span><br><span class="line">pragma solidity ^<span class="number">0.8</span><span class="number">.0</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="string">&quot;@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol&quot;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">&quot;@openzeppelin/contracts/utils/Counters.sol&quot;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">&quot;@openzeppelin/contracts/utils/Strings.sol&quot;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">&quot;@openzeppelin/contracts/utils/Base64.sol&quot;</span>;</span><br><span class="line"></span><br><span class="line">contract <span class="title class_">ChainBattles</span> is <span class="title class_">ERC721URIStorage</span>  &#123;</span><br><span class="line">    using <span class="title class_">Strings</span> <span class="keyword">for</span> uint256;</span><br><span class="line">    using <span class="title class_">Counters</span> <span class="keyword">for</span> <span class="title class_">Counters</span>.<span class="property">Counter</span>;</span><br><span class="line">    <span class="title class_">Counters</span>.<span class="property">Counter</span> <span class="keyword">private</span> _tokenIds;</span><br><span class="line"></span><br><span class="line">    <span class="title function_">mapping</span>(<span class="function"><span class="params">uint256</span> =&gt;</span> uint256) <span class="keyword">public</span> tokenIdToLevels;</span><br><span class="line"></span><br><span class="line">    <span class="title function_">constructor</span>(<span class="params"></span>) <span class="title class_">ERC721</span> (<span class="string">&quot;Chain Battles&quot;</span>, <span class="string">&quot;CBTLS&quot;</span>)&#123;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>以上是智能合约的基础设置，这里解释一下：</p>
+<p>（1）导入了4个库，ERC721URIStorage是我们ERC721智能合约的基础，counters.sol库将负责处理和存储我们的tokenID，string.sol库将数据转换为字符串，Base64库将帮助我们处理 base64数据。</p>
+<p>（2）<code>contract ChainBattles is ERC721URIStorage</code>智能合约是继承了ERC721URIStorage合约的新合约。</p>
+<p>（3）<code>using Strings for uint256</code>将“字符串”库中的所有方法与uint256类型相关联，也就是string里的方法可以用于uint256类型。</p>
+<p>（4）Counters.Counter作为tokenId生成器，生成新的tokenId。</p>
+<p>（5）tokenIdToLevels是一个map，数据存储在区块链，将tokenId关联到NFT的level。</p>
+<p>（6）constructor调用了父合约的构造函数，命名和设置了智能合约符号。</p>
+<h2 id="创建SVG图像"><a href="#创建SVG图像" class="headerlink" title="创建SVG图像"></a>创建SVG图像</h2><p>我们创建一个函数，使用SVG代码在链上生成NFT图像，同时考虑NFT级别。</p>
+<figure class="highlight scilab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">generateCharacter</span><span class="params">(uint256 tokenId)</span> <span class="title">public</span> <span class="title">returns</span><span class="params">(string memory)</span>&#123;</span></span><br><span class="line"></span><br><span class="line">    bytes memory svg = abi.encodePacked(</span><br><span class="line">        <span class="string">&#x27;&lt;svg xmlns=&quot;</span>http:<span class="comment">//www.w3.org/2000/svg&quot; preserveAspectRatio=&quot;xMinYMin meet&quot; viewBox=&quot;0 0 350 350&quot;&gt;&#x27;,</span></span><br><span class="line">        <span class="string">&#x27;&lt;style&gt;.base &#123; fill: white; font-family: serif; font-size: 14px; &#125;&lt;/style&gt;&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;&lt;rect width=&quot;</span><span class="number">100</span>%<span class="string">&quot; height=&quot;</span><span class="number">100</span>%<span class="string">&quot; fill=&quot;</span>black<span class="string">&quot; /&gt;&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;&lt;text x=&quot;</span><span class="number">50</span>%<span class="string">&quot; y=&quot;</span><span class="number">40</span>%<span class="string">&quot; class=&quot;</span>base<span class="string">&quot; dominant-baseline=&quot;</span>middle<span class="string">&quot; text-anchor=&quot;</span>middle<span class="string">&quot;&gt;&#x27;</span>,<span class="string">&quot;Warrior&quot;</span>,<span class="string">&#x27;&lt;/text&gt;&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;&lt;text x=&quot;</span><span class="number">50</span>%<span class="string">&quot; y=&quot;</span><span class="number">50</span>%<span class="string">&quot; class=&quot;</span>base<span class="string">&quot; dominant-baseline=&quot;</span>middle<span class="string">&quot; text-anchor=&quot;</span>middle<span class="string">&quot;&gt;&#x27;</span>, <span class="string">&quot;Levels: &quot;</span>,getLevels(tokenId),<span class="string">&#x27;&lt;/text&gt;&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;&lt;/svg&gt;&#x27;</span></span><br><span class="line">    );</span><br><span class="line">    <span class="keyword">return</span> string(</span><br><span class="line">        abi.encodePacked(</span><br><span class="line">            <span class="string">&quot;data:image/svg+xml;base64,&quot;</span>,</span><br><span class="line">            Base64.encode(svg)</span><br><span class="line">        )    </span><br><span class="line">    );</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getLevels</span><span class="params">(uint256 tokenId)</span> <span class="title">public</span> <span class="title">view</span> <span class="title">returns</span> <span class="params">(string memory)</span> &#123;</span></span><br><span class="line">    uint256 levels = tokenIdToLevels[tokenId];</span><br><span class="line">    <span class="keyword">return</span> levels.toString();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>（1）abi.encodePacked()函数接受一个或多个变量，并将它们编码为abi格式。</p>
+<p>（2）Base64.encode()将图像转化为Base64的格式，data:image&#x2F;svg+xml;base64的前缀，是告诉浏览器这是Base64编码的数据，方便浏览器正确的打开。</p>
+<p>（3）getLevels从map里面获得NFT级别。</p>
+<h2 id="生成NFT的URI"><a href="#生成NFT的URI" class="headerlink" title="生成NFT的URI"></a>生成NFT的URI</h2><p>NFT的URI是一个json对象，包含了图像基本信息，由于我们的NFT是动态的，所以元数据用智能合约生成。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getTokenURI</span>(<span class="params">uint256 tokenId</span>) <span class="title">public</span> <span class="title">returns</span> (<span class="params"><span class="keyword">string</span> memory</span>)</span>&#123;</span><br><span class="line">    bytes memory dataURI = abi.<span class="title function_ invoke__">encodePacked</span>(</span><br><span class="line">        <span class="string">&#x27;&#123;&#x27;</span>,</span><br><span class="line">            <span class="string">&#x27;&quot;name&quot;: &quot;Chain Battles #&#x27;</span>, tokenId.<span class="title function_ invoke__">toString</span>(), <span class="string">&#x27;&quot;,&#x27;</span>,</span><br><span class="line">            <span class="string">&#x27;&quot;description&quot;: &quot;Battles on chain&quot;,&#x27;</span>,</span><br><span class="line">            <span class="string">&#x27;&quot;image&quot;: &quot;&#x27;</span>, <span class="title function_ invoke__">generateCharacter</span>(tokenId), <span class="string">&#x27;&quot;&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;&#125;&#x27;</span></span><br><span class="line">    );</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">string</span>(</span><br><span class="line">        abi.<span class="title function_ invoke__">encodePacked</span>(</span><br><span class="line">            <span class="string">&quot;data:application/json;base64,&quot;</span>,</span><br><span class="line">            Base64.<span class="title function_ invoke__">encode</span>(dataURI)</span><br><span class="line">        )</span><br><span class="line">    );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>我们再次使用abi.encodePacked来创建json对象，这里我们也是将json数据编码为Base64格式。</p>
+<h2 id="创建NFT"><a href="#创建NFT" class="headerlink" title="创建NFT"></a>创建NFT</h2><p>NFT就是NFT图像和NFT元数据的总和，所以在mint函数中，我们要调用刚刚的函数：</p>
+<figure class="highlight haxe"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">mint</span></span>() <span class="keyword">public</span> &#123;</span><br><span class="line">    _tokenIds.increment();</span><br><span class="line">    uint256 <span class="keyword">new</span><span class="type">ItemId</span> = _tokenIds.current();</span><br><span class="line">    _safeMint(msg.sender, <span class="keyword">new</span><span class="type">ItemId</span>);</span><br><span class="line">    tokenIdToLevels[<span class="keyword">new</span><span class="type">ItemId</span>] = <span class="number">0</span>;</span><br><span class="line">    _setTokenURI(<span class="keyword">new</span><span class="type">ItemId</span>, getTokenURI(<span class="keyword">new</span><span class="type">ItemId</span>));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="训练NFT"><a href="#训练NFT" class="headerlink" title="训练NFT"></a>训练NFT</h2><p>这里创建训练函数，来更改NFT的级别，实现动态的NFT。</p>
+<figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> train(uint256 tokenId) public &#123;</span><br><span class="line">    require(<span class="constructor">_exists(<span class="params">tokenId</span>)</span>, <span class="string">&quot;Please use an existing token&quot;</span>);</span><br><span class="line">    require(owner<span class="constructor">Of(<span class="params">tokenId</span>)</span><span class="operator"> == </span>msg.sender, <span class="string">&quot;You must own this token to train it&quot;</span>);</span><br><span class="line">    uint256 currentLevel = tokenIdToLevels<span class="literal">[<span class="identifier">tokenId</span>]</span>;</span><br><span class="line">    tokenIdToLevels<span class="literal">[<span class="identifier">tokenId</span>]</span> = currentLevels + <span class="number">1</span>;</span><br><span class="line">    <span class="constructor">_setTokenURI(<span class="params">tokenId</span>, <span class="params">getTokenURI</span>(<span class="params">tokenId</span>)</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="部署"><a href="#部署" class="headerlink" title="部署"></a>部署</h2><p>部署脚本：</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">const main = async () =&gt; &#123;</span><br><span class="line">  try &#123;</span><br><span class="line">    const nftContractFactory = await hre.ethers.getContractFactory(</span><br><span class="line">      <span class="string">&quot;ChainBattles&quot;</span></span><br><span class="line">    );</span><br><span class="line">    const nftContract = await nftContractFactory.deploy();</span><br><span class="line">    await nftContract.deployed();</span><br><span class="line"></span><br><span class="line">    console.log(<span class="string">&quot;Contract deployed to:&quot;</span>, nftContract.address);</span><br><span class="line">    process.<span class="keyword">exit</span>(<span class="number">0</span>);</span><br><span class="line">  &#125; catch (error) &#123;</span><br><span class="line">    console.log(error);</span><br><span class="line">    process.<span class="keyword">exit</span>(<span class="number">1</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line">  </span><br><span class="line">main();</span><br></pre></td></tr></table></figure>
+
+<p>编译，部署合约到测试链：</p>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npx hardhat compile</span><br><span class="line">npx hardhat <span class="built_in">run</span> scripts/deploy.js <span class="comment">--network mumbai</span></span><br></pre></td></tr></table></figure>
+
+<p>验证合约</p>
+<figure class="highlight ada"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npx hardhat verify <span class="comment">--network mumbai YOUR_SMARTCONTRACT_ADDRESS</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>npx hardhat verify –network mumbai 0x0630C65e856F71d213D6235cF4662993E0396C17</p>
+</blockquote>
+<h2 id="与智能合约交互"><a href="#与智能合约交互" class="headerlink" title="与智能合约交互"></a>与智能合约交互</h2><p>验证后，可以在mumbai.polygonscan.com上和智能合约交互。</p>
+<p><img src="/media/16614433030242.png"></p>
+<p>我们选择写智能合约的操作，连接钱包，并调用mint函数，铸造一个NFT。</p>
+<h2 id="在OpenSea上查看动态NFT"><a href="#在OpenSea上查看动态NFT" class="headerlink" title="在OpenSea上查看动态NFT"></a>在OpenSea上查看动态NFT</h2><p>完成之后，复制合约地址，打开opensea测试网站，<a target="_blank" rel="noopener" href="https://testnets.opensea.io/%E3%80%82">https://testnets.opensea.io/。</a></p>
+<p>将地址复制到搜索栏中，应该会看到NFT显示在OpenSea上，其中包含动态图像、标题和描述。</p>
+<h2 id="更新动态NFT"><a href="#更新动态NFT" class="headerlink" title="更新动态NFT"></a>更新动态NFT</h2><p>回到polygonscan网站上，点击写合约，找到train()方法，输入NFT的id&#x3D;1，并调用。</p>
+<p>这个方法会修改NFT的level属性，让level值增加1。再回到opensea，并刷新网站，可以看到level的值发生了改变，这样就做到了动态的改变NFT了。</p>
+<h2 id="设置更多属性"><a href="#设置更多属性" class="headerlink" title="设置更多属性"></a>设置更多属性</h2><p>我们的智能合约肯定不止level一个属性，我们可以给它设置多个属性，比如：</p>
+<blockquote>
+<p>等级<br>速度<br>力量<br>生活</p>
+</blockquote>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="reward-container">
+  <div></div>
+  <button>
+    赞赏
+  </button>
+  <div class="post-reward">
+      <div>
+        <img src="/images/weichat.jpeg" alt="卢文娟 微信">
+        <span>微信</span>
+      </div>
+      <div>
+        <img src="/images/alipay.jpeg" alt="卢文娟 支付宝">
+        <span>支付宝</span>
+      </div>
+
+  </div>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/Solidity-Hardhat-Ethers-js-Alchemy/" rel="tag"># Solidity,Hardhat,Ethers.js,Alchemy</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2022/08/20/Samples/A4-NFTGallery/" rel="prev" title="Next.js案例（4）：创建NFT图库">
+                  <i class="fa fa-chevron-left"></i> Next.js案例（4）：创建NFT图库
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2022/08/20/Samples/A2-DefiDapp/" rel="next" title="Solidity案例（2）：构建DAPP">
+                  Solidity案例（2）：构建DAPP <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments" id="SOHUCS" sid="95ac02a822d148f6b87e5f5c6c12590c"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">卢文娟</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/next-theme-pjax/0.5.0/pjax.min.js" integrity="sha256-3NkoLDrmHLTYj7csHIZSr0MHAFTXth7Ua/DDt4MRUAg=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script><script src="/js/pjax.js"></script>
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.0/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+
+
+
+
+<script class="next-config" data-name="changyan" type="application/json">{"enable":true,"appid":"cywbdqFL8","appkey":"1e0802ef26195d974f4576578a580da3"}</script>
+<script src="/js/third-party/comments/changyan.js"></script>
+
+</body>
+</html>

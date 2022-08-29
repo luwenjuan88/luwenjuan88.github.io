@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.2.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha256-DfWjNxDkM94fVBWx1H5BMMp0Zq7luBlV8QRcSES7s+0=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.12.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="本文是针对想要进入NFT领域的设计者，以及艺术家。不过我也想告诉更多艺术家们，元宇宙是趋势，迟早都是要进入这个领域的，不妨早点学习，也欢迎交流。 先看个案例我们先看一个案例，这个是NFT中国的中华小橘猫：  1.体态固定 我们可以看到，每一只猫的体态都是一样的，也就是大家都是同样的身体，都是向左歪着。 为什么要体态一样呢？因为体态决定了其他素材的位置，比如这样的体态，眼睛就是长在固定位置的，帽子也">
+<meta property="og:type" content="article">
+<meta property="og:title" content="NFT初探：批量生成NFT，素材要怎么制作？">
+<meta property="og:url" content="http://example.com/2022/07/02/%E5%85%83%E5%AE%87%E5%AE%99/N2-%E6%89%B9%E9%87%8FNFT%E7%B4%A0%E6%9D%90/index.html">
+<meta property="og:site_name" content="卢文娟">
+<meta property="og:description" content="本文是针对想要进入NFT领域的设计者，以及艺术家。不过我也想告诉更多艺术家们，元宇宙是趋势，迟早都是要进入这个领域的，不妨早点学习，也欢迎交流。 先看个案例我们先看一个案例，这个是NFT中国的中华小橘猫：  1.体态固定 我们可以看到，每一只猫的体态都是一样的，也就是大家都是同样的身体，都是向左歪着。 为什么要体态一样呢？因为体态决定了其他素材的位置，比如这样的体态，眼睛就是长在固定位置的，帽子也">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://luwenjuan.luyuedan.com/mweb/IMG_9679.jpg">
+<meta property="og:image" content="http://example.com/media/16614240986234.png">
+<meta property="og:image" content="http://example.com/media/16614241198413.png">
+<meta property="og:image" content="http://example.com/media/16614241339185.png">
+<meta property="og:image" content="http://example.com/media/16614241488229.png">
+<meta property="og:image" content="http://example.com/media/16614241623992.png">
+<meta property="og:image" content="http://luwenjuan.luyuedan.com/mweb/16540913284486.png">
+<meta property="og:image" content="http://luwenjuan.luyuedan.com/mweb/16540914323408.png">
+<meta property="og:image" content="http://luwenjuan.luyuedan.com/mweb/16540915416996.png">
+<meta property="article:published_time" content="2022-07-02T07:21:41.000Z">
+<meta property="article:modified_time" content="2022-08-25T10:44:19.298Z">
+<meta property="article:author" content="卢文娟">
+<meta property="article:tag" content="元宇宙, NFT">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://luwenjuan.luyuedan.com/mweb/IMG_9679.jpg">
+
+
+<link rel="canonical" href="http://example.com/2022/07/02/%E5%85%83%E5%AE%87%E5%AE%99/N2-%E6%89%B9%E9%87%8FNFT%E7%B4%A0%E6%9D%90/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2022/07/02/%E5%85%83%E5%AE%87%E5%AE%99/N2-%E6%89%B9%E9%87%8FNFT%E7%B4%A0%E6%9D%90/","path":"2022/07/02/元宇宙/N2-批量NFT素材/","title":"NFT初探：批量生成NFT，素材要怎么制作？"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>NFT初探：批量生成NFT，素材要怎么制作？ | 卢文娟</title>
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">卢文娟</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">元宇宙，区块链，币圈知识分享，关注我公众号：元宇宙探索之旅</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-每日任务"><a href="/dailytask/" rel="section"><i class="fa fa-calendar fa-fw"></i>每日任务</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%88%E7%9C%8B%E4%B8%AA%E6%A1%88%E4%BE%8B"><span class="nav-number">1.</span> <span class="nav-text">先看个案例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PS%E9%87%8C%E9%9D%A2%E6%80%8E%E4%B9%88%E5%88%B6%E4%BD%9C%E7%B4%A0%E6%9D%90"><span class="nav-number">2.</span> <span class="nav-text">PS里面怎么制作素材</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="卢文娟"
+      src="/images/luwenjuan.jpeg">
+  <p class="site-author-name" itemprop="name">卢文娟</p>
+  <div class="site-description" itemprop="description">微信: 13246411679</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">91</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-name">分类</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">27</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/07/02/%E5%85%83%E5%AE%87%E5%AE%99/N2-%E6%89%B9%E9%87%8FNFT%E7%B4%A0%E6%9D%90/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/luwenjuan.jpeg">
+      <meta itemprop="name" content="卢文娟">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="卢文娟">
+      <meta itemprop="description" content="微信: 13246411679">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="NFT初探：批量生成NFT，素材要怎么制作？ | 卢文娟">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          NFT初探：批量生成NFT，素材要怎么制作？
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-07-02 15:21:41" itemprop="dateCreated datePublished" datetime="2022-07-02T15:21:41+08:00">2022-07-02</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-08-25 18:44:19" itemprop="dateModified" datetime="2022-08-25T18:44:19+08:00">2022-08-25</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/NFT/" itemprop="url" rel="index"><span itemprop="name">NFT</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Changyan：</span>
+    
+    <a title="NFT初探：批量生成NFT，素材要怎么制作？" href="/2022/07/02/%E5%85%83%E5%AE%87%E5%AE%99/N2-%E6%89%B9%E9%87%8FNFT%E7%B4%A0%E6%9D%90/#SOHUCS" itemprop="discussionUrl">
+      <span id="sourceId::5afa69b123c40508dfbe80b00b1d7820" class="cy_cmt_count" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>本文是针对想要进入NFT领域的设计者，以及艺术家。不过我也想告诉更多艺术家们，元宇宙是趋势，迟早都是要进入这个领域的，不妨早点学习，也欢迎交流。</p>
+<h2 id="先看个案例"><a href="#先看个案例" class="headerlink" title="先看个案例"></a>先看个案例</h2><p>我们先看一个案例，这个是NFT中国的中华小橘猫：</p>
+<p><img src="http://luwenjuan.luyuedan.com/mweb/IMG_9679.jpg" alt="IMG_9679"></p>
+<p><strong>1.体态固定</strong></p>
+<p>我们可以看到，每一只猫的体态都是一样的，也就是大家都是同样的身体，都是向左歪着。</p>
+<p>为什么要体态一样呢？因为体态决定了其他素材的位置，比如这样的体态，眼睛就是长在固定位置的，帽子也是在固定位置的。</p>
+<p>每个素材位置固定，才能在左排列组合的时候不会出现混乱，比如眼睛长在鼻子的位置，或者嘴巴跑出了脸。</p>
+<p>当然，体态固定，颜色可以改变，比如这只猫的体态从黄色换成绿色，也没有问题。</p>
+<p><strong>2.素材分组</strong></p>
+<p>比如这只猫，它的体态只有一个，所以体态的素材数量是1。</p>
+<p>从我截图的里面，可以看到至少有4种不同的帽子，假设帽子素材数量是10。</p>
+<p>从我的截图里面，可以看到有4种不同的眼睛，假设眼睛素材数量是4。</p>
+<p>从我的截图里面，可以看到嘴巴有两种，假设嘴巴素材数量是2。</p>
+<p>从我的截图里面，可以看到嘴巴上有装饰，口罩，花，耳机，三种，假设嘴部装饰数量是3。</p>
+<p>从我的截图里面，可以看到有4种衣服，假设衣服的数量也是10。</p>
+<p>那么如果只有这些素材，那么可以最多生成多少张图片呢？</p>
+<blockquote>
+<p>1 X 10 X 4 X 2 X 3 X 10 &#x3D; 2400张图片</p>
+</blockquote>
+<p>因为中华小橘猫的素材分组有很多，所以这只猫形态各异，显得都非常有特点，如果素材分组少，可能会显得更加单一。</p>
+<h2 id="PS里面怎么制作素材"><a href="#PS里面怎么制作素材" class="headerlink" title="PS里面怎么制作素材"></a>PS里面怎么制作素材</h2><p>其实很简单，先画身体。</p>
+<p><strong>体态固定</strong></p>
+<p>在画完身体后，这个体态就要保持固定了。</p>
+<p>如果只需要一种颜色的身体，那么身体就不需要再做更多素材，但是如果需要不同颜色的身体，那么可以做不同颜色身体的素材。</p>
+<p>比如我做的猫脸表情包，就做了几个颜色的猫脸，黑色，红色，和白色：</p>
+<p><img src="/media/16614240986234.png"></p>
+<p><strong>不同素材用不同图层</strong></p>
+<p>比如三种颜色的脸，我用的是三个图层，当然再画的时候，我会隐藏掉一些图层，避免干扰，但是图层还是要画的。</p>
+<p>比如画眼睛时，当我画完第一种眼睛时，就隐藏图层，再新建图层画第二种眼睛，一共画了4种眼睛。</p>
+<p><img src="/media/16614241198413.png"></p>
+<p>当然其他素材也是这样，比如嘴巴有3种：</p>
+<p><img src="/media/16614241339185.png"></p>
+<p>帽子有3种：</p>
+<p><img src="/media/16614241488229.png"></p>
+<p>首饰有3种：</p>
+<p><img src="/media/16614241623992.png"></p>
+<p>当然我还生成了一张空的图层，因为我打算有一些猫可能没有首饰或者没有帽子，这个时候叠加图层的时候就直接叠加空的那一张。</p>
+<p><strong>图层分层导出</strong></p>
+<p>当我们把这些图层都准备好了之后，导出来图层素材，这样操作：</p>
+<p>文件 -&gt; 导出 -&gt; 将图层导出到文件</p>
+<p><img src="http://luwenjuan.luyuedan.com/mweb/16540913284486.png"></p>
+<p>这样，PS就会把所有图层作为素材导出到文件中。</p>
+<p>导出来就是这样的，就是一系列图片：</p>
+<p><img src="http://luwenjuan.luyuedan.com/mweb/16540914323408.png"></p>
+<p><strong>将素材分类放置</strong></p>
+<p>我们的程序使用素材，要把素材分类放在不同文件夹中的：</p>
+<p><img src="http://luwenjuan.luyuedan.com/mweb/16540915416996.png"></p>
+<p>这里，我们把素材重新命名后，放在文件夹trait-layer中，并按照背景，眼睛，脸，嘴巴，帽子，首饰分文件夹放置。</p>
+<p>我的这些素材可以生成：</p>
+<blockquote>
+<p>4 X 4 X 4 X 4 X 4 X 3 X 3 &#x3D; 9216张不同的图片</p>
+</blockquote>
+<p>所以我在程序里面只生成100张图片，绰绰有余。</p>
+<p>如果你要生成一定数量的图片，你也要确保你的素材相乘后，总的数量大于你要生成的数量。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="reward-container">
+  <div></div>
+  <button>
+    赞赏
+  </button>
+  <div class="post-reward">
+      <div>
+        <img src="/images/weichat.jpeg" alt="卢文娟 微信">
+        <span>微信</span>
+      </div>
+      <div>
+        <img src="/images/alipay.jpeg" alt="卢文娟 支付宝">
+        <span>支付宝</span>
+      </div>
+
+  </div>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/%E5%85%83%E5%AE%87%E5%AE%99-NFT/" rel="tag"># 元宇宙, NFT</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2022/07/02/%E5%85%83%E5%AE%87%E5%AE%99/N3-%E9%80%89%E6%8B%A9NFT/" rel="prev" title="NFT初探：选择NFT的三个标准">
+                  <i class="fa fa-chevron-left"></i> NFT初探：选择NFT的三个标准
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2022/07/02/%E5%85%83%E5%AE%87%E5%AE%99/N1-nft%E6%98%AF%E4%BB%80%E4%B9%88/" rel="next" title="NFT探秘：NFT是什么？">
+                  NFT探秘：NFT是什么？ <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments" id="SOHUCS" sid="5afa69b123c40508dfbe80b00b1d7820"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">卢文娟</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/next-theme-pjax/0.5.0/pjax.min.js" integrity="sha256-3NkoLDrmHLTYj7csHIZSr0MHAFTXth7Ua/DDt4MRUAg=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script><script src="/js/pjax.js"></script>
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.0/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+
+
+
+
+<script class="next-config" data-name="changyan" type="application/json">{"enable":true,"appid":"cywbdqFL8","appkey":"1e0802ef26195d974f4576578a580da3"}</script>
+<script src="/js/third-party/comments/changyan.js"></script>
+
+</body>
+</html>

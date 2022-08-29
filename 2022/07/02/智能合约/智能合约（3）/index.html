@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.2.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha256-DfWjNxDkM94fVBWx1H5BMMp0Zq7luBlV8QRcSES7s+0=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.12.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="第一步：修改智能合约现在我们写一下更复杂的智能合约，比如允许别人给我们打个招呼，并保存别人给我们打的招呼。 首先，我们需要一个方法，当他们给我们打招呼的时候调用。 所以，我们更新了我们的contract类，让它可以保存别人的招呼。 1234567891011121314151617181920212223&#x2F;&#x2F; SPDX-License-Identifier: UNLICENSEDpragma so">
+<meta property="og:type" content="article">
+<meta property="og:title" content="智能合约项目从0到1：成功部署属于自己的智能合约（三）">
+<meta property="og:url" content="http://example.com/2022/07/02/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6%EF%BC%883%EF%BC%89/index.html">
+<meta property="og:site_name" content="卢文娟">
+<meta property="og:description" content="第一步：修改智能合约现在我们写一下更复杂的智能合约，比如允许别人给我们打个招呼，并保存别人给我们打的招呼。 首先，我们需要一个方法，当他们给我们打招呼的时候调用。 所以，我们更新了我们的contract类，让它可以保存别人的招呼。 1234567891011121314151617181920212223&#x2F;&#x2F; SPDX-License-Identifier: UNLICENSEDpragma so">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://luwenjuan.luyuedan.com/mweb/16531148661918.png">
+<meta property="og:image" content="http://luwenjuan.luyuedan.com/mweb/16531156871153.png">
+<meta property="og:image" content="http://luwenjuan.luyuedan.com/mweb/16531246057041.png">
+<meta property="og:image" content="http://luwenjuan.luyuedan.com/mweb/16531253214365.png">
+<meta property="og:image" content="http://luwenjuan.luyuedan.com/mweb/16531256609593.png">
+<meta property="og:image" content="http://luwenjuan.luyuedan.com/mweb/16531258246573.png">
+<meta property="article:published_time" content="2022-07-02T07:21:41.000Z">
+<meta property="article:modified_time" content="2022-08-25T10:02:40.017Z">
+<meta property="article:author" content="卢文娟">
+<meta property="article:tag" content="元宇宙, 智能合约">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://luwenjuan.luyuedan.com/mweb/16531148661918.png">
+
+
+<link rel="canonical" href="http://example.com/2022/07/02/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6%EF%BC%883%EF%BC%89/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2022/07/02/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6%EF%BC%883%EF%BC%89/","path":"2022/07/02/智能合约/智能合约（3）/","title":"智能合约项目从0到1：成功部署属于自己的智能合约（三）"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>智能合约项目从0到1：成功部署属于自己的智能合约（三） | 卢文娟</title>
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">卢文娟</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">元宇宙，区块链，币圈知识分享，关注我公众号：元宇宙探索之旅</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-每日任务"><a href="/dailytask/" rel="section"><i class="fa fa-calendar fa-fw"></i>每日任务</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%B8%80%E6%AD%A5%EF%BC%9A%E4%BF%AE%E6%94%B9%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6"><span class="nav-number">1.</span> <span class="nav-text">第一步：修改智能合约</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E6%AD%A5%EF%BC%9A%E4%BF%AE%E6%94%B9%E8%B0%83%E7%94%A8%E5%87%BD%E6%95%B0"><span class="nav-number">2.</span> <span class="nav-text">第二步：修改调用函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%B8%89%E6%AD%A5%EF%BC%9A%E8%BF%90%E8%A1%8C%E8%AF%95%E8%AF%95%E7%9C%8B"><span class="nav-number">3.</span> <span class="nav-text">第三步：运行试试看</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E5%9B%9B%E6%AD%A5%EF%BC%9A%E4%BD%BF%E7%94%A8%E5%85%B6%E4%BB%96%E7%94%A8%E6%88%B7%E6%B5%8B%E8%AF%95"><span class="nav-number">4.</span> <span class="nav-text">第四步：使用其他用户测试</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%BA%94%E6%AD%A5%EF%BC%9A%E5%81%9A%E4%B8%80%E4%BA%9B%E6%9B%B4%E6%9C%89%E6%84%8F%E6%80%9D%E7%9A%84%E6%94%B9%E5%8A%A8"><span class="nav-number">5.</span> <span class="nav-text">第五步：做一些更有意思的改动</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E5%85%AD%E6%AD%A5%EF%BC%9A%E9%83%A8%E7%BD%B2%E6%8C%81%E4%B9%85%E8%BF%90%E8%A1%8C%E7%9A%84%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6"><span class="nav-number">6.</span> <span class="nav-text">第六步：部署持久运行的智能合约</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="卢文娟"
+      src="/images/luwenjuan.jpeg">
+  <p class="site-author-name" itemprop="name">卢文娟</p>
+  <div class="site-description" itemprop="description">微信: 13246411679</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">91</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-name">分类</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">27</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/07/02/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6%EF%BC%883%EF%BC%89/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/luwenjuan.jpeg">
+      <meta itemprop="name" content="卢文娟">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="卢文娟">
+      <meta itemprop="description" content="微信: 13246411679">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="智能合约项目从0到1：成功部署属于自己的智能合约（三） | 卢文娟">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          智能合约项目从0到1：成功部署属于自己的智能合约（三）
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-07-02 15:21:41" itemprop="dateCreated datePublished" datetime="2022-07-02T15:21:41+08:00">2022-07-02</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-08-25 18:02:40" itemprop="dateModified" datetime="2022-08-25T18:02:40+08:00">2022-08-25</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6/" itemprop="url" rel="index"><span itemprop="name">智能合约</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Changyan：</span>
+    
+    <a title="智能合约项目从0到1：成功部署属于自己的智能合约（三）" href="/2022/07/02/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6%EF%BC%883%EF%BC%89/#SOHUCS" itemprop="discussionUrl">
+      <span id="sourceId::95e0a3c91b6ffea45140a55f5184a3f2" class="cy_cmt_count" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h2 id="第一步：修改智能合约"><a href="#第一步：修改智能合约" class="headerlink" title="第一步：修改智能合约"></a>第一步：修改智能合约</h2><p>现在我们写一下更复杂的智能合约，比如允许别人给我们打个招呼，并保存别人给我们打的招呼。</p>
+<p>首先，我们需要一个方法，当他们给我们打招呼的时候调用。</p>
+<p>所以，我们更新了我们的contract类，让它可以保存别人的招呼。</p>
+<figure class="highlight arcade"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// SPDX-License-Identifier: UNLICENSED</span></span><br><span class="line"></span><br><span class="line">pragma solidity ^<span class="number">0.8</span><span class="number">.0</span>;</span><br><span class="line"></span><br><span class="line">import <span class="string">&quot;hardhat/console.sol&quot;</span>;</span><br><span class="line"></span><br><span class="line">contract WavePortal &#123;</span><br><span class="line">    uint256 totalWaves;</span><br><span class="line"></span><br><span class="line">    constructor() &#123;</span><br><span class="line">        <span class="built_in">console</span>.<span class="built_in">log</span>(<span class="string">&quot;Yo yo, I am a contract and I am smart&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">function</span> <span class="title function_">wave</span>(<span class="params"></span>) <span class="title function_">public</span> &#123;</span><br><span class="line">        totalWaves += <span class="number">1</span>;</span><br><span class="line">        <span class="built_in">console</span>.<span class="built_in">log</span>(<span class="string">&quot;%s has waved!&quot;</span>, msg.sender);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">function</span> <span class="title function_">getTotalWaves</span>(<span class="params"></span>) <span class="title function_">public</span> <span class="title function_">view</span> <span class="title function_">returns</span> (<span class="params">uint256</span>) &#123;</span><br><span class="line">        <span class="built_in">console</span>.<span class="built_in">log</span>(<span class="string">&quot;We have %d total waves!&quot;</span>, totalWaves);</span><br><span class="line">        <span class="keyword">return</span> totalWaves;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>我们增加了一个变量totalWaves来保存打招呼的数量，这个变量初始值是0，而且它会永久保存。</p>
+<p>我们还可以看到一个变量msg.sender，这个是调用这个方法的人的钱包地址，这个就可以做身份鉴定，因为我们知道调用这个方法具体的人。</p>
+<p>所以说，想要在一个智能合约系统行动，哪怕做任何小的动作，都必须拥有一个钱包，而且在调用之前连接钱包，真正实现智能合约记录每一个人的行为。</p>
+<p>因为有这样的功能，我们甚至可以写一些特殊合约，只有特定的某些钱包地址可以访问。</p>
+<h2 id="第二步：修改调用函数"><a href="#第二步：修改调用函数" class="headerlink" title="第二步：修改调用函数"></a>第二步：修改调用函数</h2><p>当我们把智能合约部署到区块链以后，我们可以在区块链访问智能合约里的public函数。</p>
+<p>这里我们需要修改一下run.js，来访问智能合约的函数。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="title function_">main</span> = <span class="keyword">async</span> (<span class="params"></span>) =&gt; &#123;</span><br><span class="line">  <span class="keyword">const</span> [owner, randomPerson] = <span class="keyword">await</span> hre.<span class="property">ethers</span>.<span class="title function_">getSigners</span>();</span><br><span class="line">  <span class="keyword">const</span> waveContractFactory = <span class="keyword">await</span> hre.<span class="property">ethers</span>.<span class="title function_">getContractFactory</span>(<span class="string">&quot;WavePortal&quot;</span>);</span><br><span class="line">  <span class="keyword">const</span> waveContract = <span class="keyword">await</span> waveContractFactory.<span class="title function_">deploy</span>();</span><br><span class="line">  <span class="keyword">await</span> waveContract.<span class="title function_">deployed</span>();</span><br><span class="line"></span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;Contract deployed to:&quot;</span>, waveContract.<span class="property">address</span>);</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;Contract deployed by:&quot;</span>, owner.<span class="property">address</span>);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">let</span> waveCount;</span><br><span class="line">  waveCount = <span class="keyword">await</span> waveContract.<span class="title function_">getTotalWaves</span>();</span><br><span class="line"></span><br><span class="line">  <span class="keyword">let</span> waveTxn = <span class="keyword">await</span> waveContract.<span class="title function_">wave</span>();</span><br><span class="line">  <span class="keyword">await</span> waveTxn.<span class="title function_">wait</span>();</span><br><span class="line"></span><br><span class="line">  waveCount = <span class="keyword">await</span> waveContract.<span class="title function_">getTotalWaves</span>();</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="title function_">runMain</span> = <span class="keyword">async</span> (<span class="params"></span>) =&gt; &#123;</span><br><span class="line">  <span class="keyword">try</span> &#123;</span><br><span class="line">    <span class="keyword">await</span> <span class="title function_">main</span>();</span><br><span class="line">    process.<span class="title function_">exit</span>(<span class="number">0</span>);</span><br><span class="line">  &#125; <span class="keyword">catch</span> (error) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(error);</span><br><span class="line">    process.<span class="title function_">exit</span>(<span class="number">1</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="title function_">runMain</span>();</span><br></pre></td></tr></table></figure>
+
+<p>这里我们解释一下：</p>
+<blockquote>
+<p>const [owner, randomPerson] &#x3D; await hre.ethers.getSigners();</p>
+</blockquote>
+<p>想要部署合约到区块链，我们需要钱包地址，hardhat会帮我们生成一些测试地址。</p>
+<p>这里我们随机生成一些合约的钱包地址，还有用户的钱包地址。</p>
+<blockquote>
+<p>console.log(“Contract deployed by:”, owner.address);</p>
+</blockquote>
+<p>这里打印了我们的合约部署的地址。</p>
+<p>这里说明一下区块链和智能合约的关系，你可以想象成为云端服务器，但他们不属于某个人，他们由世界各地的挖矿计算机运行，这些人成为挖矿者。</p>
+<p>他们帮我们运行代码，然后得到回报，而具体是由谁运行，那就是通过区块链的底层运行机制来选择了，你可以百度了解一下。</p>
+<p>所以这些我们合约部署的地址，也就是帮我们运行代码的地址了。</p>
+<blockquote>
+<p>let waveCount;<br>waveCount &#x3D; await waveContract.getTotalWaves();</p>
+<p>let waveTxn &#x3D; await waveContract.wave();<br>await waveTxn.wait();</p>
+<p>waveCount &#x3D; await waveContract.getTotalWaves();</p>
+</blockquote>
+<p>这几句代码调用函数，首先我们获取所有的招呼数量，其次我打个招呼，然后我再获取一下招呼数量。</p>
+<h2 id="第三步：运行试试看"><a href="#第三步：运行试试看" class="headerlink" title="第三步：运行试试看"></a>第三步：运行试试看</h2><p>再次运行代码看看效果：</p>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npx hardhat <span class="built_in">run</span> scripts/<span class="built_in">run</span>.js</span><br></pre></td></tr></table></figure>
+
+<p><img src="http://luwenjuan.luyuedan.com/mweb/16531148661918.png"></p>
+<p>你可以看到，部署智能合约的地址，和打招呼的地址是一样的，也就是，我自己在给自己打招呼。</p>
+<h2 id="第四步：使用其他用户测试"><a href="#第四步：使用其他用户测试" class="headerlink" title="第四步：使用其他用户测试"></a>第四步：使用其他用户测试</h2><p>我们继续修改run.js，来让其他用户给自己打招呼。</p>
+<p>其他地方不用修改，我们增加了三行：</p>
+<figure class="highlight abnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">waveTxn</span> <span class="operator">=</span> await waveContract.connect(randomPerson).wave()<span class="comment">;</span></span><br><span class="line">await waveTxn.wait()<span class="comment">;</span></span><br><span class="line"></span><br><span class="line"><span class="attribute">waveCount</span> <span class="operator">=</span> await waveContract.getTotalWaves()<span class="comment">;</span></span><br></pre></td></tr></table></figure>
+
+<p>我们修改的部分，其实就是在打招呼前，连接一下用户randomPerson的钱包地址。</p>
+<p>再运行一下：</p>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npx hardhat <span class="built_in">run</span> scripts/<span class="built_in">run</span>.js</span><br></pre></td></tr></table></figure>
+
+<p><img src="http://luwenjuan.luyuedan.com/mweb/16531156871153.png"></p>
+<p>我们可以看到，一共有两个打了招呼，一个是自己，还有一个是随机生成的用户。</p>
+<h2 id="第五步：做一些更有意思的改动"><a href="#第五步：做一些更有意思的改动" class="headerlink" title="第五步：做一些更有意思的改动"></a>第五步：做一些更有意思的改动</h2><p>至此，其实智能合约的大概框架，都已经知道了，现在你可以考虑你想要做一个什么样的功能，并修改智能合约的内容。</p>
+<p>这里我想要统计不同用户打招呼的次数，你要怎么修改代码呢，欢迎讨论。</p>
+<p><img src="http://luwenjuan.luyuedan.com/mweb/16531246057041.png"></p>
+<h2 id="第六步：部署持久运行的智能合约"><a href="#第六步：部署持久运行的智能合约" class="headerlink" title="第六步：部署持久运行的智能合约"></a>第六步：部署持久运行的智能合约</h2><p>前面每次运行，都是部署后，运行完成就退出了，这里我们部署一个稳定运行的智能合约，我们随时可以和它交互。</p>
+<p>因为智能合约是运行在区块链上的，那么现在，我们在本地部署一个区块链网络，我们新开一个终端，运行（这个终端运行后不能关，所以我们重新开一个）：</p>
+<figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npx hardhat <span class="keyword">node</span><span class="title"></span></span><br></pre></td></tr></table></figure>
+<p><img src="http://luwenjuan.luyuedan.com/mweb/16531253214365.png"></p>
+<p>我们已经在本地部署了区块链，但是目前区块链是空的，还没有任何节点，所以现在我们生成一个新的节点，并让我们的智能合约在上面运行。</p>
+<p>在scripts文件夹，我们创建一个文件deploy.js，这是代码：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="title function_">main</span> = <span class="keyword">async</span> (<span class="params"></span>) =&gt; &#123;</span><br><span class="line">  <span class="keyword">const</span> [deployer] = <span class="keyword">await</span> hre.<span class="property">ethers</span>.<span class="title function_">getSigners</span>();</span><br><span class="line">  <span class="keyword">const</span> accountBalance = <span class="keyword">await</span> deployer.<span class="title function_">getBalance</span>();</span><br><span class="line"></span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;Deploying contracts with account: &quot;</span>, deployer.<span class="property">address</span>);</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;Account balance: &quot;</span>, accountBalance.<span class="title function_">toString</span>());</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> waveContractFactory = <span class="keyword">await</span> hre.<span class="property">ethers</span>.<span class="title function_">getContractFactory</span>(<span class="string">&quot;WavePortal&quot;</span>);</span><br><span class="line">  <span class="keyword">const</span> waveContract = <span class="keyword">await</span> waveContractFactory.<span class="title function_">deploy</span>();</span><br><span class="line">  <span class="keyword">await</span> waveContract.<span class="title function_">deployed</span>();</span><br><span class="line"></span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;WavePortal address: &quot;</span>, waveContract.<span class="property">address</span>);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="title function_">runMain</span> = <span class="keyword">async</span> (<span class="params"></span>) =&gt; &#123;</span><br><span class="line">  <span class="keyword">try</span> &#123;</span><br><span class="line">    <span class="keyword">await</span> <span class="title function_">main</span>();</span><br><span class="line">    process.<span class="title function_">exit</span>(<span class="number">0</span>);</span><br><span class="line">  &#125; <span class="keyword">catch</span> (error) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(error);</span><br><span class="line">    process.<span class="title function_">exit</span>(<span class="number">1</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="title function_">runMain</span>();</span><br></pre></td></tr></table></figure>
+
+<p>好的，回到原来的终端，我们运行命令：</p>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npx hardhat <span class="built_in">run</span> scripts/deploy.js <span class="comment">--network localhost</span></span><br></pre></td></tr></table></figure>
+<p>可以看到这样的结果：<br><img src="http://luwenjuan.luyuedan.com/mweb/16531256609593.png"></p>
+<p>我们部署了智能合约，也在区块链有了地址，在我们本地区块链网络上，我们也能看到相应的信息：</p>
+<p><img src="http://luwenjuan.luyuedan.com/mweb/16531258246573.png"></p>
+<p>可以看到Block #1，是指这是区块链的第一个节点。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="reward-container">
+  <div></div>
+  <button>
+    赞赏
+  </button>
+  <div class="post-reward">
+      <div>
+        <img src="/images/weichat.jpeg" alt="卢文娟 微信">
+        <span>微信</span>
+      </div>
+      <div>
+        <img src="/images/alipay.jpeg" alt="卢文娟 支付宝">
+        <span>支付宝</span>
+      </div>
+
+  </div>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/%E5%85%83%E5%AE%87%E5%AE%99-%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6/" rel="tag"># 元宇宙, 智能合约</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2022/07/02/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6%EF%BC%884%EF%BC%89/" rel="prev" title="智能合约项目从0到1：部署智能合约到测试链（四）">
+                  <i class="fa fa-chevron-left"></i> 智能合约项目从0到1：部署智能合约到测试链（四）
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2022/07/02/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6%EF%BC%882%EF%BC%89/" rel="next" title="智能合约项目从0到1：成功运行第一个智能合约（二）">
+                  智能合约项目从0到1：成功运行第一个智能合约（二） <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments" id="SOHUCS" sid="95e0a3c91b6ffea45140a55f5184a3f2"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">卢文娟</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/next-theme-pjax/0.5.0/pjax.min.js" integrity="sha256-3NkoLDrmHLTYj7csHIZSr0MHAFTXth7Ua/DDt4MRUAg=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script><script src="/js/pjax.js"></script>
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.0/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+
+
+
+
+<script class="next-config" data-name="changyan" type="application/json">{"enable":true,"appid":"cywbdqFL8","appkey":"1e0802ef26195d974f4576578a580da3"}</script>
+<script src="/js/third-party/comments/changyan.js"></script>
+
+</body>
+</html>

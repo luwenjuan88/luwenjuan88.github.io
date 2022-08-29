@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.2.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha256-DfWjNxDkM94fVBWx1H5BMMp0Zq7luBlV8QRcSES7s+0=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.12.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="购买云服务器阿里云连接：https:&#x2F;&#x2F;www.aliyun.com&#x2F;product&#x2F;ecs?spm&#x3D;5176.21213303.744563.3.358f53c9Kue3ba&amp;scm&#x3D;20140722.S_card@@产品@@163972._.ID_card@@产品@@163972-RL_云服务器-OR_ser-V_2-P0_0  申请一个试用服务器。 然后它就自动跳转到云服务器面板了。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java：spring boot服务部署到阿里云">
+<meta property="og:url" content="http://example.com/2020/06/02/%E5%90%8E%E7%AB%AF/spring%20boot%E6%9C%8D%E5%8A%A1%E9%83%A8%E7%BD%B2%E5%88%B0%E9%98%BF%E9%87%8C%E4%BA%91/index.html">
+<meta property="og:site_name" content="卢文娟">
+<meta property="og:description" content="购买云服务器阿里云连接：https:&#x2F;&#x2F;www.aliyun.com&#x2F;product&#x2F;ecs?spm&#x3D;5176.21213303.744563.3.358f53c9Kue3ba&amp;scm&#x3D;20140722.S_card@@产品@@163972._.ID_card@@产品@@163972-RL_云服务器-OR_ser-V_2-P0_0  申请一个试用服务器。 然后它就自动跳转到云服务器面板了。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://luwenjuan.luyuedan.com/mweb/f374c6b5c3d44b0cbefa345da4bb842c.png">
+<meta property="og:image" content="http://luwenjuan.luyuedan.com/mweb/16559573775497.png">
+<meta property="og:image" content="http://example.com/media/16614251082341.png">
+<meta property="og:image" content="http://luwenjuan.luyuedan.com/mweb/16559586297785.png">
+<meta property="og:image" content="http://luwenjuan.luyuedan.com/mweb/16559602867326.png">
+<meta property="og:image" content="http://luwenjuan.luyuedan.com/mweb/16559602365805.png">
+<meta property="og:image" content="http://luwenjuan.luyuedan.com/mweb/16559603261331.png">
+<meta property="og:image" content="http://luwenjuan.luyuedan.com/mweb/16559656530144.png">
+<meta property="og:image" content="http://luwenjuan.luyuedan.com/mweb/16559660421739.png">
+<meta property="og:image" content="http://luwenjuan.luyuedan.com/mweb/16559679367569.png">
+<meta property="og:image" content="http://luwenjuan.luyuedan.com/mweb/16559707559441.png">
+<meta property="og:image" content="http://luwenjuan.luyuedan.com/mweb/16559709465925.png">
+<meta property="og:image" content="http://luwenjuan.luyuedan.com/mweb/16559710409795.png">
+<meta property="og:image" content="http://luwenjuan.luyuedan.com/mweb/16559712973243.png">
+<meta property="og:image" content="http://luwenjuan.luyuedan.com/mweb/16559754811298.png">
+<meta property="og:image" content="http://luwenjuan.luyuedan.com/mweb/16559895695407.png">
+<meta property="og:image" content="http://luwenjuan.luyuedan.com/mweb/16559896157840.png">
+<meta property="og:image" content="http://luwenjuan.luyuedan.com/mweb/16559779640902.png">
+<meta property="og:image" content="http://luwenjuan.luyuedan.com/mweb/16559900275433.png">
+<meta property="og:image" content="http://luwenjuan.luyuedan.com/mweb/16559908058995.png">
+<meta property="og:image" content="http://luwenjuan.luyuedan.com/mweb/16559910524933.png">
+<meta property="og:image" content="http://luwenjuan.luyuedan.com/mweb/16559912577313.png">
+<meta property="og:image" content="http://luwenjuan.luyuedan.com/mweb/16559914409051.png">
+<meta property="og:image" content="http://luwenjuan.luyuedan.com/mweb/16559917327167.png">
+<meta property="og:image" content="http://luwenjuan.luyuedan.com/mweb/16559925317372.png">
+<meta property="og:image" content="http://luwenjuan.luyuedan.com/mweb/16559931947196.png">
+<meta property="og:image" content="http://luwenjuan.luyuedan.com/mweb/16559933958958.png">
+<meta property="og:image" content="http://luwenjuan.luyuedan.com/mweb/16560510815469.png">
+<meta property="og:image" content="http://luwenjuan.luyuedan.com/mweb/16560511950889.png">
+<meta property="og:image" content="http://luwenjuan.luyuedan.com/mweb/16560512268983.png">
+<meta property="og:image" content="http://luwenjuan.luyuedan.com/mweb/16560513545723.png">
+<meta property="og:image" content="http://luwenjuan.luyuedan.com/mweb/16560513914146.png">
+<meta property="og:image" content="http://example.com/media/16614251830414.png">
+<meta property="article:published_time" content="2020-06-02T07:21:41.000Z">
+<meta property="article:modified_time" content="2022-08-25T11:02:17.308Z">
+<meta property="article:author" content="卢文娟">
+<meta property="article:tag" content="Java">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://luwenjuan.luyuedan.com/mweb/f374c6b5c3d44b0cbefa345da4bb842c.png">
+
+
+<link rel="canonical" href="http://example.com/2020/06/02/%E5%90%8E%E7%AB%AF/spring%20boot%E6%9C%8D%E5%8A%A1%E9%83%A8%E7%BD%B2%E5%88%B0%E9%98%BF%E9%87%8C%E4%BA%91/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2020/06/02/%E5%90%8E%E7%AB%AF/spring%20boot%E6%9C%8D%E5%8A%A1%E9%83%A8%E7%BD%B2%E5%88%B0%E9%98%BF%E9%87%8C%E4%BA%91/","path":"2020/06/02/后端/spring boot服务部署到阿里云/","title":"Java：spring boot服务部署到阿里云"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Java：spring boot服务部署到阿里云 | 卢文娟</title>
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">卢文娟</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">元宇宙，区块链，币圈知识分享，关注我公众号：元宇宙探索之旅</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-每日任务"><a href="/dailytask/" rel="section"><i class="fa fa-calendar fa-fw"></i>每日任务</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%B4%AD%E4%B9%B0%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8"><span class="nav-number">1.</span> <span class="nav-text">购买云服务器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE%E7%9B%B8%E5%85%B3%E4%BF%A1%E6%81%AF"><span class="nav-number">2.</span> <span class="nav-text">配置相关信息</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5"><span class="nav-number">3.</span> <span class="nav-text">远程连接</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ssh%E8%BF%9E%E6%8E%A5%E9%98%BF%E9%87%8C%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8"><span class="nav-number">4.</span> <span class="nav-text">ssh连接阿里云服务器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE%E9%98%BF%E9%87%8C%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%BF%90%E8%A1%8C%E7%8E%AF%E5%A2%83"><span class="nav-number">5.</span> <span class="nav-text">配置阿里云服务器运行环境</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E6%93%8D%E4%BD%9C"><span class="nav-number">6.</span> <span class="nav-text">数据库操作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%AC%E5%9C%B0navicat%E8%BF%9E%E6%8E%A5mysql%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="nav-number">7.</span> <span class="nav-text">本地navicat连接mysql数据库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#spring-boot%E9%A1%B9%E7%9B%AE%E9%85%8D%E7%BD%AE%E5%92%8C%E6%89%93%E5%8C%85"><span class="nav-number">8.</span> <span class="nav-text">spring boot项目配置和打包</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%BE%E7%BD%AE%E5%9F%9F%E5%90%8D"><span class="nav-number">9.</span> <span class="nav-text">设置域名</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%94%B3%E8%AF%B7ssl%E8%AF%81%E4%B9%A6"><span class="nav-number">10.</span> <span class="nav-text">申请ssl证书</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="卢文娟"
+      src="/images/luwenjuan.jpeg">
+  <p class="site-author-name" itemprop="name">卢文娟</p>
+  <div class="site-description" itemprop="description">微信: 13246411679</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">91</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-name">分类</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">27</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/06/02/%E5%90%8E%E7%AB%AF/spring%20boot%E6%9C%8D%E5%8A%A1%E9%83%A8%E7%BD%B2%E5%88%B0%E9%98%BF%E9%87%8C%E4%BA%91/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/luwenjuan.jpeg">
+      <meta itemprop="name" content="卢文娟">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="卢文娟">
+      <meta itemprop="description" content="微信: 13246411679">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Java：spring boot服务部署到阿里云 | 卢文娟">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Java：spring boot服务部署到阿里云
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-06-02 15:21:41" itemprop="dateCreated datePublished" datetime="2020-06-02T15:21:41+08:00">2020-06-02</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-08-25 19:02:17" itemprop="dateModified" datetime="2022-08-25T19:02:17+08:00">2022-08-25</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Changyan：</span>
+    
+    <a title="Java：spring boot服务部署到阿里云" href="/2020/06/02/%E5%90%8E%E7%AB%AF/spring%20boot%E6%9C%8D%E5%8A%A1%E9%83%A8%E7%BD%B2%E5%88%B0%E9%98%BF%E9%87%8C%E4%BA%91/#SOHUCS" itemprop="discussionUrl">
+      <span id="sourceId::8ca39a1cdc5e7aeadfc9d129dbacd492" class="cy_cmt_count" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h2 id="购买云服务器"><a href="#购买云服务器" class="headerlink" title="购买云服务器"></a>购买云服务器</h2><p>阿里云连接：<a target="_blank" rel="noopener" href="https://www.aliyun.com/product/ecs?spm=5176.21213303.744563.3.358f53c9Kue3ba&amp;scm=20140722.S_card@@%E4%BA%A7%E5%93%81@@163972._.ID_card@@%E4%BA%A7%E5%93%81@@163972-RL_%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8-OR_ser-V_2-P0_0">https://www.aliyun.com/product/ecs?spm=5176.21213303.744563.3.358f53c9Kue3ba&amp;scm=20140722.S_card@@产品@@163972._.ID_card@@产品@@163972-RL_云服务器-OR_ser-V_2-P0_0</a></p>
+<p><img src="http://luwenjuan.luyuedan.com/mweb/f374c6b5c3d44b0cbefa345da4bb842c.png" alt="f374c6b5c3d44b0cbefa345da4bb842c"></p>
+<p>申请一个试用服务器。</p>
+<p>然后它就自动跳转到云服务器面板了。</p>
+<p><img src="http://luwenjuan.luyuedan.com/mweb/16559573775497.png"></p>
+<p>进入后可以查看详细信息：</p>
+<p><img src="/media/16614251082341.png"></p>
+<h2 id="配置相关信息"><a href="#配置相关信息" class="headerlink" title="配置相关信息"></a>配置相关信息</h2><p><strong>重置实例密码</strong></p>
+<p>右上角可以看到重置实例密码的按钮，点进去重置密码。</p>
+<p><strong>配置安全组规则</strong></p>
+<p>右上角可以看到配置安全组规则，点进去配置 -&gt; 配置规则 -&gt;手动添加<br><img src="http://luwenjuan.luyuedan.com/mweb/16559586297785.png"></p>
+<h2 id="远程连接"><a href="#远程连接" class="headerlink" title="远程连接"></a>远程连接</h2><p>回到控制台，点击远程连接 -&gt; 立即登陆，选择第一个：</p>
+<p><img src="http://luwenjuan.luyuedan.com/mweb/16559602867326.png"></p>
+<p>出了点问题，让我添加白名单，我就添加了，完成了就好了。</p>
+<p><img src="http://luwenjuan.luyuedan.com/mweb/16559602365805.png"></p>
+<p><img src="http://luwenjuan.luyuedan.com/mweb/16559603261331.png"></p>
+<h2 id="ssh连接阿里云服务器"><a href="#ssh连接阿里云服务器" class="headerlink" title="ssh连接阿里云服务器"></a>ssh连接阿里云服务器</h2><p>直接在终端上通过ssh命令连接，会要求你输入密码</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">ssh</span> root@<span class="number">121.196.215.117</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="http://luwenjuan.luyuedan.com/mweb/16559656530144.png"></p>
+<h2 id="配置阿里云服务器运行环境"><a href="#配置阿里云服务器运行环境" class="headerlink" title="配置阿里云服务器运行环境"></a>配置阿里云服务器运行环境</h2><p><strong>下载jdk</strong></p>
+<p>下载jdk的linux版本：<a target="_blank" rel="noopener" href="https://www.oracle.com/java/technologies/downloads/#java8-linux">https://www.oracle.com/java/technologies/downloads/#java8-linux</a><br><img src="http://luwenjuan.luyuedan.com/mweb/16559660421739.png"></p>
+<p><strong>下载mysql</strong></p>
+<p>下载mysql的linux版本：<a target="_blank" rel="noopener" href="https://downloads.mysql.com/archives/community/">https://downloads.mysql.com/archives/community/</a><br><img src="http://luwenjuan.luyuedan.com/mweb/16559679367569.png"></p>
+<p><strong>安装包上传到阿里云服务器</strong></p>
+<p>打开终端，shell-&gt;新建远程连接：</p>
+<p><img src="http://luwenjuan.luyuedan.com/mweb/16559707559441.png"></p>
+<p>选择安全文件传输，输入公网ip和用户名root密码，然后连接：</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">sftp</span> root@<span class="number">121.196.215.117</span></span><br></pre></td></tr></table></figure>
+<p><img src="http://luwenjuan.luyuedan.com/mweb/16559709465925.png"></p>
+<p>会提醒你输入密码，输入完成后，就可以了。</p>
+<p><img src="http://luwenjuan.luyuedan.com/mweb/16559710409795.png"></p>
+<p>使用命令上传文件：</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">put <span class="regexp">/Users/</span>luwenjuan<span class="regexp">/Downloads/</span>jdk-<span class="number">8</span>u333-linux-x64.tar <span class="regexp">/usr/</span>local<span class="regexp">/jdk8/</span></span><br></pre></td></tr></table></figure>
+<p><img src="http://luwenjuan.luyuedan.com/mweb/16559712973243.png"></p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">put <span class="regexp">/Users/</span>luwenjuan<span class="regexp">/Downloads/my</span>sql-<span class="number">8.0</span>.<span class="number">28</span>-linux-glibc2.<span class="number">12</span>-x86_64.tar.xz <span class="regexp">/usr/</span>local<span class="regexp">/mysql8/</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>安装jdk</strong></p>
+<p>ssh连接阿里云</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">ssh</span> root@<span class="number">121.196.215.117</span></span><br></pre></td></tr></table></figure>
+
+<p>进入jdk目录，解压：</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">tar</span> -xvf jdk-<span class="number">8</span>u333-linux-x64.tar</span><br></pre></td></tr></table></figure>
+<p><img src="http://luwenjuan.luyuedan.com/mweb/16559754811298.png"></p>
+<p>配置环境变量:</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi <span class="regexp">/etc/</span>profile</span><br></pre></td></tr></table></figure>
+
+<p>添加环境变量：</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> <span class="attribute">JAVA_HOME</span>=/usr/local/jdk8/jdk1.8.0_331</span><br><span class="line"><span class="built_in">export</span> <span class="attribute">CLASSPATH</span>=<span class="variable">$JAVA_HOME</span>/lib/</span><br><span class="line"><span class="built_in">export</span> <span class="attribute">PATH</span>=<span class="variable">$PATH</span>:$JAVA_HOME/bin</span><br><span class="line"><span class="built_in">export</span> PATHJAVA_HOME CLASSPATH</span><br></pre></td></tr></table></figure>
+
+<p>环境变量生效：</p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">source</span> <span class="keyword">profile</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>安装mysql</strong></p>
+<p>进入mysql目录，解压：</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">tar</span> -xvf mysql-<span class="number">8</span>.<span class="number">0</span>.<span class="number">28</span>-linux-glibc2.<span class="number">12</span>-x86_64.tar.xz</span><br></pre></td></tr></table></figure>
+
+<p>名字太长，改个名字：</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">mv</span> mysql-<span class="number">8</span>.<span class="number">0</span>.<span class="number">28</span>-linux-glibc2.<span class="number">12</span>-x86_64 mysql8</span><br></pre></td></tr></table></figure>
+
+<p><img src="http://luwenjuan.luyuedan.com/mweb/16559895695407.png"></p>
+<p>在解压后的路径下创建目录：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> mysql8</span><br><span class="line"><span class="built_in">mkdir</span> data</span><br><span class="line"><span class="built_in">mkdir</span> tmp</span><br></pre></td></tr></table></figure>
+<p><img src="http://luwenjuan.luyuedan.com/mweb/16559896157840.png"></p>
+<p>添加用户组：mysql、用户：mysql，并将其添加到mysql用户组中</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">groupadd mysql</span><br><span class="line">useradd -g mysql mysql</span><br><span class="line">chown -R mysql.mysql <span class="regexp">/usr/</span>local<span class="regexp">/mysql8/my</span>sql8/</span><br></pre></td></tr></table></figure>
+
+<p>mysql需要libaio依赖，这里先检查一下有没有：</p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rpm -<span class="keyword">qa</span>|<span class="keyword">grep</span> libaio</span><br></pre></td></tr></table></figure>
+<p><img src="http://luwenjuan.luyuedan.com/mweb/16559779640902.png"></p>
+<p>配置my.cnf文件：</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi <span class="regexp">/etc/my</span>.cnf</span><br></pre></td></tr></table></figure>
+
+<p>粘贴以下内容：</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">[mysqld]</span><br><span class="line">basedir = <span class="regexp">/usr/</span>local<span class="regexp">/mysql8/my</span>sql8</span><br><span class="line">datadir = <span class="regexp">/usr/</span>local<span class="regexp">/mysql8/my</span>sql8/data</span><br><span class="line">port = <span class="number">3306</span></span><br><span class="line">socket = <span class="regexp">/usr/</span>local<span class="regexp">/mysql8/my</span>sql8<span class="regexp">/tmp/my</span>sql.sock</span><br><span class="line"></span><br><span class="line"><span class="comment">#必填项</span></span><br><span class="line">sql_mode=NO_ENGINE_SUBSTITUTION,STRICT_TRANS_TABLES</span><br><span class="line"></span><br><span class="line">[client]</span><br><span class="line">port=<span class="number">3306</span></span><br><span class="line">default-character-set=utf8mb4</span><br><span class="line">socket = <span class="regexp">/usr/</span>local<span class="regexp">/mysql8/my</span>sql8<span class="regexp">/tmp/my</span>sql.sock</span><br></pre></td></tr></table></figure>
+
+<p>进入bin目录，初始化</p>
+<figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">cd</span> bin</span><br><span class="line"><span class="string">./mysqld</span> <span class="params">--initialize</span> <span class="params">--user=mysql</span></span><br></pre></td></tr></table></figure>
+<p><img src="http://luwenjuan.luyuedan.com/mweb/16559900275433.png"><br>密码：KzYUspLSm6.z</p>
+<p>复制mysql.server脚本到资源目录，并赋予执行权限：</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">cd ..</span><br><span class="line">cp support-files<span class="regexp">/mysql.server /</span>etc<span class="regexp">/init.d/my</span>sql.server</span><br><span class="line">chmod +x <span class="regexp">/etc/i</span>nit.d/mysql.server</span><br><span class="line">chkconfig --add mysql.server</span><br></pre></td></tr></table></figure>
+
+<p>将 mysqld 服务加入到系统服务并检测是否生效：</p>
+<figure class="highlight ada"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chkconfig <span class="comment">--list</span></span><br></pre></td></tr></table></figure>
+
+<p>将命令添加到服务：</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ln -sf <span class="regexp">/usr/</span>local<span class="regexp">/mysql8/my</span>sql8<span class="regexp">/bin/my</span>sql <span class="regexp">/usr/</span>bin</span><br></pre></td></tr></table></figure>
+
+<p>启动mysqld：</p>
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service mysql.<span class="keyword">server</span> <span class="keyword">start</span></span><br></pre></td></tr></table></figure>
+<p>终止：service mysql.server stop</p>
+<p>查看进程：</p>
+<figure class="highlight 1c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">netstat -nltp<span class="string">|grep mysql</span></span><br></pre></td></tr></table></figure>
+<p><img src="http://luwenjuan.luyuedan.com/mweb/16559908058995.png"></p>
+<p>修改环境变量：</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi <span class="regexp">/etc/</span>profile</span><br></pre></td></tr></table></figure>
+
+<p>添加以下行：</p>
+<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#mysql环境变量</span></span><br><span class="line"><span class="title class_">PATH</span>=<span class="variable">$PATH</span><span class="symbol">:/usr/local/mysql8/mysql8/bin</span></span><br><span class="line">export <span class="title class_">PATH</span></span><br></pre></td></tr></table></figure>
+
+<p>配置生效</p>
+<figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">source</span> <span class="regexp">/etc/</span>profile</span><br></pre></td></tr></table></figure>
+
+<p>登陆mysql</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql -u root -<span class="selector-tag">p</span></span><br></pre></td></tr></table></figure>
+<p>第一次输入初始化的密码<br><img src="http://luwenjuan.luyuedan.com/mweb/16559910524933.png"></p>
+<p>好了。</p>
+<p>修改root密码：</p>
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">USER</span> <span class="string">&#x27;root&#x27;</span>@<span class="string">&#x27;localhost&#x27;</span> IDENTIFIED <span class="keyword">BY</span> <span class="string">&#x27;12345678&#x27;</span>;</span><br><span class="line">flush <span class="keyword">privileges</span>;</span><br></pre></td></tr></table></figure>
+
+<p>开启远程登录，授权root远程登录，通俗的讲就是：让阿里云服务器打开权限，好让咋们windows上Navicat能连接的上。</p>
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">use mysql;</span><br><span class="line"><span class="keyword">select</span> host,<span class="keyword">user</span>,plugin <span class="keyword">from</span> <span class="keyword">user</span>;</span><br><span class="line"><span class="keyword">update</span> <span class="keyword">user</span> <span class="keyword">set</span> host = <span class="string">&#x27;%&#x27;</span> <span class="keyword">where</span> <span class="keyword">user</span> =<span class="string">&#x27;root&#x27;</span>;</span><br><span class="line">flush <span class="keyword">privileges</span>;</span><br></pre></td></tr></table></figure>
+<p><img src="http://luwenjuan.luyuedan.com/mweb/16559912577313.png"></p>
+<p>其中plugin为caching_sha2_password 远程连接需要带上后缀allowPublicKeyRetrieval &#x3D; true，但是这种方式并不好，所以换一种方式：</p>
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">USER</span> <span class="string">&#x27;root&#x27;</span>@<span class="string">&#x27;%&#x27;</span> IDENTIFIED <span class="keyword">BY</span> <span class="string">&#x27;12345678&#x27;</span> <span class="keyword">PASSWORD</span> EXPIRE NEVER; #更改加密方式 </span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">USER</span> <span class="string">&#x27;root&#x27;</span>@<span class="string">&#x27;%&#x27;</span> IDENTIFIED <span class="keyword">WITH</span> mysql_native_password <span class="keyword">BY</span> <span class="string">&#x27;12345678&#x27;</span>; #更新用户密码 </span><br><span class="line">FLUSH <span class="keyword">PRIVILEGES</span>; #刷新权限</span><br></pre></td></tr></table></figure>
+
+<h2 id="数据库操作"><a href="#数据库操作" class="headerlink" title="数据库操作"></a>数据库操作</h2><p>这是一些常用操作语句：</p>
+<p>create database db_zixun default character set utf8 collate utf8_general_ci;</p>
+<p>CREATE USER ‘u_zixun‘@’%’ IDENTIFIED BY ‘12345678’;</p>
+<p>GRANT ALL ON db_zixun.* TO ‘u_zixun‘@’%’;</p>
+<p>GRANT ALL ON <em>.</em> TO ‘u_zixun‘@’%’;</p>
+<p>ALTER USER ‘u_zixun‘@’%’ IDENTIFIED BY ‘12345678’ PASSWORD EXPIRE NEVER; #更改加密方式<br>ALTER USER ‘u_zixun‘@’%’ IDENTIFIED WITH mysql_native_password BY ‘12345678’; #更新用户密码<br>FLUSH PRIVILEGES; #刷新权限</p>
+<h2 id="本地navicat连接mysql数据库"><a href="#本地navicat连接mysql数据库" class="headerlink" title="本地navicat连接mysql数据库"></a>本地navicat连接mysql数据库</h2><p>设置连接参数：<br><img src="http://luwenjuan.luyuedan.com/mweb/16559914409051.png"></p>
+<p>连接上之后，导入本地的表：<br><img src="http://luwenjuan.luyuedan.com/mweb/16559917327167.png"></p>
+<h2 id="spring-boot项目配置和打包"><a href="#spring-boot项目配置和打包" class="headerlink" title="spring boot项目配置和打包"></a>spring boot项目配置和打包</h2><p>双击package进行打包：</p>
+<p><img src="http://luwenjuan.luyuedan.com/mweb/16559925317372.png"></p>
+<p>打包的jar包在target下：<br><img src="http://luwenjuan.luyuedan.com/mweb/16559931947196.png"></p>
+<p>通过ftp连接阿里云，将jar包上传到服务器：</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sftp root@<span class="number">121.196</span>.<span class="number">215.117</span></span><br><span class="line">put <span class="regexp">/Users/</span>luwenjuan<span class="regexp">/Downloads/</span>demo-<span class="number">0.0</span>.<span class="number">1</span>-SNAPSHOT.jar <span class="regexp">/usr/</span>local<span class="regexp">/demo/</span></span><br></pre></td></tr></table></figure>
+<p><img src="http://luwenjuan.luyuedan.com/mweb/16559933958958.png"></p>
+<p>运行jar包：</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">netstat</span> -nltp|grep java</span><br><span class="line"><span class="attribute">nohup</span> java -jar  demo-<span class="number">0</span>.<span class="number">0</span>.<span class="number">1</span>-SNAPSHOT.jar  &amp;</span><br></pre></td></tr></table></figure>
+
+<p>打开浏览器，访问：<br><a target="_blank" rel="noopener" href="http://121.196.215.117:8800/demo/hello">http://121.196.215.117:8800/demo/hello</a><br><a target="_blank" rel="noopener" href="http://121.196.215.117:8800/demo/zixun/listzixun">http://121.196.215.117:8800/demo/zixun/listzixun</a><br>如果访问成功，说明我们部署好了。</p>
+<h2 id="设置域名"><a href="#设置域名" class="headerlink" title="设置域名"></a>设置域名</h2><p>通常我们访问网站，用的是域名，而不是ip，所以我们要购买域名。由于我之前有域名，就不购买了，直接使用。将域名解析到这个公网ip就可以了。</p>
+<p><img src="http://luwenjuan.luyuedan.com/mweb/16560510815469.png"></p>
+<p>域名解析完成就可以访问相应地址了：<br><a target="_blank" rel="noopener" href="http://www.luyuedan.com:8800/demo/zixun/listzixun">http://www.luyuedan.com:8800/demo/zixun/listzixun</a></p>
+<p>只是微信公众号需要的域名是https开头的，目前如果用https无法访问到我们的服务，是因为我们的服务还没有ssl证书。</p>
+<h2 id="申请ssl证书"><a href="#申请ssl证书" class="headerlink" title="申请ssl证书"></a>申请ssl证书</h2><p>在阿里云可以申请免费的ssl证书，一年申请一次，一次有20分证书：</p>
+<p><a target="_blank" rel="noopener" href="https://yundunnext.console.aliyun.com/?spm=5176.100251.help.29.42434f15wen9tO&amp;p=cas#/certExtend/free">https://yundunnext.console.aliyun.com/?spm=5176.100251.help.29.42434f15wen9tO&amp;p=cas#/certExtend/free</a></p>
+<p>按照它的步骤申请即可</p>
+<p><img src="http://luwenjuan.luyuedan.com/mweb/16560511950889.png"></p>
+<p>申请完之后，可以看到<br><img src="http://luwenjuan.luyuedan.com/mweb/16560512268983.png"></p>
+<p>现在下载tomcat证书。<br><img src="http://luwenjuan.luyuedan.com/mweb/16560513545723.png"></p>
+<p>里面会有密码txt和证书文件<br><img src="http://luwenjuan.luyuedan.com/mweb/16560513914146.png"></p>
+<p>将证书文件放入resources目录下</p>
+<p>在application.properties里面增加配置参数：</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">server<span class="selector-class">.port</span> = <span class="number">443</span></span><br><span class="line">server<span class="selector-class">.ssl</span><span class="selector-class">.key-store</span> = classpath:<span class="number">8002456</span>_www<span class="selector-class">.luyuedan</span><span class="selector-class">.com</span><span class="selector-class">.pfx</span></span><br><span class="line">server<span class="selector-class">.ssl</span><span class="selector-class">.key-store-password</span> = MRT9tsCJ</span><br><span class="line">server<span class="selector-class">.ssl</span><span class="selector-class">.keyStoreType</span> = PKCS12</span><br></pre></td></tr></table></figure>
+
+<p>这里修改了端口，需要在<strong>阿里云服务器上安全组规则开放这个端口</strong>。</p>
+<p>打包，上传服务器。</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sftp root@<span class="number">121.196</span>.<span class="number">215.117</span></span><br><span class="line">put <span class="regexp">/Users/</span>luwenjuan<span class="regexp">/Downloads/</span>demo-<span class="number">0.0</span>.<span class="number">1</span>-SNAPSHOT.jar <span class="regexp">/usr/</span>local<span class="regexp">/demo/</span></span><br></pre></td></tr></table></figure>
+
+<p>关掉之前的服务后，重新运行<br>netstat -nltp|grep java</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">nohup</span> java -jar  demo-<span class="number">0</span>.<span class="number">0</span>.<span class="number">1</span>-SNAPSHOT.jar  &amp;</span><br></pre></td></tr></table></figure>
+
+<p>终于搞定了，<a target="_blank" rel="noopener" href="https://www.luyuedan.com/demo/zixun/listzixun">https://www.luyuedan.com/demo/zixun/listzixun</a><br><img src="/media/16614251830414.png"></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="reward-container">
+  <div></div>
+  <button>
+    赞赏
+  </button>
+  <div class="post-reward">
+      <div>
+        <img src="/images/weichat.jpeg" alt="卢文娟 微信">
+        <span>微信</span>
+      </div>
+      <div>
+        <img src="/images/alipay.jpeg" alt="卢文娟 支付宝">
+        <span>支付宝</span>
+      </div>
+
+  </div>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/Java/" rel="tag"># Java</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+            </div>
+            <div class="post-nav-item">
+                <a href="/2020/06/02/%E5%90%8E%E7%AB%AF/S-%E7%AE%80%E5%8D%95%E7%9A%84Springboot%E9%A1%B9%E7%9B%AE/" rel="next" title="Java：简单的spring boot项目">
+                  Java：简单的spring boot项目 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments" id="SOHUCS" sid="8ca39a1cdc5e7aeadfc9d129dbacd492"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">卢文娟</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/next-theme-pjax/0.5.0/pjax.min.js" integrity="sha256-3NkoLDrmHLTYj7csHIZSr0MHAFTXth7Ua/DDt4MRUAg=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script><script src="/js/pjax.js"></script>
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.0/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+
+
+
+
+<script class="next-config" data-name="changyan" type="application/json">{"enable":true,"appid":"cywbdqFL8","appkey":"1e0802ef26195d974f4576578a580da3"}</script>
+<script src="/js/third-party/comments/changyan.js"></script>
+
+</body>
+</html>

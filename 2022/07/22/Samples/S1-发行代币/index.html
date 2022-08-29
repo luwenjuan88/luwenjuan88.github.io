@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.2.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha256-DfWjNxDkM94fVBWx1H5BMMp0Zq7luBlV8QRcSES7s+0=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.12.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="昨天学习了Remix的操作，今天就用Remix来写一个代币合约吧。 打开contracts文件夹，新建一个智能合约文件，4_LuChain.sol 从前面的文件直接把前两行代码复制过来： 12&#x2F;&#x2F; SPDX-License-Identifier: GPL-3.0pragma solidity &gt;&#x3D;0.7.0 &lt;0.9.0;  引入ERC20的包，ERC20是代币合约： 1import">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Solidity案例（3）：如何发行自己的代币？">
+<meta property="og:url" content="http://example.com/2022/07/22/Samples/S1-%E5%8F%91%E8%A1%8C%E4%BB%A3%E5%B8%81/index.html">
+<meta property="og:site_name" content="卢文娟">
+<meta property="og:description" content="昨天学习了Remix的操作，今天就用Remix来写一个代币合约吧。 打开contracts文件夹，新建一个智能合约文件，4_LuChain.sol 从前面的文件直接把前两行代码复制过来： 12&#x2F;&#x2F; SPDX-License-Identifier: GPL-3.0pragma solidity &gt;&#x3D;0.7.0 &lt;0.9.0;  引入ERC20的包，ERC20是代币合约： 1import">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://luwenjuan.luyuedan.com/mweb/16585545097431.png">
+<meta property="og:image" content="http://luwenjuan.luyuedan.com/mweb/16585559997030.png">
+<meta property="og:image" content="http://luwenjuan.luyuedan.com/mweb/16585562463365.png">
+<meta property="og:image" content="http://luwenjuan.luyuedan.com/mweb/16585563239251.png">
+<meta property="og:image" content="http://luwenjuan.luyuedan.com/mweb/16585567776527.png">
+<meta property="og:image" content="http://luwenjuan.luyuedan.com/mweb/%E6%88%AA%E5%B1%8F2022-07-23%20%E4%B8%8B%E5%8D%882.19.41.png">
+<meta property="og:image" content="http://luwenjuan.luyuedan.com/mweb/16585572889092.png">
+<meta property="og:image" content="http://luwenjuan.luyuedan.com/mweb/16585575891346.png">
+<meta property="og:image" content="http://luwenjuan.luyuedan.com/mweb/16585574380080.png">
+<meta property="article:published_time" content="2022-07-22T07:21:41.000Z">
+<meta property="article:modified_time" content="2022-08-19T11:42:42.809Z">
+<meta property="article:author" content="卢文娟">
+<meta property="article:tag" content="Solidity,元宇宙,区块链,智能合约">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://luwenjuan.luyuedan.com/mweb/16585545097431.png">
+
+
+<link rel="canonical" href="http://example.com/2022/07/22/Samples/S1-%E5%8F%91%E8%A1%8C%E4%BB%A3%E5%B8%81/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2022/07/22/Samples/S1-%E5%8F%91%E8%A1%8C%E4%BB%A3%E5%B8%81/","path":"2022/07/22/Samples/S1-发行代币/","title":"Solidity案例（3）：如何发行自己的代币？"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Solidity案例（3）：如何发行自己的代币？ | 卢文娟</title>
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">卢文娟</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">元宇宙，区块链，币圈知识分享，关注我公众号：元宇宙探索之旅</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-每日任务"><a href="/dailytask/" rel="section"><i class="fa fa-calendar fa-fw"></i>每日任务</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-overview-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="卢文娟"
+      src="/images/luwenjuan.jpeg">
+  <p class="site-author-name" itemprop="name">卢文娟</p>
+  <div class="site-description" itemprop="description">微信: 13246411679</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">91</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-name">分类</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">27</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/07/22/Samples/S1-%E5%8F%91%E8%A1%8C%E4%BB%A3%E5%B8%81/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/luwenjuan.jpeg">
+      <meta itemprop="name" content="卢文娟">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="卢文娟">
+      <meta itemprop="description" content="微信: 13246411679">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Solidity案例（3）：如何发行自己的代币？ | 卢文娟">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Solidity案例（3）：如何发行自己的代币？
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-07-22 15:21:41" itemprop="dateCreated datePublished" datetime="2022-07-22T15:21:41+08:00">2022-07-22</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-08-19 19:42:42" itemprop="dateModified" datetime="2022-08-19T19:42:42+08:00">2022-08-19</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Solidity%E6%A1%88%E4%BE%8B/" itemprop="url" rel="index"><span itemprop="name">Solidity案例</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Changyan：</span>
+    
+    <a title="Solidity案例（3）：如何发行自己的代币？" href="/2022/07/22/Samples/S1-%E5%8F%91%E8%A1%8C%E4%BB%A3%E5%B8%81/#SOHUCS" itemprop="discussionUrl">
+      <span id="sourceId::7f86a86cd9e2b0de8e2a75a17018aa72" class="cy_cmt_count" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>昨天学习了Remix的操作，今天就用Remix来写一个代币合约吧。</p>
+<p>打开contracts文件夹，新建一个智能合约文件，4_LuChain.sol<br><img src="http://luwenjuan.luyuedan.com/mweb/16585545097431.png"></p>
+<p>从前面的文件直接把前两行代码复制过来：</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="regexp">//</span> SPDX-License-Identifier: GPL-<span class="number">3.0</span></span><br><span class="line">pragma solidity &gt;=<span class="number">0.7</span>.<span class="number">0</span> &lt;<span class="number">0.9</span>.<span class="number">0</span>;</span><br></pre></td></tr></table></figure>
+
+<p>引入ERC20的包，ERC20是代币合约：</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">import</span> <span class="string">&quot;<span class="variable">@openzeppelin</span>/contracts/token/ERC20/ERC20.sol&quot;</span>;</span><br></pre></td></tr></table></figure>
+
+<p>这里，我们简单写一个代币合约LuChain，继承ERC20合约（代币合约都是要这样继承，否则就要自己写很多协议方面的代码，没必要）。</p>
+<p>在构造函数里，也就是在初始化的时候，链名取名LuChain，代币取名LUC，让合约创建者（本人）挖出1亿枚代币：</p>
+<figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">contract LuChain is ERC20&#123;</span><br><span class="line">    constructor<span class="literal">()</span> <span class="constructor">ERC20(<span class="string">&quot;LuChain&quot;</span>,<span class="string">&quot;LUC&quot;</span>)</span>&#123;</span><br><span class="line">        <span class="constructor">_mint(<span class="params">msg</span>.<span class="params">sender</span>, 100000000 <span class="operator">*</span> 10 <span class="operator">**</span> <span class="params">decimals</span>()</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这里的decimals先不用理会，后续会单独写一篇它的文章。我们直接编译，部署到以太坊测试网络：<br><img src="http://luwenjuan.luyuedan.com/mweb/16585559997030.png"></p>
+<p>部署完成，直接去以太坊网络看一看，这是我们刚刚部署的合约：<br><img src="http://luwenjuan.luyuedan.com/mweb/16585562463365.png"></p>
+<p>本次创建挖了100000000个LUC币到我的钱包（我自己定义的名字）：<br><img src="http://luwenjuan.luyuedan.com/mweb/16585563239251.png"></p>
+<p>我们在钱包里面把LUC代币添加进来，可以查看钱包中的资产，在小狐狸钱包 -&gt; 资产 -&gt; 导入代币，然后填写代币地址，也就是我们部署的合约地址0x9e4941ccbd9d381d2fa615c54c263835536e7a02。</p>
+<p><img src="http://luwenjuan.luyuedan.com/mweb/16585567776527.png"></p>
+<p>可以看到，钱包里面有100000000LUC代币，这个代币你可以通过钱包发送给任何人。</p>
+<p>我们可以随便找个地址，给他发点LUC感受一下，我随便在这个网站找了一个地址0x21289a62cad9b5c3fa75f2a0d22f8b3029896dc4，然后在钱包里，点击LUC -&gt; 发送，把这个地址粘贴进去，填写1888，点下一步 -&gt; 确认发送。</p>
+<p><img src="http://luwenjuan.luyuedan.com/mweb/%E6%88%AA%E5%B1%8F2022-07-23%20%E4%B8%8B%E5%8D%882.19.41.png" alt="截屏2022-07-23 下午2.19.41"></p>
+<p>完成后可以看到，钱包里面的代币变少了，因为我们已经发出去了。<br><img src="http://luwenjuan.luyuedan.com/mweb/16585572889092.png"></p>
+<p>这是我们的交易记录：<br><img src="http://luwenjuan.luyuedan.com/mweb/16585575891346.png"></p>
+<p>然后我们进入对方钱包查看，对方钱包里有21种代币，其中一个就是LUC，有1888枚代币。<br><img src="http://luwenjuan.luyuedan.com/mweb/16585574380080.png"></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="reward-container">
+  <div></div>
+  <button>
+    赞赏
+  </button>
+  <div class="post-reward">
+      <div>
+        <img src="/images/weichat.jpeg" alt="卢文娟 微信">
+        <span>微信</span>
+      </div>
+      <div>
+        <img src="/images/alipay.jpeg" alt="卢文娟 支付宝">
+        <span>支付宝</span>
+      </div>
+
+  </div>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/Solidity-%E5%85%83%E5%AE%87%E5%AE%99-%E5%8C%BA%E5%9D%97%E9%93%BE-%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6/" rel="tag"># Solidity,元宇宙,区块链,智能合约</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2022/07/22/Solidity/S8-%E4%BD%BF%E7%94%A8event%E4%BA%A7%E7%94%9F%E6%97%A5%E5%BF%97/" rel="prev" title="Solidity编程（8）：使用Event产生日志">
+                  <i class="fa fa-chevron-left"></i> Solidity编程（8）：使用Event产生日志
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2022/07/27/Solidity/S9-%E6%9E%9A%E4%B8%BE%E7%B1%BB%E5%9E%8B/" rel="next" title="Solidity编程（9）：枚举类型">
+                  Solidity编程（9）：枚举类型 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments" id="SOHUCS" sid="7f86a86cd9e2b0de8e2a75a17018aa72"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">卢文娟</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/next-theme-pjax/0.5.0/pjax.min.js" integrity="sha256-3NkoLDrmHLTYj7csHIZSr0MHAFTXth7Ua/DDt4MRUAg=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script><script src="/js/pjax.js"></script>
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.0/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+
+
+
+
+<script class="next-config" data-name="changyan" type="application/json">{"enable":true,"appid":"cywbdqFL8","appkey":"1e0802ef26195d974f4576578a580da3"}</script>
+<script src="/js/third-party/comments/changyan.js"></script>
+
+</body>
+</html>

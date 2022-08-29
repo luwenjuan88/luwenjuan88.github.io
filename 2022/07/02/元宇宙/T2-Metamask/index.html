@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.2.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha256-DfWjNxDkM94fVBWx1H5BMMp0Zq7luBlV8QRcSES7s+0=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.12.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="安装注册钱包在前面的文章讲过安装，这里不详细讲了 小狐狸钱包链接：https:&#x2F;&#x2F;metamask.io&#x2F; 点击Download，就会让你安装浏览器插件，跟着步骤一步一步来就好，安装完毕之后，点击开始使用，跟随指引注册钱包账号。  添加网络注册完成的小狐狸钱包，只有一个网络，就是以太坊，  但是，我们往往需要使用别的链，所以这里要添加网络，之前我们演示的是手动添加马蹄链，这里我们可以批量添加，使用">
+<meta property="og:type" content="article">
+<meta property="og:title" content="元宇宙初探：MetaMask小狐狸钱包从入门到精通">
+<meta property="og:url" content="http://example.com/2022/07/02/%E5%85%83%E5%AE%87%E5%AE%99/T2-Metamask/index.html">
+<meta property="og:site_name" content="卢文娟">
+<meta property="og:description" content="安装注册钱包在前面的文章讲过安装，这里不详细讲了 小狐狸钱包链接：https:&#x2F;&#x2F;metamask.io&#x2F; 点击Download，就会让你安装浏览器插件，跟着步骤一步一步来就好，安装完毕之后，点击开始使用，跟随指引注册钱包账号。  添加网络注册完成的小狐狸钱包，只有一个网络，就是以太坊，  但是，我们往往需要使用别的链，所以这里要添加网络，之前我们演示的是手动添加马蹄链，这里我们可以批量添加，使用">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://luwenjuan.luyuedan.com/mweb/16520192248116.png">
+<meta property="og:image" content="http://luwenjuan.luyuedan.com/mweb/481652360419_.pic.jpg">
+<meta property="og:image" content="http://luwenjuan.luyuedan.com/mweb/%25E6%2588%25AA%25E5%25B1%258F2022-05-20%2520%25E4%25B8%258B%25E5%258D%25882.47.36.png">
+<meta property="og:image" content="http://luwenjuan.luyuedan.com/mweb/16530329404058.png">
+<meta property="og:image" content="http://luwenjuan.luyuedan.com/mweb/16530334561041.png">
+<meta property="og:image" content="http://luwenjuan.luyuedan.com/mweb/16530336796535.png">
+<meta property="og:image" content="http://luwenjuan.luyuedan.com/mweb/16530352878806.png">
+<meta property="og:image" content="http://luwenjuan.luyuedan.com/mweb/16530356337596.png">
+<meta property="og:image" content="http://luwenjuan.luyuedan.com/mweb/16530354448082.png">
+<meta property="article:published_time" content="2022-07-02T07:21:41.000Z">
+<meta property="article:modified_time" content="2022-08-25T09:54:15.545Z">
+<meta property="article:author" content="卢文娟">
+<meta property="article:tag" content="元宇宙, MetaMask">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://luwenjuan.luyuedan.com/mweb/16520192248116.png">
+
+
+<link rel="canonical" href="http://example.com/2022/07/02/%E5%85%83%E5%AE%87%E5%AE%99/T2-Metamask/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2022/07/02/%E5%85%83%E5%AE%87%E5%AE%99/T2-Metamask/","path":"2022/07/02/元宇宙/T2-Metamask/","title":"元宇宙初探：MetaMask小狐狸钱包从入门到精通"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>元宇宙初探：MetaMask小狐狸钱包从入门到精通 | 卢文娟</title>
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">卢文娟</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">元宇宙，区块链，币圈知识分享，关注我公众号：元宇宙探索之旅</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-每日任务"><a href="/dailytask/" rel="section"><i class="fa fa-calendar fa-fw"></i>每日任务</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85%E6%B3%A8%E5%86%8C%E9%92%B1%E5%8C%85"><span class="nav-number">1.</span> <span class="nav-text">安装注册钱包</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B7%BB%E5%8A%A0%E7%BD%91%E7%BB%9C"><span class="nav-number">2.</span> <span class="nav-text">添加网络</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8B%E5%B7%B2%E6%8E%88%E6%9D%83%E7%9A%84%E7%BD%91%E7%BB%9C"><span class="nav-number">3.</span> <span class="nav-text">查看已授权的网络</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B7%BB%E5%8A%A0%E4%BB%A3%E5%B8%81"><span class="nav-number">4.</span> <span class="nav-text">添加代币</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="卢文娟"
+      src="/images/luwenjuan.jpeg">
+  <p class="site-author-name" itemprop="name">卢文娟</p>
+  <div class="site-description" itemprop="description">微信: 13246411679</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">91</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-name">分类</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">27</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/07/02/%E5%85%83%E5%AE%87%E5%AE%99/T2-Metamask/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/luwenjuan.jpeg">
+      <meta itemprop="name" content="卢文娟">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="卢文娟">
+      <meta itemprop="description" content="微信: 13246411679">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="元宇宙初探：MetaMask小狐狸钱包从入门到精通 | 卢文娟">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          元宇宙初探：MetaMask小狐狸钱包从入门到精通
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-07-02 15:21:41" itemprop="dateCreated datePublished" datetime="2022-07-02T15:21:41+08:00">2022-07-02</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-08-25 17:54:15" itemprop="dateModified" datetime="2022-08-25T17:54:15+08:00">2022-08-25</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%85%83%E5%AE%87%E5%AE%99/" itemprop="url" rel="index"><span itemprop="name">元宇宙</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Changyan：</span>
+    
+    <a title="元宇宙初探：MetaMask小狐狸钱包从入门到精通" href="/2022/07/02/%E5%85%83%E5%AE%87%E5%AE%99/T2-Metamask/#SOHUCS" itemprop="discussionUrl">
+      <span id="sourceId::2dfef1f4aa3362a42297360df675336d" class="cy_cmt_count" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h2 id="安装注册钱包"><a href="#安装注册钱包" class="headerlink" title="安装注册钱包"></a>安装注册钱包</h2><p>在前面的文章讲过安装，这里不详细讲了</p>
+<p>小狐狸钱包链接：<a target="_blank" rel="noopener" href="https://metamask.io/">https://metamask.io/</a></p>
+<p>点击Download，就会让你安装浏览器插件，跟着步骤一步一步来就好，安装完毕之后，点击开始使用，跟随指引注册钱包账号。</p>
+<p><img src="http://luwenjuan.luyuedan.com/mweb/16520192248116.png"></p>
+<h2 id="添加网络"><a href="#添加网络" class="headerlink" title="添加网络"></a>添加网络</h2><p>注册完成的小狐狸钱包，只有一个网络，就是以太坊，</p>
+<p><img src="http://luwenjuan.luyuedan.com/mweb/481652360419_.pic.jpg" alt="481652360419_.pic"></p>
+<p>但是，我们往往需要使用别的链，所以这里要添加网络，之前我们演示的是手动添加马蹄链，这里我们可以批量添加，使用chainlist网：</p>
+<p>chainlist链接：<a target="_blank" rel="noopener" href="https://chainlist.org/zh">https://chainlist.org/zh</a></p>
+<p><img src="http://luwenjuan.luyuedan.com/mweb/%25E6%2588%25AA%25E5%25B1%258F2022-05-20%2520%25E4%25B8%258B%25E5%258D%25882.47.36.png" alt="截屏2022-05-20 下午2.47.36"></p>
+<p>点击查找网络，可以连接到我们创建的小狐狸钱包。<br><img src="http://luwenjuan.luyuedan.com/mweb/16530329404058.png"></p>
+<p>然后，你就可以在这里把想要添加的网络，都添加到小狐狸钱包里。</p>
+<h2 id="查看已授权的网络"><a href="#查看已授权的网络" class="headerlink" title="查看已授权的网络"></a>查看已授权的网络</h2><p>如果你某些时候不小心点击了一些网站，然后授权了钱包，过后你觉得不安全，但是你又忘记你授权了什么，可以在这个网站上查找：</p>
+<p>链接：<a target="_blank" rel="noopener" href="https://debank.com/">https://debank.com/</a></p>
+<p>进入后首先连接小狐狸钱包。</p>
+<p><img src="http://luwenjuan.luyuedan.com/mweb/16530334561041.png"></p>
+<p>从这个Approval可以看到我们的小狐狸钱包，授权了哪些网络。</p>
+<p><img src="http://luwenjuan.luyuedan.com/mweb/16530336796535.png"></p>
+<h2 id="添加代币"><a href="#添加代币" class="headerlink" title="添加代币"></a>添加代币</h2><p>每一个链有它的币种，也可以添加代币，添加代币后，自己可以做币种之间的转换，如果别人要给我们转代币，也可以转。</p>
+<p>添加代币需要代币的合约地址，找代币的合约地址，也有一个网站。</p>
+<p>链接：<a target="_blank" rel="noopener" href="https://coinmarketcap.com/">https://coinmarketcap.com/</a></p>
+<p>这个网站可以找到几乎市面上所有代币的合约地址。</p>
+<p><img src="http://luwenjuan.luyuedan.com/mweb/16530352878806.png"></p>
+<p>可以搜索某个币种，也可以我们直接从列表点进去，比如USDT，这里要看你导入哪个链上，导入不同的链，地址也是不一样的，比如导入币安链，就要从下拉列表中找币安链对应的代币地址。</p>
+<p><img src="http://luwenjuan.luyuedan.com/mweb/16530356337596.png"></p>
+<p>然后在小狐狸钱包里面，导入代币，将代币地址粘贴进去就可以了。</p>
+<p><img src="http://luwenjuan.luyuedan.com/mweb/16530354448082.png"></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="reward-container">
+  <div></div>
+  <button>
+    赞赏
+  </button>
+  <div class="post-reward">
+      <div>
+        <img src="/images/weichat.jpeg" alt="卢文娟 微信">
+        <span>微信</span>
+      </div>
+      <div>
+        <img src="/images/alipay.jpeg" alt="卢文娟 支付宝">
+        <span>支付宝</span>
+      </div>
+
+  </div>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/%E5%85%83%E5%AE%87%E5%AE%99-MetaMask/" rel="tag"># 元宇宙, MetaMask</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2022/07/01/%E5%85%83%E5%AE%87%E5%AE%99/O2-%E4%BB%8E0%E5%BC%80%E5%A7%8Bopensea%EF%BC%882%EF%BC%89/" rel="prev" title="OpenSea：从0开始到从OpenSea买第一个NFT（二）">
+                  <i class="fa fa-chevron-left"></i> OpenSea：从0开始到从OpenSea买第一个NFT（二）
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2022/07/02/%E5%85%83%E5%AE%87%E5%AE%99/T1-Discord/" rel="next" title="元宇宙初探：Discord安装与设置">
+                  元宇宙初探：Discord安装与设置 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments" id="SOHUCS" sid="2dfef1f4aa3362a42297360df675336d"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">卢文娟</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/next-theme-pjax/0.5.0/pjax.min.js" integrity="sha256-3NkoLDrmHLTYj7csHIZSr0MHAFTXth7Ua/DDt4MRUAg=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script><script src="/js/pjax.js"></script>
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.0/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+
+
+
+
+<script class="next-config" data-name="changyan" type="application/json">{"enable":true,"appid":"cywbdqFL8","appkey":"1e0802ef26195d974f4576578a580da3"}</script>
+<script src="/js/third-party/comments/changyan.js"></script>
+
+</body>
+</html>
